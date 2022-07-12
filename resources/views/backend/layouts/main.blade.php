@@ -87,11 +87,17 @@
 <script src="{{asset('backend')}}/bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
 <!-- FastClick -->
 <script src="{{asset('backend')}}/bower_components/fastclick/lib/fastclick.js"></script>
+
+<script src="//cdn.ckeditor.com/4.19.0/full/ckeditor.js"></script>
 <!-- AdminLTE App -->
 <script src="{{asset('backend')}}/dist/js/adminlte.min.js"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="{{asset('backend')}}/dist/js/pages/dashboard.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{{asset('backend')}}/dist/js/demo.js"></script>
+
+<script type="text/javascript">
+    CKEDITOR.replace( 'description' );
+</script>
 </body>
 </html>

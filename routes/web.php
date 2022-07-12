@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\BannerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,8 +18,10 @@ use App\Http\Controllers\HomeController;
 
 
 Route::get('/admin/dashboard',[AdminController::class, 'dashboard']);
-
 Route::get('/',[HomeController::class,'index']);
+Route::resource('banner',BannerController::class);
+
+
 
 
 

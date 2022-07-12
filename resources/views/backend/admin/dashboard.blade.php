@@ -23,7 +23,6 @@
         <div class="small-box bg-aqua">
           <div class="inner">
             <h3>150</h3>
-
             <p>New Orders</p>
           </div>
           <div class="icon">
