@@ -53,7 +53,7 @@
           </ul>
         </li>
         <li>
-          <a href="pages/widgets.html">
+          <a href="{{route('admin.banner.index')}}">
             <i class="fa fa-th"></i> <span>Banner</span>
             <span class="pull-right-container">
             </span>

@@ -16,10 +16,14 @@ use App\Http\Controllers\BannerController;
 |
 */
 
+Route::prefix('admin')->name('admin.')->group(function () {
+    Route::get('/dashboard',[AdminController::class, 'dashboard'])->name('dashboard');
+    Route::get('/',[HomeController::class,'index']);
+    Route::resource('banner',BannerController::class);
+});
 
-Route::get('/admin/dashboard',[AdminController::class, 'dashboard']);
-Route::get('/',[HomeController::class,'index']);
-Route::resource('banner',BannerController::class);
+
+
 
 
 

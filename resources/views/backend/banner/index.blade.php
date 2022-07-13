@@ -8,6 +8,9 @@
         <div class="box">
           <div class="box-header with-border">
             <h3 class="box-title">Danh sach banner</h3>
+            <td>
+                <a href="{{route('admin.banner.create')}}" class="btn btn-primary pull-right">Thêm mới</a>
+            </td>
           </div>
           <!-- /.box-header -->
           <div class="box-body">
@@ -18,9 +21,9 @@
                 <th>Tên</th>
                 <th>Loại</th>
                 <th>Hành động</th>
-              </tr>
+            </tr>
         @foreach ($data as $key=> $item )
-              <tr>
+            <tr>
                 <td>{{$key + 1}}</td>
                 <td>
                     @if ($item->image && file_exists(public_path($item->image)) )
@@ -35,8 +38,10 @@
                 <td>
                     {{config('banner.type')[$item->type]}}
                 </td>
-                <td><span class="badge bg-red">55%</span></td>
-                <td><span class="badge bg-red">55%</span></td>
+                <td>
+                    <a href="{{route('admin.banner.edit',['banner'=>$item->id])}}" class="fa fa-align-justify" aria-hidden="true"></a>
+                    <a class="fa fa-trash" aria-hidden="true"></a>
+                </td>
             </tr>
         @endforeach
         </table>
@@ -58,3 +63,4 @@
   </section>
 
 @endsection
+

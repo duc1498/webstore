@@ -89,6 +89,9 @@
 <script src="{{asset('backend')}}/bower_components/fastclick/lib/fastclick.js"></script>
 
 <script src="//cdn.ckeditor.com/4.19.0/full/ckeditor.js"></script>
+
+<script src="{{asset('backend/js/notify.min.js')}}"></script>
+
 <!-- AdminLTE App -->
 <script src="{{asset('backend')}}/dist/js/adminlte.min.js"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
@@ -99,5 +102,8 @@
 <script type="text/javascript">
     CKEDITOR.replace( 'description' );
 </script>
+
+@yield('js')
+
 </body>
 </html>

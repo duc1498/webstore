@@ -25,6 +25,7 @@ class UpdateBannerRequest extends FormRequest
     {
         return [
             //
+
         ];
     }
 }

@@ -12,7 +12,16 @@
             <li class="active">General Elements</li>
         </ol>
     </section>
-
+    <section class="content-header">
+        {{-- @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul class="list-unstyled">
+                @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+        @endif --}}
     <section class="content">
         <div class="row">
             <!-- left column -->
@@ -24,12 +33,12 @@
                     </div>
                     <!-- /.box-header -->
                     <!-- form start -->
-                    <form role="form" method="post" action="{{route('banner.store')}}" enctype="multipart/form-data">
+                    <form role="form" method="post" action="{{route('admin.banner.store')}}" enctype="multipart/form-data" id="form">
                         @csrf
                         <div class="box-body">
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Tiêu đề</label>
-                                <input required id="title" name="title" type="text" class="form-control" placeholder="">
+                                <input id="title" name="title" type="text" class="form-control" placeholder="">
                             </div>
 
                             <div class="form-group">
@@ -72,7 +81,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label>Mô tả</label>
+                                <label id="is_description">Mô tả</label>
                                 <textarea id="description" name="description" class="form-control" rows="3" placeholder="Enter ..."></textarea>
                             </div>
 
@@ -80,7 +89,7 @@
                         <!-- /.box-body -->
 
                         <div class="box-footer">
-                            <button type="submit" class="btn btn-primary">Thêm</button>
+                            <button type="button" class="btn btn-primary btnCreate">Thêm</button>
                         </div>
                     </form>
                 </div>
@@ -91,4 +100,30 @@
         <!-- /.row -->
     </section>
     <!-- /.content -->
+@endsection
+
+
+@section('js')
+    <script type = "text/javascript">
+        $( document ).ready(function() {
+            $('.btnCreate').click(function () {
+                var error_mess = {};
+                var att = ['title', 'is_description', 'url'];
+                var vi = [];
+                vi['title'] = 'tieu de';
+                vi['is_description'] = 'is_description';
+                vi['url'] = 'url';
+                $.each(att, function(index, val) {
+                    if ($('#' + val).val() === '') {
+                        error_mess[val] = 'ban chua nhap ' + vi[val]
+                    }
+                });
+                $.each(error_mess, function(name, message) {
+                    $(`#${name}`).notify(`${message}`,'error');
+                    document.getElementById(`${name}`).scrollIntoView();
+                });
+            });
+            if(empty(error_mess)) {$('#form').submit();}
+        });
+    </script>
 @endsection
