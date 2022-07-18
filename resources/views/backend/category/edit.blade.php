@@ -9,7 +9,7 @@
         <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
             <li><a href="#">Forms</a></li>
-            <li class="active">General Elements</li>
+            <li class="active">Chỉnh sửa </li>
         </ol>
     </section>
 
@@ -23,13 +23,13 @@
                     </div>
                     <!-- /.box-header -->
                     <!-- form start -->
-                    <form role="form" method="post" action="{{route('admin.categories.update',  $model->id)}}" enctype="multipart/form-data">
+                    <form role="form" method="post" action="{{route('admin.category.update',  $model->id)}}" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
                         <div class="box-body">
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Tiêu đề</label>
-                                <input value="{{$model->title}}" id="title" name="title" type="text" class="form-control" placeholder="">
+                                <label for="exampleInputEmail1">Name</label>
+                                <input value="{{$model->name}}" id="name" name="name" type="text" class="form-control" placeholder="">
                             </div>
 
                             <div class="form-group">
@@ -39,27 +39,14 @@
                             @if ($model->image && file_exists(public_path($model->image)) )
                                 <img src="{{asset($model->image)}}" width="100px" height="75px" alt="">
                             @else
-                                <img src="upload/banner/erro404.jpg"width="100px" height="75px" alt="">
+                                <img src="upload/category/erro404.jpg"width="100px" height="75px" alt="">
                             @endif
-                            <div class="form-group">
-                                <label for="exampleInputPassword1">Liên kết</label>
-                                <input value="{{$model->url}}" type="text" class="form-control" id="url" name="url" placeholder="">
-                            </div>
 
                             <div class="form-group">
-                                <label>Chọn Target</label>
-                                <select class="form-control" name="target" id="target">
-                                    @foreach ( config('banner.target') as $key => $target )
-                                    <option {{($model->target == $key) ? 'selected' : ''}} value="{{$key}}">{{$target}}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-
-                            <div class="form-group">
-                                <label>Loại</label>
-                                <select class="form-control" name="type" id="type">
-                                    @foreach (config('banner.type') as $key => $type )
-                                        <option {{($model->title == $key) ? 'selected' : ''}} value="{{$key}}">{{$type}}</option>
+                                <label>Chọn danh mục Cha</label>
+                                <select class="form-control" name="parent_id" id="parent_id">
+                                    @foreach ($data as $item)
+                                        <option {{($item->id == $model->parent_id) ? 'selected' : ''}} value="{{$item->id}}">{{$item->name}}</option>
                                     @endforeach
                                 </select>
                             </div>

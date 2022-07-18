@@ -48,6 +48,7 @@ class BannerController extends Controller
         // khới tạo modal va gan gia tri form cho nhung thuoc tinh cua doi tuong
         $banner = new Banner();
         $banner->title = $request->input('title');
+
         $banner->slug = Str::slug($request->input('title')); //slug
 
         if($request->hasFile('image')) { // kiem tra xem co image duoc chon khong
@@ -171,8 +172,14 @@ class BannerController extends Controller
      * @param  \App\Models\Banner  $banner
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Banner $banner)
+    public function destroy($id)
     {
-        //
+        $banner = Banner::find($id);
+        // xóa ảnh cũ
+        if($banner) {
+            @unlink(public_path($banner->image));
+            Banner::destroy($id);
+            return 1;
+        } else return 0;
     }
 }

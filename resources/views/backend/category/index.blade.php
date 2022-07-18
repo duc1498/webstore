@@ -7,9 +7,9 @@
             <div class="col-md-12">
         <div class="box">
           <div class="box-header with-border">
-            <h3 class="box-title">Danh sach banner</h3>
+            <h3 class="box-title">Danh sach category</h3>
             <td>
-                <a href="{{route('admin.banner.create')}}" class="btn btn-primary pull-right">Thêm mới</a>
+                <a href="{{route('admin.category.create')}}" class="btn btn-primary pull-right">Thêm mới</a>
             </td>
           </div>
           <!-- /.box-header -->
@@ -19,28 +19,37 @@
                 <th style="width: 10px">TT</th>
                 <th>Hinh anh</th>
                 <th>Tên</th>
-                <th>Loại</th>
-                <th>Hành động</th>
+                <th>Danh mục cha</th>
+                <th>Trạng thái</th>
+                <th>Sắp xếp</th>
+                <th>Hàng động</th>
             </tr>
         @foreach ($data as $key=> $item )
             <tr class="item-{{$item->id}}">
                 <td>{{$key + 1}}</td>
                 <td>
-                    @if ($item->image && file_exists(public_path($item->image)) )
+                    @if ($item->image && is_file(public_path($item->image)) )
                         <img src="{{asset($item->image)}}" width="100px" height="75px" alt="">
                     @else
-                        <img src="upload/banner/erro404.jpg"width="100px" height="75px" alt="">
+                        <img src="upload/category/erro404.jpg"width="100px" height="75px" alt="">
                     @endif
                 </td>
                 <td>
-                    {{$item->title}}
+                    {{$item->name}}
                 </td>
                 <td>
-                    {{config('banner.type')[$item->type]}}
+                    {{$item->parent_id > 0 ? @$item->parent->name : ''}}
+                    {{-- {{$item->parent_id > 0 ? data_get($item->parent, 'name') : ''}} --}}
                 </td>
                 <td>
-                    <a href="{{ route('admin.banner.edit', ['banner' => $item->id]) }}"><span title="Chỉnh sửa" type="button" class="btn btn-flat btn-primary"><i class="fa fa-edit"></i></span></a>
-                    <span data-id="{{ $item->id }}" data-url="{{route('admin.banner.destroy', $item->id)}}" title="Xóa" class="btn btn-flat btn-danger deleteItem"><i class="fa fa-trash"></i></span>
+                 {!! $item->is_active == 1 ? '<span class="badge bg-green">ON</span>' : '<span class="badge bg-green">OFF</span>' !!}
+                </td>
+                <td>
+                    {{$item->position}}
+                </td>
+                <td>
+                    <a href="{{ route('admin.category.edit' ,['category' => $item->id]) }}"><span title="Chỉnh sửa" type="button" class="btn btn-flat btn-primary"><i class="fa fa-edit"></i></span></a>
+                    <span data-id="{{ $item->id }}" data-url="{{route('admin.category.destroy', $item->id)}}" title="Xóa" class="btn btn-flat btn-danger deleteItem"><i class="fa fa-trash"></i></span>
                 </td>
             </tr>
         @endforeach

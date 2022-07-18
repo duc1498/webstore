@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\BannerController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,10 +18,14 @@ use App\Http\Controllers\BannerController;
 |
 */
 
+Route::get('/', [\App\Http\Controllers\HomeController::class, 'index']);
+
 Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('/dashboard',[AdminController::class, 'dashboard'])->name('dashboard');
-    Route::get('/',[HomeController::class,'index']);
-    Route::resource('banner',BannerController::class);
+    Route::get('/test', [BannerController::class, 'test']);
+    Route::resource('product', ProductController::class);
+    Route::resource('banner', BannerController::class);
+    Route::resource('category', CategoryController::class);
 });
 
 

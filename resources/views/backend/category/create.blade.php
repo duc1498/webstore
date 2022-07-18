@@ -4,7 +4,7 @@
 @section('content')
     <section class="content-header">
         <h1>
-            Thêm Banner
+            Thêm category
         </h1>
         <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -23,31 +23,22 @@
         </div>
         @endif --}}
     <section class="content">
-        {{-- @if ($errors->any())
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif --}}
         <div class="row">
             <!-- left column -->
             <div class="col-md-12">
                 <!-- general form elements -->
                 <div class="box box-primary">
                     <div class="box-header with-border">
-                        <h3 class="box-title">Thêm mới Banner</h3>
+
                     </div>
                     <!-- /.box-header -->
                     <!-- form start -->
-                    <form role="form" method="post" action="{{route('admin.banner.store')}}" enctype="multipart/form-data" id="form">
+                    <form role="form" method="post" action="{{route('admin.category.store')}}" enctype="multipart/form-data" id="form">
                         @csrf
                         <div class="box-body">
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Tiêu đề</label>
-                                <input id="title" name="title" type="text" class="form-control" placeholder="">
+                                <label for="exampleInputEmail1">Tên</label>
+                                <input id="name" name="name" type="text" class="form-control" placeholder="">
                             </div>
 
                             <div class="form-group">
@@ -56,26 +47,12 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="exampleInputPassword1">Liên kết</label>
-                                <input type="text" class="form-control" id="url" name="url" placeholder="">
-                            </div>
-
-                            <div class="form-group">
-                                <label>Chọn Target</label>
-                                <select class="form-control" name="target" id="target">
+                                <label>Chọn danh mục Cha</label>
+                                <select class="form-control" name="parent_id" id="parent_id">
                                     <option></option>
-                                    @foreach (config('banner.target') as $key => $target)
-                                        <option value="{{$key}}">{{$target}}</option>
+                                    @foreach ($data as $item)
+                                        <option value="{{$item->id}}">{{$item->name}}</option>
                                     @endforeach
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label>Loại</label>
-                                <select class="form-control" name="type" id="type">
-                                <option></option>
-                                @foreach (config('banner.type') as $key => $type)
-                                    <option value="{{$key}}">{{$type}}</option>
-                                @endforeach
                                 </select>
                             </div>
 
@@ -85,13 +62,7 @@
                             </div>
                             <div class="checkbox">
                                 <label>
-                                    <input value="1" type="checkbox" name="is_active" id="is_active"> Trạng thái
-                                </label>
-                            </div>
-
-                            <div class="form-group">
-                                <label id="is_description">Mô tả</label>
-                                <textarea id="description" name="description" class="form-control" rows="3" placeholder="Enter ..."></textarea>
+                                    <input value="1" type="checkbox" name="is_active" id="is_active"> hiển thị </label>
                             </div>
 
                         </div>
