@@ -21,7 +21,6 @@ class ArticleController extends Controller
     {
         //
         $data = Article::first()->category();
-        ddd($data);
         $category = Category::all();
         return view('backend.article.index', compact('data'));
     }
