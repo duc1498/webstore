@@ -44,7 +44,7 @@
                     <span data-id="{{ $item->id }}" data-url="{{route('admin.banner.destroy', $item->id)}}" title="Xóa" class="btn btn-flat btn-danger deleteItem"><i class="fa fa-trash"></i></span>
                 </td>
                 <td>
-                    {{$item->category()->name }}
+                    {{$item->category ? $item->category->name : ''}}
                     {{-- {{$item->parent_id > 0 ? data_get($item->parent, 'name') : ''}} --}}
                 </td>
             </tr>

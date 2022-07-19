@@ -20,7 +20,7 @@ class ArticleController extends Controller
     public function index()
     {
         //
-        $data = Article::first()->category();
+        $data = Article::all();
         $category = Category::all();
         return view('backend.article.index', compact('data'));
     }
