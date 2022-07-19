@@ -42,7 +42,7 @@
                     {{-- {{$item->parent_id > 0 ? data_get($item->parent, 'name') : ''}} --}}
                 </td>
                 <td>
-                 {!! $item->is_active == 1 ? '<span class="badge bg-green">ON</span>' : '<span class="badge bg-green">OFF</span>' !!}
+                 {!! $item->is_active == 1 ? '<span class="badge bg-green">ON</span>' : '<span class="badge bg-red">OFF</span>' !!}
                 </td>
                 <td>
                     {{$item->position}}

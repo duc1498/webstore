@@ -6,6 +6,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\BannerController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ArticleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,6 +27,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::resource('product', ProductController::class);
     Route::resource('banner', BannerController::class);
     Route::resource('category', CategoryController::class);
+    Route::resource('article', ArticleController::class);
 });
 
 

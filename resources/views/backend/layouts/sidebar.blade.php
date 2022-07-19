@@ -59,6 +59,20 @@
             </span>
           </a>
         </li>
+        <li>
+            <a href="{{route('admin.category.index')}}">
+              <i class="fa fa-th"></i> <span>Category</span>
+              <span class="pull-right-container">
+              </span>
+            </a>
+          </li>
+          <li>
+            <a href="{{route('admin.article.index')}}">
+              <i class="fa fa-th"></i> <span>Article</span>
+              <span class="pull-right-container">
+              </span>
+            </a>
+          </li>
         <li class="treeview">
           <a href="#">
             <i class="fa fa-pie-chart"></i>

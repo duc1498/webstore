@@ -66,7 +66,7 @@
 @section('js')
     <script type="text/javascript">
         $( document ).ready(function() {
-            CKEDITOR.replace( 'description' );
+            CKEDITOR.replace( 'description'  );
 
             $('.deleteItem').click(function () {
                 var id = $(this).attr('data-id');

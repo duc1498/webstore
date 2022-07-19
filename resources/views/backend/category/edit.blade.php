@@ -2,7 +2,6 @@
 @extends('backend.layouts.main')
 
 @section('content')
-
         <h1>
             chỉnh sửa
         </h1>
@@ -58,7 +57,7 @@
 
                             <div class="checkbox">
                                 <label>
-                                    <input {{($model->is_active == 1) ? 'checked' : ''}}  value="{{$model->is_active}}" type="checkbox" name="is_active" id="is_active"> Trạng thái
+                                    <input {{($model->is_active == 1) ? 'checked' : ''}}  value="{{1}}" type="checkbox" name="is_active" id="is_active"> Trạng thái
                                 </label>
                             </div>
 
