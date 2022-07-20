@@ -114,3 +114,45 @@
     </section>
     <!-- /.content -->
 @endsection
+@section('js')
+    <script type="text/javascript">
+        $( document ).ready(function() {
+            CKEDITOR.replace( 'summary' );
+            CKEDITOR.replace( 'description' );
+            $('.btnCreate').click(function () {
+                if ($('#title').val() === '') {
+                    $('#title').notify('Bạn nhập chưa nhập tiêu đề','error');
+                    document.getElementById('title').scrollIntoView();
+                    return false;
+                }
+                if ($('#category_id').val() === 0 || $('#category_id').val() === '') {
+                    $('#category_id').notify('Bạn chưa chọn danh mục','error');
+                    document.getElementById('category_id').scrollIntoView();
+                    return false;
+                }
+                var summary = CKEDITOR.instances["summary"].getData();
+                if (summary === '') {
+                    $('#label-summary').notify('Bạn nhập chưa nhập tóm tắt','error');
+                    document.getElementById('label-summary').scrollIntoView();
+                    return false;
+                }
+                var description = CKEDITOR.instances["description"].getData();
+                if (description === '') {
+                    $('#label-description').notify('Bạn nhập chưa nhập mô tả','error');
+                    document.getElementById('label-description').scrollIntoView();
+                    return false;
+                }
+                if ($('#meta_title').val() === '') {
+                    $('#meta_title').notify('Bạn chưa chọn danh mục','error');
+                    document.getElementById('meta_title').scrollIntoView();
+                    return false;
+                }
+                if ($('#meta_description').val() === '') {
+                    $('#meta_description').notify('Bạn chưa chọn danh mục','error');
+                    document.getElementById('meta_description').scrollIntoView();
+                    return false;
+                }
+            });
+        });
+    </script>
+@endsection

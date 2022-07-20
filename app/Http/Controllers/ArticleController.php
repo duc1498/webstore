@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StorearticleRequest;
-use App\Http\Requests\UpdatearticleRequest;
+use App\Http\Requests\StoreArticleRequest;
+use App\Http\Requests\UpdateArticleRequest;
 use App\Models\Article;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -20,9 +20,9 @@ class ArticleController extends Controller
     public function index()
     {
         //
-        $data = Article::all();
+        $article = Article::all();
         $category = Category::all();
-        return view('backend.article.index', compact('data'));
+        return view('backend.article.index', compact('article', 'category'));
     }
 
     /**
@@ -34,8 +34,8 @@ class ArticleController extends Controller
     {
         //
         $data = Article::all(); //Select *form categories
-
-        return view('backend.article.create', compact('data'));
+        $category = Category::all(); // lấy các phần tử cửa bảng category
+        return view('backend.article.create', compact('data','category'));
 
     }
 
@@ -45,7 +45,7 @@ class ArticleController extends Controller
      * @param  \App\Http\Requests\StorearticleRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreArticleRequest $request)
     {
         //
           // khới tạo modal va gan gia tri form cho nhung thuoc tinh cua doi tuong
@@ -89,7 +89,7 @@ class ArticleController extends Controller
 
           $article->meta_title= $request->input('meta_title');
 
-          $article->article_id = $request->input('article_id');
+          $article->category_id = $request->input('category_id');
 
 
           $article->meta_description = $request->input('meta_description');
@@ -190,8 +190,15 @@ class ArticleController extends Controller
      * @param  \App\Models\article  $article
      * @return \Illuminate\Http\Response
      */
-    public function destroy()
+    public function destroy($id)
     {
-        //
+        $article = Article::find($id);
+        // xóa ảnh cũ
+        if($article) {
+        @unlink(public_path($article->image));
+
+        Article::destroy($id);
+        return true;
+        } else return false;
     }
 }

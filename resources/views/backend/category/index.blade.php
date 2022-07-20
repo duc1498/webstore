@@ -24,14 +24,14 @@
                 <th>Sắp xếp</th>
                 <th>Hàng động</th>
             </tr>
-        @foreach ($data as $key=> $item )
+        @foreach ($category as $key => $item )
             <tr class="item-{{$item->id}}">
                 <td>{{$key + 1}}</td>
                 <td>
                     @if ($item->image && is_file(public_path($item->image)) )
                         <img src="{{asset($item->image)}}" width="100px" height="75px" alt="">
                     @else
-                        <img src="upload/category/erro404.jpg"width="100px" height="75px" alt="">
+                        <img src="{{asset('upload/category/erro404.jpg')}}"width="100px" height="75px" alt="">
                     @endif
                 </td>
                 <td>

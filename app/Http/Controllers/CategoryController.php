@@ -21,8 +21,8 @@ class CategoryController extends Controller
             //Lấy toàn bộ dữ liệu
             // $data = Category::all();
             //cách 2 : lấy đữ liệu mới nhất và phần trang
-            $data = category::latest()->paginate(10);
-            return view('backend.category.index',compact('data'));
+            $category = Category::latest()->paginate(10);
+            return view('backend.category.index',compact('category'));
     }
 
     /**
@@ -33,9 +33,9 @@ class CategoryController extends Controller
     public function create()
     {
         //
-        $data = Category::all(); //Select *form categories
+        $category = Category::all(); //Select *form categories
 
-        return view('backend.category.create', compact('data'));
+        return view('backend.category.create', compact('category'));
 
     }
 
@@ -45,11 +45,11 @@ class CategoryController extends Controller
      * @param  \App\Http\Requests\StorecategoryRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StorecategoryRequest $request)
     {
         //
                // khới tạo modal va gan gia tri form cho nhung thuoc tinh cua doi tuong
-               $category = new category();
+               $category = new Category();
                $category->name = $request->input('name');
 
                $category->slug = Str::slug($request->input('title')); //slug
@@ -108,9 +108,9 @@ class CategoryController extends Controller
     public function edit($id)
     {
         //
-        $model = category::findOrFail($id);
-        $data = Category::all();
-        return view('backend.category.edit' ,compact('model','data'));
+        $category = Category::findOrFail($id);
+        $categories = Category::all();
+        return view('backend.category.edit' ,compact('category','categories'));
     }
 
     /**
@@ -120,15 +120,15 @@ class CategoryController extends Controller
      * @param  \App\Models\category  $category
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request , $id)
+    public function update(UpdatecategoryRequest $request , $id)
     {
         //
-        $model = category::findOrFail($id);
-        $model->name = $request->input('name');
-        $model->slug = Str::slug($request->input('name')); //slug
+        $category = Category::findOrFail($id);
+        $category->name = $request->input('name');
+        $category->slug = Str::slug($request->input('name')); //slug
 
         if($request->hasFile('image')) { // kiem tra xem co image duoc chon khong
-            @unlink(public_path($model->image));
+            @unlink(public_path($category->image));
             //get File
             $file = $request->file('image');
             // dat ten cho file image
@@ -138,9 +138,9 @@ class CategoryController extends Controller
             // thuc hien upload file
             $file->move($path_upload,$filename);
             // luu lai ten
-            $model->image = $path_upload.$filename;
+            $category->image = $path_upload.$filename;
         }
-        $model->parent_id = $request->input('parent_id');
+        $category->parent_id = $request->input('parent_id');
         //trang thai
         $is_active = 0;
         //Trang thai
@@ -148,15 +148,15 @@ class CategoryController extends Controller
             $is_active = $request->input('is_active');
         }
         //trang thai
-        $model->is_active = $is_active;
+        $category->is_active = $is_active;
         //vi tri
         $position = 0;
         if($request->has('position')) {
             $position = $request->input('position');
         }
-        $model->position = $position;
+        $category->position = $position;
         //luu
-        $model->save();
+        $category->save();
 
         return redirect()->route('admin.category.index');
     }
@@ -170,11 +170,11 @@ class CategoryController extends Controller
     public function destroy($id)
     {
         //
-        $banner = category::find($id);
+        $category = Category::find($id);
         // xóa ảnh cũ
-        if($banner) {
-            @unlink(public_path($banner->image));
-            category::destroy($id);
+        if($category) {
+            @unlink(public_path($category->image));
+            Category::destroy($id);
             return 1;
         } else return 0;
     }

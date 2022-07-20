@@ -19,10 +19,10 @@ class BannerController extends Controller
     {
 
         //Lấy toàn bộ dữ liệu
-        $data = Banner::all();
+        $banner = Banner::all();
         //cách 2 : lấy đữ liệu mới nhất và phần trang
         // $data = Banner::latest()->paginate(10);
-        return view('backend.banner.index',compact('data'));
+        return view('backend.banner.index',compact('banner'));
     }
 
     /**
@@ -109,8 +109,8 @@ class BannerController extends Controller
     public function edit($id)
     {
         //
-        $model = Banner::findOrFail($id);
-        return view('backend.banner.edit' ,compact('model'));
+        $banner = Banner::findOrFail($id);
+        return view('backend.banner.edit' ,compact('banner'));
     }
 
     /**
@@ -123,12 +123,12 @@ class BannerController extends Controller
     public function update(UpdateBannerRequest $request , $id)
     {
         //
-        $model = Banner::findOrFail($id);
-        $model->title = $request->input('title');
-        $model->slug = Str::slug($request->input('title')); //slug
+        $banner = Banner::findOrFail($id);
+        $banner->title = $request->input('title');
+        $banner->slug = Str::slug($request->input('title')); //slug
 
         if($request->hasFile('image')) { // kiem tra xem co image duoc chon khong
-            @unlink(public_path($model->image));
+            @unlink(public_path($banner->image));
             //get File
             $file = $request->file('image');
             // dat ten cho file image
@@ -140,10 +140,10 @@ class BannerController extends Controller
             // luu lai ten
             $model->image = $path_upload.$filename;
         }
-        $model->url = $request->input('url');
-        $model->target = $request->input('target');
+        $banner->url = $request->input('url');
+        $banner->target = $request->input('target');
         //loai
-        $model->type = $request->input('type');
+        $banner->type = $request->input('type');
         //trang thai
         $is_active = 0;
         //Trang thai
@@ -151,17 +151,17 @@ class BannerController extends Controller
             $is_active = $request->input('is_active');
         }
         //trang thai
-        $model->is_active = $is_active;
+        $banner->is_active = $is_active;
         //vi tri
         $position = 0;
         if($request->has('position')) {
             $position = $request->input('position');
         }
-        $model->position = $position;
+        $banner->position = $position;
         // mo ta
-        $model->description = $request->input('description');
+        $banner->description = $request->input('description');
         //luu
-        $model->save();
+        $banner->save();
 
         return redirect()->route('admin.banner.index');
     }

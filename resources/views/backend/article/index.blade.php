@@ -7,7 +7,7 @@
             <div class="col-md-12">
         <div class="box">
           <div class="box-header with-border">
-            <h3 class="box-title">Danh sach article</h3>
+            <h3 class="box-title">Quản lý bài viết</h3>
             <td>
                 <a href="{{route('admin.article.create')}}" class="btn btn-primary pull-right">Thêm mới</a>
             </td>
@@ -23,25 +23,27 @@
                 <th>Hành động</th>
                 <th>Danh mục cha</th>
             </tr>
-        @foreach ($data as $key=> $item )
+        @foreach ($article as $key=> $item )
             <tr class="item-{{$item->id}}">
                 <td>{{$key + 1}}</td>
                 <td>
-                    @if ($item->image && file_exists(public_path($item->image)) )
+                    @if ($item->image && is_file(public_path($item->image)) ) <!-- kiểm tra file có tồn tại hay ko -->
                         <img src="{{asset($item->image)}}" width="100px" height="75px" alt="">
                     @else
-                        <img src="upload/banner/erro404.jpg"width="100px" height="75px" alt="">
+                        <img src="{{asset('upload/banner/erro404.jpg') }}"width="100px" height="75px" alt="">
                     @endif
                 </td>
                 <td>
                     {{$item->title}}
                 </td>
                 <td>
+                    @if(isset(config('banner.type')[$item->type]))
                     {{config('banner.type')[$item->type]}}
+                    @endif
                 </td>
                 <td>
                     <a href="{{ route('admin.article.edit', ['article' => $item->id]) }}"><span title="Chỉnh sửa" type="button" class="btn btn-flat btn-primary"><i class="fa fa-edit"></i></span></a>
-                    <span data-id="{{ $item->id }}" data-url="{{route('admin.banner.destroy', $item->id)}}" title="Xóa" class="btn btn-flat btn-danger deleteItem"><i class="fa fa-trash"></i></span>
+                    <span data-id="{{ $item->id }}" data-url="{{route('admin.article.destroy', $item->id)}}" title="Xóa" class="btn btn-flat btn-danger deleteItem"><i class="fa fa-trash"></i></span>
                 </td>
                 <td>
                     {{$item->category ? $item->category->name : ''}}
@@ -76,7 +78,7 @@
             $('.deleteItem').click(function () {
                 var id = $(this).attr('data-id');
                 var url = $(this).attr('data-url');
-
+                console.log(url);
                 Swal.fire({
                     title: 'Are you sure?',
                     text: "You won't be able to revert this!",
@@ -92,11 +94,11 @@
                     type: 'DELETE',
                     data: {},
                     success: function (res) {
-                        if(res ==1 ) {
+                        if(res == true ) {
                             $('.item-'+id).remove();
                         //     alert('BANJ DA XOAS THANHF CONG')
-                        // } else {
-                        //     alert('khoong tim thaAY ID BANER')
+                        } else {
+                            alert('khoong tim thaAY ID ')
                         }
                     },
                 });

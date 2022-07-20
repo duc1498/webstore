@@ -22,7 +22,7 @@
                 <th>Loại</th>
                 <th>Hành động</th>
             </tr>
-        @foreach ($data as $key=> $item )
+        @foreach ($banner as $key=> $item )
             <tr class="item-{{$item->id}}">
                 <td>{{$key + 1}}</td>
                 <td>

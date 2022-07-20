@@ -29,7 +29,6 @@
                 <!-- general form elements -->
                 <div class="box box-primary">
                     <div class="box-header with-border">
-
                     </div>
                     <!-- /.box-header -->
                     <!-- form start -->
@@ -68,8 +67,6 @@
                                 @endforeach
                                 </select>
                             </div>
-
-
                             <div class="form-group">
                                 <label for="exampleInputPassword1">Vị trí</label>
                                 <input min="0" type="number" class="form-control" id="position" name="position" placeholder="">
@@ -93,7 +90,7 @@
                                 <label>Chọn danh mục</label>
                                 <select class="form-control" name="category_id" id="category_id">
                                     <option></option>
-                                    @foreach ($data as $item)
+                                    @foreach ($category as $item)
                                         <option value="{{$item->id}}">{{$item->name}}</option>
                                     @endforeach
                                 </select>
@@ -142,19 +139,45 @@
         });
     </script> --}}
 
-    <script>
-        $(document).ready(function() {
+    <script type="text/javascript">
+        $( document ).ready(function() {
+            CKEDITOR.replace( 'summary' );
             CKEDITOR.replace( 'description' );
-            CKEDITOR.replace( 'meta_description' );
-
-            $('.btnCreate').click(function() {
+            $('.btnCreate').click(function () {
                 if ($('#title').val() === '') {
-                    $('#title').notify('ban chua nhap tieu de','error');
+                    $('#title').notify('Bạn nhập chưa nhập tiêu đề','error');
                     document.getElementById('title').scrollIntoView();
                     return false;
                 }
+                if ($('#category_id').val() === 0 || $('#category_id').val() === '') {
+                    $('#category_id').notify('Bạn chưa chọn danh mục','error');
+                    document.getElementById('category_id').scrollIntoView();
+                    return false;
+                }
+                var summary = CKEDITOR.instances["summary"].getData();
+                if (summary === '') {
+                    $('#label-summary').notify('Bạn nhập chưa nhập tóm tắt','error');
+                    document.getElementById('label-summary').scrollIntoView();
+                    return false;
+                }
+                var description = CKEDITOR.instances["description"].getData();
+                if (description === '') {
+                    $('#label-description').notify('Bạn nhập chưa nhập mô tả','error');
+                    document.getElementById('label-description').scrollIntoView();
+                    return false;
+                }
+                if ($('#meta_title').val() === '') {
+                    $('#meta_title').notify('Bạn chưa chọn danh mục','error');
+                    document.getElementById('meta_title').scrollIntoView();
+                    return false;
+                }
+                if ($('#meta_description').val() === '') {
+                    $('#meta_description').notify('Bạn chưa chọn danh mục','error');
+                    document.getElementById('meta_description').scrollIntoView();
+                    return false;
+                }
             });
-
         });
     </script>
+
 @endsection
