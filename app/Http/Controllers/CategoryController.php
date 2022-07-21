@@ -48,11 +48,12 @@ class CategoryController extends Controller
     public function store(StorecategoryRequest $request)
     {
         //
+                $data = $request->all();
                // khới tạo modal va gan gia tri form cho nhung thuoc tinh cua doi tuong
-               $category = new Category();
-               $category->name = $request->input('name');
+            //    $category = new Category();
+            //    $category->name = $request->input('name');
 
-               $category->slug = Str::slug($request->input('title')); //slug
+               $data['slug'] = Str::slug($request->input('name')); //slug
 
                if($request->hasFile('image')) { // kiem tra xem co image duoc chon khong
                    //get File
@@ -64,28 +65,30 @@ class CategoryController extends Controller
                    // thuc hien upload file
                    $file->move($path_upload,$filename);
                    // luu lai ten
-                   $category->image = $path_upload.$filename;
+                   $data['image'] = $path_upload.$filename;
                }
-               $category->parent_id = $request->input('parent_id');
-               //trang thai
-               $is_active = 0;
-               //Trang thai
-               if($request->has('is_active')) { // kiem tra xem is_active co ton tai hay khong
-                   $is_active = $request->input('is_active');
+            //    $category->parent_id = $request->input('parent_id');
+            //    //trang thai
+            //    $is_active = 0;
+            //    //Trang thai
+            //    if($request->has('is_active')) { // kiem tra xem is_active co ton tai hay khong
+            //        $is_active = $request->input('is_active');
 
-               }
-               //trang thai
-               $category->is_active =  $is_active;
-               //vi tri
-               $position = 0;
-               if($request->has('position')) {
-                   $position = $request->input('position');
-               }
-               $category->position = $position;
-               //luu
-               $category->save();
+            //    }
+            //    //trang thai
+            //    $category->is_active =  $is_active;
+            //    //vi tri
+            //    $position = 0;
+            //    if($request->has('position')) {
+            //        $position = $request->input('position');
+            //    }
+            //    $category->position = $position;
+            //    //luu
+            //    $category->save();
 
-               return redirect()->route('admin.category.index');
+            Category::create($data);
+
+            return redirect()->route('admin.category.index');
     }
 
     /**
@@ -123,9 +126,11 @@ class CategoryController extends Controller
     public function update(UpdatecategoryRequest $request , $id)
     {
         //
-        $category = Category::findOrFail($id);
-        $category->name = $request->input('name');
-        $category->slug = Str::slug($request->input('name')); //slug
+        $data = $request->all();
+
+        // $category = Category::findOrFail($id);
+        // $category->name = $request->input('name');
+        $category['slug ']= Str::slug($request->input('name')); //slug
 
         if($request->hasFile('image')) { // kiem tra xem co image duoc chon khong
             @unlink(public_path($category->image));
@@ -138,25 +143,26 @@ class CategoryController extends Controller
             // thuc hien upload file
             $file->move($path_upload,$filename);
             // luu lai ten
-            $category->image = $path_upload.$filename;
+            $data['image'] = $path_upload.$filename;
         }
-        $category->parent_id = $request->input('parent_id');
-        //trang thai
-        $is_active = 0;
-        //Trang thai
-        if($request->has('is_active')) { // kiem tra xem is_active co ton tai hay khong
-            $is_active = $request->input('is_active');
-        }
-        //trang thai
-        $category->is_active = $is_active;
-        //vi tri
-        $position = 0;
-        if($request->has('position')) {
-            $position = $request->input('position');
-        }
-        $category->position = $position;
-        //luu
-        $category->save();
+        // $category->parent_id = $request->input('parent_id');
+        // //trang thai
+        // $is_active = 0;
+        // //Trang thai
+        // if($request->has('is_active')) { // kiem tra xem is_active co ton tai hay khong
+        //     $is_active = $request->input('is_active');
+        // }
+        // //trang thai
+        // $category->is_active = $is_active;
+        // //vi tri
+        // $position = 0;
+        // if($request->has('position')) {
+        //     $position = $request->input('position');
+        // }
+        // $category->position = $position;
+        // //luu
+        // $category->save();
+        $category = Category::findOrFail($id)->update($data);
 
         return redirect()->route('admin.category.index');
     }

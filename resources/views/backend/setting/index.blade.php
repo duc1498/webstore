@@ -39,7 +39,7 @@
                             <div class="form-group">
 
                                 <label for="exampleInputEmail1">Tên công ty</label>
-                                <input value="{{$setting->company}}" id="title" name="title" type="text" class="form-control" placeholder="">
+                                <input value="{{$setting->company}}" id="company" name="company" type="text" class="form-control" placeholder="">
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputFile">Logo</label>
@@ -48,7 +48,7 @@
                             @if ($setting->image && is_file(public_path($setting->image)) )
                                 <img src="{{asset($setting->image)}}" width="100px" height="75px" alt="">
                             @else
-                                <img src="{{asset(upload/category/erro404.jpg)}}"width="100px" height="75px" alt="">
+                                {{-- <img src="{{asset(upload/category/erro404.jpg)}}"width="100px" height="75px" alt=""> --}}
                             @endif
 
                             <div class="form-group">
@@ -102,7 +102,7 @@
 @endsection
 
 
-@section('js')
+{{-- @section('js')
     <script>
         $(document).ready(function() {
             CKEDITOR.replace( 'content' )
@@ -132,4 +132,4 @@
         });
 
     </script>
-@endsection
+@endsection --}}

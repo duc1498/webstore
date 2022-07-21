@@ -49,12 +49,12 @@ class ArticleController extends Controller
     {
         //
           // khới tạo modal va gan gia tri form cho nhung thuoc tinh cua doi tuong
-          $article = new Article();
-          $article->title = $request->input('title');
 
-          $article->slug = Str::slug($request->input('title')); //slug
+          $dataInsert = $request->all();
 
-          if($request->hasFile('image')) { // kiem tra xem co image duoc chon khong
+          $dataInsert['slug'] = Str::slug($request->input('title')); //slug
+
+        if($request->hasFile('image')) { // kiem tra xem co image duoc chon khong
               //get File
               $file = $request->file('image');
               // dat ten cho file image
@@ -64,41 +64,12 @@ class ArticleController extends Controller
               // thuc hien upload file
               $file->move($path_upload,$filename);
               // luu lai ten
-              $article->image = $path_upload.$filename;
-          }
-          $article->url = $request->input('url');
-          $article->summary = $request->input('summary');
-          //loai
-          $article->type = $request->input('type');
-          //trang thai
-          $is_active = 0;
-          //Trang thai
-          if($request->has('is_active')) { // kiem tra xem is_active co ton tai hay khong
-              $is_active = $request->input('is_active');
-          }
-          //trang thai
-          $article->is_active = $is_active;
-          //vi tri
-          $position = 0;
-          if($request->has('position')) {
-              $position = $request->input('position');
-          }
-          $article->position = $position;
-          // mo ta
-          $article->description = $request->input('description');
+              $dataInsert['image'] = $path_upload.$filename;
+            }
+        Article::create($dataInsert);
 
-          $article->meta_title= $request->input('meta_title');
-
-          $article->category_id = $request->input('category_id');
-
-
-          $article->meta_description = $request->input('meta_description');
-          //luu
-          $article->save();
-
-          return redirect()->route('admin.article.index');
+        return redirect()->route('admin.article.index');
     }
-
     /**
      * Display the specified resource.
      *
@@ -134,10 +105,13 @@ class ArticleController extends Controller
     public function update(Request $request, $id)
     {
         //
-        $article = Article::findOrFail($id);
-        $article->title = $request->input('title');
 
-        $article->slug = Str::slug($request->input('title')); //slug
+        $article = Article::findOrFail($id);
+
+        $data= $request->all();
+        // $article->title = $request->input('title');
+
+        $data['slug'] = Str::slug($request->input('title')); //slug
 
         if($request->hasFile('image')) { // kiem tra xem co image duoc chon khong
             @unlink(public_path($article->image));
@@ -150,36 +124,10 @@ class ArticleController extends Controller
             // thuc hien upload file
             $file->move($path_upload,$filename);
             // luu lai ten
-            $article->image = $path_upload.$filename;
+            $data['image'] = $path_upload.$filename;
         }
-        $article->url = $request->input('url');
-        $article->summary = $request->input('summary');
-        //loai
-        $article->type = $request->input('type');
-        //trang thai
-        $is_active = 0;
-        //Trang thai
-        if($request->has('is_active')) { // kiem tra xem is_active co ton tai hay khong
-            $is_active = $request->input('is_active');
-        }
-        //trang thai
-        $article->is_active = $is_active;
-        //vi tri
-        $position = 0;
-        if($request->has('position')) {
-            $position = $request->input('position');
-        }
-        $article->position = $position;
-        // mo ta
-        $article->description = $request->input('description');
 
-        $article->meta_title= $request->input('meta_title');
-
-        $article->category_id = $request->input('category_id');
-
-        $article->meta_description = $request->input('meta_description');
-        //luu
-        $article->save();
+        $article->update($data);
 
         return redirect()->route('admin.article.index');
     }

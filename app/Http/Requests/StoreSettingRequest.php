@@ -25,16 +25,16 @@ class StoreSettingRequest extends FormRequest
     {
         return [
             //
-            'company'=>'required',
-            'address'=>'required',
-            'address2'=>'required',
-            'image'=>'required',
-            'phone'=>'required',
-            'hotline'=>'required',
-            'tax'=>'required',
-            'facebook'=>'required',
-            'email'=>'required',
-            'content'=>'required',
+            // 'company'=>'required',
+            // 'address'=>'required',
+            // 'address2'=>'required',
+            // 'image'=>'required',
+            // 'phone'=>'required',
+            // 'hotline'=>'required',
+            // 'tax'=>'required',
+            // 'facebook'=>'required',
+            // 'email'=>'required',
+            // 'content'=>'required',
         ];
     }
 }
