@@ -88,6 +88,7 @@ class BannerController extends Controller
         // $banner->description = $request->input('description');
         // //luu
         // $banner->save();
+
         Banner::create($data);
 
         return redirect()->route('admin.banner.index');

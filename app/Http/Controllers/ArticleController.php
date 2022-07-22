@@ -35,8 +35,8 @@ class ArticleController extends Controller
         //
         $data = Article::all(); //Select *form categories
         $category = Category::all(); // lấy các phần tử cửa bảng category
-        return view('backend.article.create', compact('data','category'));
 
+        return view('backend.article.create', compact('data','category'));
     }
 
     /**
@@ -104,9 +104,6 @@ class ArticleController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
-
-        $article = Article::findOrFail($id);
 
         $data= $request->all();
         // $article->title = $request->input('title');
@@ -127,7 +124,7 @@ class ArticleController extends Controller
             $data['image'] = $path_upload.$filename;
         }
 
-        $article->update($data);
+        $article = Article::findOrFail($id)->update($data);
 
         return redirect()->route('admin.article.index');
     }
