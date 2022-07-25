@@ -153,7 +153,10 @@ class CategoryController extends Controller
         //     $is_active = $request->input('is_active');
         // }
         // //trang thai
-        // $category->is_active = $is_active;
+        $data['is_active'] = 0;
+        if($request->has('is_active')) {
+            $data['is_active']=$request->input('is_active');
+        };
         // //vi tri
         // $position = 0;
         // if($request->has('position')) {

@@ -38,7 +38,7 @@
                             @if ($category->image && file_exists(public_path($category->image)) )
                                 <img src="{{asset($category->image)}}" width="100px" height="75px" alt="">
                             @else
-                                <img src="upload/category/erro404.jpg"width="100px" height="75px" alt="">
+                                <img src="{{asset('upload/category/erro404.jpg')}}"width="100px" height="75px" alt="">
                             @endif
 
                             <div class="form-group">
@@ -57,7 +57,7 @@
 
                             <div class="checkbox">
                                 <label>
-                                    <input {{($category->is_active == 1) ? 'checked' : ''}}  value="{{1}}" type="checkbox" name="is_active" id="is_active"> Trạng thái
+                                    <input {{($category->is_active == 1) ? 'checked' : ''}}  value="1" type="checkbox" name="is_active" id="is_active"> Trạng thái
                                 </label>
                             </div>
 

@@ -96,9 +96,9 @@
                     success: function (res) {
                         if(res == true ) {
                             $('.item-'+id).remove();
-                        //     alert('BANJ DA XOAS THANHF CONG')
+                            alert('Bạn đã xoá thành công')
                         } else {
-                            alert('khoong tim thaAY ID ')
+                            alert('Không tìm thấy id')
                         }
                     },
                 });

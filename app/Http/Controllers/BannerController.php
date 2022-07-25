@@ -130,7 +130,6 @@ class BannerController extends Controller
         //
         $data = $request-> all();
 
-        $banner = Banner::findOrFail($id);
         // $banner->title = $request->input('title');
         $data['slug'] = Str::slug($request->input('title')); //slug
 
@@ -152,11 +151,10 @@ class BannerController extends Controller
         // //loai
         // $banner->type = $request->input('type');
         // //trang thai
-        // $is_active = 0;
-        // //Trang thai
-        // if($request->has('is_active')) { // kiem tra xem is_active co ton tai hay khong
-        //     $is_active = $request->input('is_active');
-        // }
+        $data['is_active'] = 0;
+        if($request->has('is_active')) { // kiem tra xem is_active co ton tai hay khong
+            $data['is_active'] = $request->input('is_active');
+        }
         // //trang thai
         // $banner->is_active = $is_active;
         // //vi tri
@@ -170,7 +168,7 @@ class BannerController extends Controller
         // //luu
         // $banner->save();
 
-        $banner -> update($data);
+        $banner= Banner::findOrFail($id)-> update($data);
 
         return redirect()->route('admin.banner.index');
     }

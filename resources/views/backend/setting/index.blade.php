@@ -102,7 +102,7 @@
 @endsection
 
 
-{{-- @section('js')
+@section('js')
     <script>
         $(document).ready(function() {
             CKEDITOR.replace( 'content' )
@@ -132,4 +132,4 @@
         });
 
     </script>
-@endsection --}}
+@endsection

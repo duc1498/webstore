@@ -33,10 +33,10 @@ class ArticleController extends Controller
     public function create()
     {
         //
-        $data = Article::all(); //Select *form categories
+        $article = Article::all(); //Select *form categories
         $category = Category::all(); // lấy các phần tử cửa bảng category
 
-        return view('backend.article.create', compact('data','category'));
+        return view('backend.article.create', compact('article','category'));
     }
 
     /**
@@ -106,6 +106,7 @@ class ArticleController extends Controller
     {
 
         $data= $request->all();
+
         // $article->title = $request->input('title');
 
         $data['slug'] = Str::slug($request->input('title')); //slug
@@ -123,6 +124,11 @@ class ArticleController extends Controller
             // luu lai ten
             $data['image'] = $path_upload.$filename;
         }
+
+        $data['is_active'] = 0;
+        if($request->has('is_active')) {
+            $data['is_active'] = $request->input('is_active');
+        };
 
         $article = Article::findOrFail($id)->update($data);
 

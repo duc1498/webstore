@@ -29,7 +29,7 @@
                     @if ($item->image && file_exists(public_path($item->image)) )
                         <img src="{{asset($item->image)}}" width="100px" height="75px" alt="">
                     @else
-                        <img src="upload/banner/erro404.jpg"width="100px" height="75px" alt="">
+                        <img src="{{asset('upload/banner/1658714258_123.jpg')}}"width="100px" height="75px" alt="">
                     @endif
                 </td>
                 <td>
@@ -89,9 +89,9 @@
                     success: function (res) {
                         if(res ==1 ) {
                             $('.item-'+id).remove();
-                        //     alert('BANJ DA XOAS THANHF CONG')
-                        // } else {
-                        //     alert('khoong tim thaAY ID BANER')
+                            alert('Bạn đã xoá thành công ')
+                        } else {
+                            alert('Không tìm thấy id')
                         }
                     },
                 });

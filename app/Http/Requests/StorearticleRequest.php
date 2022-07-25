@@ -25,13 +25,13 @@ class StorearticleRequest extends FormRequest
     {
         return [
             //
-            'title' => 'required|max:255',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:10000',
-            'category_id' => 'required',
-            'summary' => 'required',
-            'description' => 'required',
-            'meta_title' => 'required',
-            'meta_description' => 'required',
+            // 'title' => 'required|max:255',
+            // 'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:10000',
+            // 'category_id' => 'required',
+            // 'summary' => 'required',
+            // 'description' => 'required',
+            // 'meta_title' => 'required',
+            // 'meta_description' => 'required',
         ];
     }
 }

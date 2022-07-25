@@ -18,6 +18,7 @@ class Article extends Model
         'position',
         'status',
         'url',
+        'is_active',
         'category_id',
         'meta_description'
     ];

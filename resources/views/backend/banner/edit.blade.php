@@ -39,7 +39,7 @@
                             @if ($banner->image && file_exists(public_path($banner->image)) )
                                 <img src="{{asset($banner->image)}}" width="100px" height="75px" alt="">
                             @else
-                                <img src="upload/banner/erro404.jpg"width="100px" height="75px" alt="">
+                                <img src="{{asset('upload/banner/erro404.jpg')}}"width="100px" height="75px" alt="">
                             @endif
                             <div class="form-group">
                                 <label for="exampleInputPassword1">Liên kết</label>
@@ -71,7 +71,7 @@
 
                             <div class="checkbox">
                                 <label>
-                                    <input {{($banner->is_active == 1) ? 'checked' : ''}}  value="{{$banner->is_active}}" type="checkbox" name="is_active" id="is_active"> Trạng thái
+                                    <input {{($banner->is_active == 1) ? 'checked' : ''}}  value="1" type="checkbox" name="is_active" id="is_active"> Trạng thái
                                 </label>
                             </div>
 

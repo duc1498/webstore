@@ -75,7 +75,8 @@
                             </div>
                             <div class="checkbox">
                                 <label>
-                                    <input {{($article->is_active == 1) ? 'checked' : ''}}  value="{{1}}" type="checkbox" name="is_active" id="is_active"> hiển thị </label>
+                                    <input {{($article->is_active == 1) ? 'checked' : ''}}  value="1" type="checkbox" name="is_active" id="is_active"> hiển thị
+                                </label>
                             </div>
 
                             <div class="form-group">
