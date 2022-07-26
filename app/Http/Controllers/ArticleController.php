@@ -106,6 +106,7 @@ class ArticleController extends Controller
     {
 
         $data= $request->all();
+        $article = Article::findOrFail($id);
 
         // $article->title = $request->input('title');
 

@@ -128,9 +128,11 @@ class CategoryController extends Controller
         //
         $data = $request->all();
 
+        $category = Category::findOrFail($id);
+
         // $category = Category::findOrFail($id);
         // $category->name = $request->input('name');
-        $category['slug ']= Str::slug($request->input('name')); //slug
+        $data['slug ']= Str::slug($request->input('name')); //slug
 
         if($request->hasFile('image')) { // kiem tra xem co image duoc chon khong
             @unlink(public_path($category->image));
@@ -165,7 +167,7 @@ class CategoryController extends Controller
         // $category->position = $position;
         // //luu
         // $category->save();
-        $category = Category::findOrFail($id)->update($data);
+        $category ->update($data);
 
         return redirect()->route('admin.category.index');
     }

@@ -10,7 +10,7 @@
                         <li><a href="help.html">Help</a></li>
                         <li><a href="account.html">My account</a></li>
                         <li><a href="blog.html">Blog</a></li>
-                        <li><a href="contacts.html">Contacts</a></li>
+                        <li><a href="{{route('contact.index')}}">Contacts</a></li>
                     </ul>
                 </div>
             </div>

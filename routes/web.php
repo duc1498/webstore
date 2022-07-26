@@ -8,6 +8,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\SettingController;
+use App\Http\Controllers\ContactController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,7 +21,8 @@ use App\Http\Controllers\SettingController;
 |
 */
 
-Route::get('/', [\App\Http\Controllers\HomeController::class, 'index']);
+Route::get('/', [HomeController::class, 'index']);
+Route::get('contact', [ContactController::class, 'contact'])->name('contact.index');
 
 Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('/dashboard',[AdminController::class, 'dashboard'])->name('dashboard');
@@ -30,6 +32,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::resource('category', CategoryController::class);
     Route::resource('article', ArticleController::class);
     Route::resource('setting', SettingController::class);
+    Route::resource('contact', ContactController::class);
 
 });
 

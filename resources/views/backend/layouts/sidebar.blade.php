@@ -62,6 +62,14 @@
                     </span>
                 </a>
             </li>
+            <li>
+                <a href="{{route('admin.contact.index') }}">
+                    <i class="fa fa-th"></i> <span>Danh sách liên hệ </span>
+                    <span class="pull-right-container">
+                    </span>
+                </a>
+            </li>
+
 
     </section>
     <!-- /.sidebar -->

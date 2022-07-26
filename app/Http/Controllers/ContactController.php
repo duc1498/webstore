@@ -15,6 +15,9 @@ class ContactController extends Controller
     public function index()
     {
         //
+        $contact = Contact::all();
+
+        return view('backend.contact.index', compact('contact'));
     }
 
     /**
@@ -25,6 +28,7 @@ class ContactController extends Controller
     public function create()
     {
         //
+
     }
 
     /**
@@ -33,9 +37,10 @@ class ContactController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request,$id)
     {
         //
+
     }
 
     /**
@@ -55,9 +60,12 @@ class ContactController extends Controller
      * @param  \App\Models\contact  $contact
      * @return \Illuminate\Http\Response
      */
-    public function edit(contact $contact)
+    public function edit( $id)
     {
         //
+        $contact = Contact::findOrFail($id);
+
+        return view('backend.contact.edit', compact('contact'));
     }
 
     /**
@@ -67,9 +75,15 @@ class ContactController extends Controller
      * @param  \App\Models\contact  $contact
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, contact $contact)
+    public function update(Request $request,$id)
     {
         //
+        $data= $request->all();
+        $contact = Contact::findOrFail($id);
+
+        $contact ->update($data);
+
+        return redirect()->route('admin.contact.index');
     }
 
     /**
@@ -78,8 +92,17 @@ class ContactController extends Controller
      * @param  \App\Models\contact  $contact
      * @return \Illuminate\Http\Response
      */
-    public function destroy(contact $contact)
+    public function destroy($id)
+    {
+        $contact = Contact::find($id);
+       Contact::destroy($id);
+
+      return true;
+
+    }
+    public function contact()
     {
         //
+        return view('frontend.layouts.contant');
     }
 }

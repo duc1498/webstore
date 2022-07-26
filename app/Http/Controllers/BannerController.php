@@ -129,6 +129,7 @@ class BannerController extends Controller
     {
         //
         $data = $request-> all();
+        $banner= Banner::findOrFail($id);
 
         // $banner->title = $request->input('title');
         $data['slug'] = Str::slug($request->input('title')); //slug
@@ -168,7 +169,7 @@ class BannerController extends Controller
         // //luu
         // $banner->save();
 
-        $banner= Banner::findOrFail($id)-> update($data);
+        $banner-> update($data);
 
         return redirect()->route('admin.banner.index');
     }
