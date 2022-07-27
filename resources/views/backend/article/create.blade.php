@@ -39,11 +39,16 @@
                                 <label for="exampleInputEmail1">Title</label>
                                 <input id="title" name="title" type="text" class="form-control" placeholder="">
                             </div>
-
+                            @error('title')
+                            <p class="error-message error-style">{{ $errors->first('title') }}</p>
+                            @enderror
                             <div class="form-group">
                                 <label for="exampleInputFile">Chọn ảnh</label>
                                 <input type="file" name="image" id="image">
                             </div>
+                            @error('image')
+                            <p class="error-message error-style">{{ $errors->first('image') }}</p>
+                            @enderror
                             <div class="form-group">
                                 <label for="exampleInputEmail1">slug</label>
                                 <input id="slug" name="slug" type="text" class="form-control" placeholder="">
@@ -114,8 +119,8 @@
 @endsection
 
 
-@section('js')
-    {{-- <script type = "text/javascript">
+{{-- @section('js')
+    <script type = "text/javascript">
         $( document ).ready(function() {
             $('.btnCreate').click(function () {
                 var error_mess = {};
@@ -137,7 +142,7 @@
             });
             if(empty(error_mess)) {$('#form').submit();}
         });
-    </script> --}}
+    </script>
 
     <script type="text/javascript">
         $( document ).ready(function() {
@@ -180,4 +185,4 @@
         });
     </script>
 
-@endsection
+@endsection --}}

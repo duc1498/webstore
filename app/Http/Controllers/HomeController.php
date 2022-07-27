@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\ContacPostRequest;
+use App\Models\contact;
 
 class HomeController extends Controller
 {
@@ -81,5 +83,15 @@ class HomeController extends Controller
     public function destroy($id)
     {
         //
+    }
+    public function contactPost(ContacPostRequest $request)
+    {
+        //
+        $contact = new Contact();
+        $data= $request->validated();
+        Contact::create($data);
+
+        return redirect()->route('home.index');
+
     }
 }

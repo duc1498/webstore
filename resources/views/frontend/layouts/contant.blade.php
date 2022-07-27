@@ -74,25 +74,36 @@
 				<!-- /row -->
 			</div>
 			<!-- /container -->
+    <form action="{{route('contactPost')}}" method="POST">
+        @csrf
 		<div class="bg_white">
 			<div class="container margin_60_35">
 				<h4 class="pb-3">Drop Us a Line</h4>
 				<div class="row">
 					<div class="col-lg-4 col-md-6 add_bottom_25">
 						<div class="form-group">
-							<input class="form-control" type="text" placeholder="Name *">
+							<input value="{{ old('name') }}" name = "name" class="form-control" type="text" placeholder="Name *">
 						</div>
+                        @error('name')
+                        <p  style = "color : red;">{{ $message }}</p>
+                        @enderror
                         <div class="form-group">
-							<input class="form-control" type="tel" placeholder="Phone *">
+							<input value="{{ old('phone') }}" name = "phone" class="form-control" type="tel" placeholder="Phone *">
 						</div>
+                        @error('phone')
+                        <p  style = "color : red;">{{ $message }}</p>
+                        @enderror
 						<div class="form-group">
-							<input class="form-control" type="email" placeholder="Email *">
+							<input value="{{ old('email') }}" name = "email" class="form-control" type="email" placeholder="Email *">
 						</div>
+                        @error('email')
+                        <p  style = "color : red;">{{ $message }}</p>
+                        @enderror
 						<div class="form-group">
 							<textarea class="form-control" style="height: 150px;" placeholder="Message *"></textarea>
 						</div>
 						<div class="form-group">
-							<input class="btn_1 full-width" type="submit" value="Submit">
+							<input class="btn_1 full-width btnSend" type="submit" value="Submit">
 						</div>
 					</div>
 					<div class="col-lg-8 col-md-6 add_bottom_25">
@@ -104,6 +115,7 @@
 			<!-- /container -->
 		</div>
 		<!-- /bg_white -->
+    </form>
 	</main>
 	<!--/main-->
 
@@ -118,7 +130,9 @@
     <script src="{{asset('frontend')}}/js/common_scripts.min.js"></script>
     <script src="{{asset('frontend')}}/js/main.js"></script>
 
+
 </body>
 </html>
+
 
 

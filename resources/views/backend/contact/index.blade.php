@@ -21,6 +21,7 @@
                 <th>Phone</th>
                 <th>Email</th>
                 <th>Content</th>
+                <th>open_time</th>
             </tr>
         @foreach ($contact as $key=> $item )
             <tr class="item-{{$item->id}}">
@@ -36,6 +37,9 @@
                 </td>
                 <td>
                     {{$item->content}}
+                </td>
+                <td>
+                    {{$item->open_time}}
                 </td>
                 <td>
                     <a href="{{ route('admin.contact.edit', ['contact' => $item->id]) }}"><span title="Chỉnh sửa" type="button" class="btn btn-flat btn-primary"><i class="fa fa-edit"></i></span></a>

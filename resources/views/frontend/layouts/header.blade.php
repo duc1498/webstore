@@ -94,7 +94,7 @@
                                     <li><a href="header-5.html">Header Style 5</a></li>
                                     <li><a href="404.html">404 Page</a></li>
                                     <li><a href="sign-in-modal.html">Sign In Modal</a></li>
-                                    <li><a href="contacts.html">Contact Us</a></li>
+                                    <li><a href="{{route('contact.index')}}">Contact Us</a></li>
                                     <li><a href="about.html">About 1</a></li>
                                     <li><a href="about-2.html">About 2</a></li>
                                     <li><a href="modal-advertise.html">Modal Advertise</a></li>

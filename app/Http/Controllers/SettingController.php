@@ -56,10 +56,7 @@ class SettingController extends Controller
             $setting->image = $path_upload.$filename;
         }
 
-        $setting->save();
-
-        $setting->update($request->except('image')); // lấy tất cả các trường trong model rồi update
-        // ddd($request->all());
+        $setting->update($request->except('image'));
 
         return redirect()->route('admin.setting.index');
     }

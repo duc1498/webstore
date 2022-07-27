@@ -39,6 +39,10 @@
                                 <label for="exampleInputEmail1">email</label>
                                 <input value="{{$contact->email}}" id="email" name="email" type="email" class="form-control" placeholder="">
                             </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Open_time</label>
+                                <input value="{{$contact->open_time}}" id="open_time" name="open_time" type="email" class="form-control" placeholder="">
+                            </div>
 
                             <div class="form-group">
                                 <label>Content</label>

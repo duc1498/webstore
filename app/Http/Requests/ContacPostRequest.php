@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StorearticleRequest extends FormRequest
+class ContacPostRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,13 +25,19 @@ class StorearticleRequest extends FormRequest
     {
         return [
             //
-            'title' => 'required|max:255',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:10000',
-            'category_id' => 'required',
-            'summary' => 'required',
-            'description' => 'required',
-            'meta_title' => 'required',
-            'meta_description' => 'required',
+            'name' => 'required|max:255',
+            'phone' => 'required',
+            'email' => 'required',
+            'content' => 'required',
+            'open_time'=>'nullable',
+        ];
+    }
+    public function messages()
+    {
+        return [
+            'name.required' => 'Nhap ten',
+            'phone.required' => 'Nhap sdt',
+            'email.required' => 'nhap email'
         ];
     }
 }

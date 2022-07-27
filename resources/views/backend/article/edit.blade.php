@@ -57,7 +57,7 @@
 
                             <div class="form-group">
                                 <label id="is_description">Mô tả</label>
-                                <textarea id="description" name="description" class="form-control" rows="3" placeholder="Enter ..."></textarea>
+                                <textarea value="{{$article->description}}" id="description" name="description" class="form-control" rows="3" placeholder="Enter ..."></textarea>
                             </div>
 
                             <div class="form-group">
@@ -77,11 +77,6 @@
                                 <label>
                                     <input {{($article->is_active == 1) ? 'checked' : ''}}  value="1" type="checkbox" name="is_active" id="is_active"> hiển thị
                                 </label>
-                            </div>
-
-                            <div class="form-group">
-                                <label id="is_description">Mô tả</label>
-                                <textarea id="meta_description" name="meta_description" class="form-control" rows="3" placeholder="Enter ..."></textarea>
                             </div>
 
                             <div class="form-group">

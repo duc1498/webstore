@@ -21,8 +21,9 @@ use App\Http\Controllers\ContactController;
 |
 */
 
-Route::get('/', [HomeController::class, 'index']);
+Route::get('/', [HomeController::class, 'index'])->name('home.index');
 Route::get('contact', [ContactController::class, 'contact'])->name('contact.index');
+Route::post('contact', [HomeController::class, 'contactPost'])->name('contactPost');
 
 Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('/dashboard',[AdminController::class, 'dashboard'])->name('dashboard');

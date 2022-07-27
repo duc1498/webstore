@@ -78,7 +78,10 @@
                                 <label for="exampleInputEmail1">Facebook</label>
                                 <input value="{{$setting->facebook}}" id="facebook" name="facebook" type="text" class="form-control" placeholder="">
                             </div>
-
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">open_time</label>
+                                <input value="{{$setting->open_time}}" id="open_time" name="open_time" type="text" class="form-control" placeholder="">
+                            </div>
                             <div class="form-group">
                                 <label id="is_description">Giới thiệu</label>
                                 <textarea id="content" name="content" class="form-control" rows="3" placeholder="Enter ...">{{$setting->content}}</textarea>
@@ -102,7 +105,7 @@
 @endsection
 
 
-@section('js')
+{{-- @section('js')
     <script>
         $(document).ready(function() {
             CKEDITOR.replace( 'content' )
@@ -132,4 +135,4 @@
         });
 
     </script>
-@endsection
+@endsection --}}

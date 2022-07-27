@@ -14,5 +14,6 @@ class contact extends Model
         'phone',
         'email',
         'content',
+        'open_time',
         ];
 }

@@ -20,7 +20,8 @@ class Article extends Model
         'url',
         'is_active',
         'category_id',
-        'meta_description'
+        'meta_description',
+        'open_time',
     ];
     public function category()
     {

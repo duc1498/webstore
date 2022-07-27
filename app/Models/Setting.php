@@ -19,5 +19,6 @@ class Setting extends Model
         'facebook',
         'email',
         'content',
+        'open_time',
     ];
 }

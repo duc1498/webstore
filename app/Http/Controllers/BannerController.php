@@ -33,7 +33,6 @@ class BannerController extends Controller
     public function create()
     {
         //
-
         return view('backend.banner.create');
     }
 
@@ -45,13 +44,7 @@ class BannerController extends Controller
      */
     public function store(StoreBannerRequest $request)
     {
-
         $data = $request ->all();
-        // khới tạo modal va gan gia tri form cho nhung thuoc tinh cua doi tuong
-
-        // $banner = new Banner();
-        // $banner->title = $request->input('title');
-
         $data['slug'] = Str::slug($request->input('title')); //slug
 
         if($request->hasFile('image')) { // kiem tra xem co image duoc chon khong
@@ -66,29 +59,20 @@ class BannerController extends Controller
             // luu lai ten
             $data['image'] = $path_upload.$filename;
         }
-        // $banner->url = $request->input('url');
-        // $banner->target = $request->input('target');
-        // //loai
-        // $banner->type = $request->input('type');
-        // //trang thai
-        // $is_active = 0;
-        // //Trang thai
-        // if($request->has('is_active')) { // kiem tra xem is_active co ton tai hay khong
-        //     $is_active = $request->input('is_active');
-        // }
-        // //trang thai
+        //trang thai
+        $data['is_active'] = 0;
+        //Trang thai
+        if($request->has('is_active')) {
+            $data['is_active'] = $request->input('is_active');
+        }
         // $banner->is_active = $is_active;
         // //vi tri
-        // $position = 0;
+        // $data['position'] = 0;
         // if($request->has('position')) {
-        //     $position = $request->input('position');
+        //     $data['position'] = $request->input('position');
         // }
         // $banner->position = $position;
-        // // mo ta
-        // $banner->description = $request->input('description');
-        // //luu
-        // $banner->save();
-
+        //luu
         Banner::create($data);
 
         return redirect()->route('admin.banner.index');
@@ -164,11 +148,8 @@ class BannerController extends Controller
         //     $position = $request->input('position');
         // }
         // $banner->position = $position;
-        // // mo ta
-        // $banner->description = $request->input('description');
         // //luu
         // $banner->save();
-
         $banner-> update($data);
 
         return redirect()->route('admin.banner.index');

@@ -19,7 +19,6 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        //
         $article = Article::all();
         $category = Category::all();
         return view('backend.article.index', compact('article', 'category'));
@@ -32,7 +31,6 @@ class ArticleController extends Controller
      */
     public function create()
     {
-        //
         $article = Article::all(); //Select *form categories
         $category = Category::all(); // lấy các phần tử cửa bảng category
 
@@ -47,13 +45,8 @@ class ArticleController extends Controller
      */
     public function store(StoreArticleRequest $request)
     {
-        //
-          // khới tạo modal va gan gia tri form cho nhung thuoc tinh cua doi tuong
-
-          $dataInsert = $request->all();
-
-          $dataInsert['slug'] = Str::slug($request->input('title')); //slug
-
+        $data = $request->all();
+        $data['slug'] = Str::slug($request->input('title')); //slug
         if($request->hasFile('image')) { // kiem tra xem co image duoc chon khong
               //get File
               $file = $request->file('image');
@@ -64,9 +57,17 @@ class ArticleController extends Controller
               // thuc hien upload file
               $file->move($path_upload,$filename);
               // luu lai ten
-              $dataInsert['image'] = $path_upload.$filename;
-            }
-        Article::create($dataInsert);
+              $data['image'] = $path_upload.$filename;
+        }
+        $data['is_active'] = 0;
+        if($request->has('is_active')) {
+            $data['is_active'] = $request->input('is_active');
+        };
+        $data['position'] = 0;
+        if($request->has('position')) {
+            $data['position'] = $request->input('position');
+        }
+        Article::create($data);
 
         return redirect()->route('admin.article.index');
     }
@@ -89,7 +90,6 @@ class ArticleController extends Controller
      */
     public function edit($id)
     {
-        //
         $article = Article::findOrFail($id);
         $category = Category::all();
         return view('backend.article.edit' ,compact('article','category'));
@@ -130,8 +130,11 @@ class ArticleController extends Controller
         if($request->has('is_active')) {
             $data['is_active'] = $request->input('is_active');
         };
-
-        $article = Article::findOrFail($id)->update($data);
+        $data['position'] = 0;
+        if($request->has('position')) {
+            $data['position'] = $request->input('position');
+        }
+        $article->update($data);
 
         return redirect()->route('admin.article.index');
     }

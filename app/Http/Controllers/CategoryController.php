@@ -17,7 +17,6 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
             //Lấy toàn bộ dữ liệu
             // $data = Category::all();
             //cách 2 : lấy đữ liệu mới nhất và phần trang
@@ -32,13 +31,10 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
         $category = Category::all(); //Select *form categories
 
         return view('backend.category.create', compact('category'));
-
     }
-
     /**
      * Store a newly created resource in storage.
      *
@@ -47,14 +43,10 @@ class CategoryController extends Controller
      */
     public function store(StorecategoryRequest $request)
     {
-        //
-                $data = $request->all();
-               // khới tạo modal va gan gia tri form cho nhung thuoc tinh cua doi tuong
-            //    $category = new Category();
-            //    $category->name = $request->input('name');
-
+        $data = $request->all();
+            // khới tạo modal va gan gia tri form cho nhung thuoc tinh cua doi tuong
+            // $category = new Category();
                $data['slug'] = Str::slug($request->input('name')); //slug
-
                if($request->hasFile('image')) { // kiem tra xem co image duoc chon khong
                    //get File
                    $file = $request->file('image');
@@ -67,30 +59,24 @@ class CategoryController extends Controller
                    // luu lai ten
                    $data['image'] = $path_upload.$filename;
                }
-            //    $category->parent_id = $request->input('parent_id');
-            //    //trang thai
-            //    $is_active = 0;
-            //    //Trang thai
-            //    if($request->has('is_active')) { // kiem tra xem is_active co ton tai hay khong
-            //        $is_active = $request->input('is_active');
-
-            //    }
-            //    //trang thai
-            //    $category->is_active =  $is_active;
-            //    //vi tri
-            //    $position = 0;
-            //    if($request->has('position')) {
-            //        $position = $request->input('position');
-            //    }
-            //    $category->position = $position;
-            //    //luu
-            //    $category->save();
-
+            //  trang thai
+               $data['is_active'] = 0;
+               if($request->has('is_active')) { // kiem tra xem is_active co ton tai hay khong
+                   $data['is_active'] = $request->input('is_active');
+               }
+            // trang thai
+            // $category->is_active =  $is_active;
+            // vi tri
+               $data['position'] = 0;
+               if($request->has('position')) {
+                   $data['position'] = $request->input('position');
+               }
+            //  $category->position = $position;
+            //  luu
             Category::create($data);
 
             return redirect()->route('admin.category.index');
     }
-
     /**
      * Display the specified resource.
      *
@@ -101,7 +87,6 @@ class CategoryController extends Controller
     {
         //
     }
-
     /**
      * Show the form for editing the specified resource.
      *
@@ -110,7 +95,6 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        //
         $category = Category::findOrFail($id);
         $categories = Category::all();
         return view('backend.category.edit' ,compact('category','categories'));
@@ -125,15 +109,10 @@ class CategoryController extends Controller
      */
     public function update(UpdatecategoryRequest $request , $id)
     {
-        //
+
         $data = $request->all();
-
         $category = Category::findOrFail($id);
-
-        // $category = Category::findOrFail($id);
-        // $category->name = $request->input('name');
         $data['slug ']= Str::slug($request->input('name')); //slug
-
         if($request->hasFile('image')) { // kiem tra xem co image duoc chon khong
             @unlink(public_path($category->image));
             //get File
@@ -147,26 +126,18 @@ class CategoryController extends Controller
             // luu lai ten
             $data['image'] = $path_upload.$filename;
         }
-        // $category->parent_id = $request->input('parent_id');
-        // //trang thai
-        // $is_active = 0;
-        // //Trang thai
-        // if($request->has('is_active')) { // kiem tra xem is_active co ton tai hay khong
-        //     $is_active = $request->input('is_active');
-        // }
-        // //trang thai
+        //trang thai
         $data['is_active'] = 0;
         if($request->has('is_active')) {
             $data['is_active']=$request->input('is_active');
         };
-        // //vi tri
-        // $position = 0;
-        // if($request->has('position')) {
-        //     $position = $request->input('position');
-        // }
+        //vi tri
+        $position = 0;
+        if($request->has('position')) {
+            $data['position'] = $request->input('position');
+        }
         // $category->position = $position;
-        // //luu
-        // $category->save();
+        //luu
         $category ->update($data);
 
         return redirect()->route('admin.category.index');

@@ -14,7 +14,6 @@ class ContactController extends Controller
      */
     public function index()
     {
-        //
         $contact = Contact::all();
 
         return view('backend.contact.index', compact('contact'));
@@ -28,7 +27,6 @@ class ContactController extends Controller
     public function create()
     {
         //
-
     }
 
     /**
@@ -95,7 +93,7 @@ class ContactController extends Controller
     public function destroy($id)
     {
         $contact = Contact::find($id);
-       Contact::destroy($id);
+        Contact::destroy($id);
 
       return true;
 
