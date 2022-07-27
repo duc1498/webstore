@@ -8,9 +8,6 @@
         <div class="box">
           <div class="box-header with-border">
             <h3 class="box-title">Danh sach banner</h3>
-            <td>
-                <a href="{{route('admin.contact.create')}}" class="btn btn-primary pull-right">Thêm mới</a>
-            </td>
           </div>
           <!-- /.box-header -->
           <div class="box-body">
@@ -91,29 +88,13 @@
                     success: function (res) {
                         if(res ==1 ) {
                             $('.item-'+id).remove();
-                            alert('Bạn đã xoá thành công ')
-                        } else {
-                            alert('Không tìm thấy id')
                         }
                     },
                 });
-  }
-})
-                // $.ajax({
-                //     url : url,
-                //     type: 'DELETE',
-                //     data: {},
-                //     success: function (res) {
-                //         if(res ==1 ) {
-                //             $('.item-'+id).remove();
-                //             alert('BANJ DA XOAS THANHF CONG')
-                //         } else {
-                //             alert('khoong tim thaAY ID BANER')
-                //         }
-                //     },
-                // });
-            });
-        });
+            }
+        })
+    });
+});
     </script>
 @endsection
 

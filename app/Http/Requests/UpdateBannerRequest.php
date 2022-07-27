@@ -25,10 +25,26 @@ class UpdateBannerRequest extends FormRequest
     {
         return [
             //
-            // 'title' => 'required|max:255',
-            // 'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:10000',
-            // 'target' => 'required',
-            // 'description' => 'required',
+            'title' => 'required|max:255',
+            'slug' => 'required',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:10000',
+            'url'=>'require',
+            'target' => 'required',
+            'description' => 'required',
+            'type' => 'required',
+            'position'=>'required',
+        ];
+    }
+    public function messages()
+    {
+        return [
+            'title.required' => 'Nhap ten',
+            'slug.required' => 'Nhap sdt',
+            'url.required' => 'nhap email',
+            'target.required' => 'nhap content',
+            'description.required'=> 'nhap description',
+            'type.required'=>'nhap type ',
+            'position.required'=>'nhap position ',
         ];
     }
 }

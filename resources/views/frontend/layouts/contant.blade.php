@@ -79,6 +79,11 @@
 		<div class="bg_white">
 			<div class="container margin_60_35">
 				<h4 class="pb-3">Drop Us a Line</h4>
+                {{-- @if (session('success'))
+                    <div class="alert alert-success">
+                        {{ session('success') }}
+                    </div>
+                @endif --}}
 				<div class="row">
 					<div class="col-lg-4 col-md-6 add_bottom_25">
 						<div class="form-group">
@@ -100,7 +105,7 @@
                         <p  style = "color : red;">{{ $message }}</p>
                         @enderror
 						<div class="form-group">
-							<textarea class="form-control" style="height: 150px;" placeholder="Message *"></textarea>
+							<textarea  value="{{ old('content') }}" name = "content" class="form-control" style="height: 150px;" placeholder="Message *"></textarea>
 						</div>
 						<div class="form-group">
 							<input class="btn_1 full-width btnSend" type="submit" value="Submit">
@@ -129,7 +134,6 @@
 	<!-- COMMON SCRIPTS -->
     <script src="{{asset('frontend')}}/js/common_scripts.min.js"></script>
     <script src="{{asset('frontend')}}/js/main.js"></script>
-
 
 </body>
 </html>

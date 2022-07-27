@@ -37,4 +37,13 @@ class StoreSettingRequest extends FormRequest
             // 'content'=>'required',
         ];
     }
+    public function messages()
+    {
+        return [
+            'name.required' => 'Nhap ten',
+            'phone.required' => 'Nhap sdt',
+            'email.required' => 'nhap email',
+            'content.required' => 'nhap content',
+        ];
+    }
 }

@@ -104,23 +104,10 @@
                         }
                     },
                 });
-  }
-})
-                // $.ajax({
-                //     url : url,
-                //     type: 'DELETE',
-                //     data: {},
-                //     success: function (res) {
-                //         if(res ==1 ) {
-                //             $('.item-'+id).remove();
-                //             alert('BANJ DA XOAS THANHF CONG')
-                //         } else {
-                //             alert('khoong tim thaAY ID BANER')
-                //         }
-                //     },
-                // });
-            });
-        });
+            }
+        })
+    });
+});
     </script>
 @endsection
 

@@ -37,7 +37,8 @@ class ContacPostRequest extends FormRequest
         return [
             'name.required' => 'Nhap ten',
             'phone.required' => 'Nhap sdt',
-            'email.required' => 'nhap email'
+            'email.required' => 'nhap email',
+            'content.required' => 'nhap content',
         ];
     }
 }

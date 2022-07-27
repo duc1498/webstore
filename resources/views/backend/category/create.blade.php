@@ -13,7 +13,7 @@
         </ol>
     </section>
     <section class="content-header">
-        {{-- @if ($errors->any())
+        @if ($errors->any())
         <div class="alert alert-danger">
             <ul class="list-unstyled">
                 @foreach ($errors->all() as $error)
@@ -21,7 +21,7 @@
                 @endforeach
             </ul>
         </div>
-        @endif --}}
+        @endif
     <section class="content">
         <div class="row">
             <!-- left column -->

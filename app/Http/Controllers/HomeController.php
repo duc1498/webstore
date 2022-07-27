@@ -91,7 +91,7 @@ class HomeController extends Controller
         $data= $request->validated();
         Contact::create($data);
 
-        return redirect()->route('home.index');
+        return redirect()->route('home.index')->with('success','Gui lien he thanh cong')->withInput();
 
     }
 }

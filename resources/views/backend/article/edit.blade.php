@@ -41,7 +41,9 @@
                                 <label for="exampleInputEmail1">Title</label>
                                 <input value="{{$article->title}}" id="title" name="title" type="text" class="form-control" placeholder="">
                             </div>
-
+                            @error('title')
+                            <p  style = "color : red;">{{ $message }}</p>
+                            @enderror
                             <div class="form-group">
                                 <label for="exampleInputFile">Chọn ảnh</label>
                                 <input type="file" name="image" id="image">
@@ -50,16 +52,23 @@
                                 <label for="exampleInputEmail1">slug</label>
                                 <input value="{{$article->slug}}" id="slug" name="slug" type="text" class="form-control" placeholder="">
                             </div>
+                            @error('slug')
+                            <p  style = "color : red;">{{ $message }}</p>
+                            @enderror
                             <div class="form-group">
                                 <label for="exampleInputEmail1">summary</label>
                                 <input value="{{$article->summary}}" id="summary" name="summary" type="text" class="form-control" placeholder="">
                             </div>
-
+                            @error('summary')
+                            <p  style = "color : red;">{{ $message }}</p>
+                            @enderror
                             <div class="form-group">
                                 <label id="is_description">Mô tả</label>
                                 <textarea value="{{$article->description}}" id="description" name="description" class="form-control" rows="3" placeholder="Enter ..."></textarea>
                             </div>
-
+                            @error('description')
+                            <p  style = "color : red;">{{ $message }}</p>
+                            @enderror
                             <div class="form-group">
                                 <label>Loại</label>
                                 <select  class="form-control" name="type" id="type">
@@ -73,6 +82,9 @@
                                 <label for="exampleInputPassword1">Vị trí</label>
                                 <input value="{{$article->position}}" min="0" type="number" class="form-control" id="position" name="position" placeholder="">
                             </div>
+                            @error('position')
+                            <p  style = "color : red;">{{ $message }}</p>
+                            @enderror
                             <div class="checkbox">
                                 <label>
                                     <input {{($article->is_active == 1) ? 'checked' : ''}}  value="1" type="checkbox" name="is_active" id="is_active"> hiển thị
@@ -83,7 +95,9 @@
                                 <label for="exampleInputEmail1">Meta_title</label>
                                 <input value="{{$article->meta_title}}" id="meta_title" name="meta_title" type="text" class="form-control" placeholder="">
                             </div>
-
+                            @error('meta_title')
+                            <p  style = "color : red;">{{ $message }}</p>
+                            @enderror
                             <div class="form-group">
                                 <label>Chọn danh mục</label>
                                 <select class="form-control" name="category_id" id="category_id">
@@ -115,40 +129,6 @@
         $( document ).ready(function() {
             CKEDITOR.replace( 'summary' );
             CKEDITOR.replace( 'description' );
-            $('.btnCreate').click(function () {
-                if ($('#title').val() === '') {
-                    $('#title').notify('Bạn nhập chưa nhập tiêu đề','error');
-                    document.getElementById('title').scrollIntoView();
-                    return false;
-                }
-                if ($('#category_id').val() === 0 || $('#category_id').val() === '') {
-                    $('#category_id').notify('Bạn chưa chọn danh mục','error');
-                    document.getElementById('category_id').scrollIntoView();
-                    return false;
-                }
-                var summary = CKEDITOR.instances["summary"].getData();
-                if (summary === '') {
-                    $('#label-summary').notify('Bạn nhập chưa nhập tóm tắt','error');
-                    document.getElementById('label-summary').scrollIntoView();
-                    return false;
-                }
-                var description = CKEDITOR.instances["description"].getData();
-                if (description === '') {
-                    $('#label-description').notify('Bạn nhập chưa nhập mô tả','error');
-                    document.getElementById('label-description').scrollIntoView();
-                    return false;
-                }
-                if ($('#meta_title').val() === '') {
-                    $('#meta_title').notify('Bạn chưa chọn danh mục','error');
-                    document.getElementById('meta_title').scrollIntoView();
-                    return false;
-                }
-                if ($('#meta_description').val() === '') {
-                    $('#meta_description').notify('Bạn chưa chọn danh mục','error');
-                    document.getElementById('meta_description').scrollIntoView();
-                    return false;
-                }
-            });
         });
     </script>
 @endsection

@@ -27,6 +27,20 @@ class StoreCategoryRequest extends FormRequest
             //
             'name' => 'required|max:255',
             'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:10000',
+            'slug' =>'required',
+            'parent_id' => 'required',
+            'position' =>'required',
+            'is_active' =>'required'
+        ];
+    }
+    public function messages()
+    {
+        return [
+            'name.required' => 'Nhap ten',
+            'slug.required' => 'Nhap slug',
+            'parent_id.required' => 'nhap parent',
+            'position.required' => 'nhap position',
+            'is_active.required' =>'nhap is_active ',
         ];
     }
 }
