@@ -69,8 +69,13 @@
                     </span>
                 </a>
             </li>
-
-
+            <li>
+                <a href="{{route('admin.user.index') }}">
+                    <i class="fa fa-th"></i> <span>Danh sách người dùng </span>
+                    <span class="pull-right-container">
+                    </span>
+                </a>
+            </li>
     </section>
     <!-- /.sidebar -->
 </aside>

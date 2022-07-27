@@ -9,6 +9,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,7 +35,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::resource('article', ArticleController::class);
     Route::resource('setting', SettingController::class);
     Route::resource('contact', ContactController::class);
-
+    Route::resource('user', UserController::class);
 });
 
 

@@ -107,6 +107,9 @@
 						<div class="form-group">
 							<textarea  value="{{ old('content') }}" name = "content" class="form-control" style="height: 150px;" placeholder="Message *"></textarea>
 						</div>
+                        @error('content')
+                        <p  style = "color : red;">{{ $message }}</p>
+                        @enderror
 						<div class="form-group">
 							<input class="btn_1 full-width btnSend" type="submit" value="Submit">
 						</div>

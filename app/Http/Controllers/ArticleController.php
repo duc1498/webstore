@@ -102,7 +102,7 @@ class ArticleController extends Controller
      * @param  \App\Models\article  $article
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateArticleRequest $request, $id)
     {
 
         $data= $request->all();
