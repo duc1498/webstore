@@ -54,6 +54,7 @@
 
 	<!-- SPECIFIC SCRIPTS -->
 	<script src="{{asset('frontend')}}/js/carousel-home.min.js"></script>
+    
 
 </body>
 </html>

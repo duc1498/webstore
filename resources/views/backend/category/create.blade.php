@@ -64,7 +64,6 @@
                                 <label>
                                     <input value="1" type="checkbox" name="is_active" id="is_active"> hiển thị </label>
                             </div>
-
                         </div>
                         <!-- /.box-body -->
 

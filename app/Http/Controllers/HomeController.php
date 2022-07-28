@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\ContacPostRequest;
 use App\Models\contact;
-
+use RealRashid\SweetAlert\Facades\Alert;
 class HomeController extends Controller
 {
     /**
@@ -90,8 +90,8 @@ class HomeController extends Controller
         $contact = new Contact();
         $data= $request->validated();
         Contact::create($data);
-
-        return redirect()->route('home.index')->with('success','Gui lien he thanh cong')->withInput();
+        // alert()->success('success', 'gui lien he thanh cong');
+        return redirect()->route('home.index')->with('success','gui thanh cong');
 
     }
 }

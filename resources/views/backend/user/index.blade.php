@@ -17,30 +17,29 @@
         <table class="table table-bordered">
             <tr>
                 <th style="width: 10px">TT</th>
-                <th>Hinh anh</th>
-                <th>Tên</th>
-                <th>Loại</th>
-                <th>Hành động</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Role_id</th>
+                <th>Trạng thái</th>
             </tr>
-        @foreach ($banner as $key=> $item )
+        @foreach ($user as $key=> $item )
             <tr class="item-{{$item->id}}">
                 <td>{{$key + 1}}</td>
                 <td>
-                    @if ($item->image && file_exists(public_path($item->image)) )
-                        <img src="{{asset($item->image)}}" width="100px" height="75px" alt="">
-                    @else
-                        <img src="{{asset('upload/banner/1658714258_123.jpg')}}"width="100px" height="75px" alt="">
-                    @endif
+                    {{$item->name}}
                 </td>
                 <td>
-                    {{$item->title}}
+                    {{$item->email}}
                 </td>
                 <td>
-                    {{config('banner.type')[$item->type]}}
+                    {{ config('user.role_id')[$item->role_id] }}
                 </td>
                 <td>
-                    <a href="{{ route('admin.banner.edit', ['banner' => $item->id]) }}"><span title="Chỉnh sửa" type="button" class="btn btn-flat btn-primary"><i class="fa fa-edit"></i></span></a>
-                    <span data-id="{{ $item->id }}" data-url="{{route('admin.banner.destroy', $item->id)}}" title="Xóa" class="btn btn-flat btn-danger deleteItem"><i class="fa fa-trash"></i></span>
+                    {{$item->is_active}}
+                </td>
+                <td>
+                    <a href="{{ route('admin.user.edit', ['user' => $item->id]) }}"><span title="Chỉnh sửa" type="button" class="btn btn-flat btn-primary"><i class="fa fa-edit"></i></span></a>
+                    <span data-id="{{ $item->id }}" data-url="{{route('admin.user.destroy', $item->id)}}" title="Xóa" class="btn btn-flat btn-danger deleteItem"><i class="fa fa-trash"></i></span>
                 </td>
             </tr>
         @endforeach
@@ -98,4 +97,3 @@
 });
     </script>
 @endsection
-

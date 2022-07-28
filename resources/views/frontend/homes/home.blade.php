@@ -565,6 +565,8 @@
         <!-- /row -->
     </div>
     <!-- /container -->
-</main>
 
+</main>
 @endsection
+
+

@@ -20,7 +20,7 @@
                 <!-- general form elements -->
                 <div class="box box-primary">
                     <div class="box-header with-border">
-                        <h3 class="box-title">Thêm mới Banner</h3>
+                        <h3 class="box-title">Thêm mới User</h3>
                     </div>
                     <!-- /.box-header -->
                     <!-- form start -->
@@ -28,57 +28,52 @@
                         @csrf
                         <div class="box-body">
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Tiêu đề</label>
-                                <input id="title" name="title" type="text" class="form-control" placeholder="">
+                                <label for="exampleInputEmail1">Name</label>
+                                <input id="name" name="name" type="text" class="form-control" placeholder="">
                             </div>
-
+                            @error('name')
+                            <p style = "color : red;">{{ $message }}</p>
+                            @enderror
                             <div class="form-group">
-                                <label for="exampleInputFile">Chọn ảnh</label>
-                                <input type="file" name="image" id="image">
+                                <label for="exampleInputFile">Email</label>
+                                <input type="email" name="email" id="email" class="form-control">
                             </div>
-
+                            @error('email')
+                            <p  style = "color : red;">{{ $message }}</p>
+                            @enderror
                             <div class="form-group">
-                                <label for="exampleInputPassword1">Liên kết</label>
-                                <input type="text" class="form-control" id="url" name="url" placeholder="">
+                                <label for="exampleInputPassword1">Password</label>
+                                <input type="password" class="form-control" id="password" name="password" placeholder="">
                             </div>
-
+                            @error('password')
+                            <p  style = "color : red;">{{ $message }}</p>
+                            @enderror
                             <div class="form-group">
-                                <label>Chọn Target</label>
-                                <select class="form-control" name="target" id="target">
-                                    <option></option>
-                                    @foreach (config('banner.target') as $key => $target)
-                                        <option value="{{$key}}">{{$target}}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label>Loại</label>
-                                <select class="form-control" name="type" id="type">
-                                <option></option>
-                                @foreach (config('banner.type') as $key => $type)
-                                    <option value="{{$key}}">{{$type}}</option>
+                                <label for="exampleInputPassword1">Role_id</label>
+                                <select class="form-control" name = "role_id">
+                                <option> </option>
+                                @foreach (config('user.role_id')  as $key => $item  )
+                                <option type="text" class="form-control" id="Role_id" name="Role_id" placeholder=""  value="{{ $key }} " {{(Request::old('role_id') == $key) ? 'selected' : ''}} >{{$item}}</option>
                                 @endforeach
                                 </select>
                             </div>
-
+                            @error('role_id')
+                            <p  style = "color : red;">{{ $message }}</p>
+                            @enderror
                             <div class="form-group">
-                                <label for="exampleInputPassword1">Vị trí</label>
-                                <input min="0" type="number" class="form-control" id="position" name="position" placeholder="">
+                                <label for="exampleInputFile">Avatar</label>
+                                <input type="file" name="avatar" id="avatar">
                             </div>
+                            @error('avatar')
+                            <p  style = "color : red;">{{ $message }}</p>
+                            @enderror
                             <div class="checkbox">
                                 <label>
                                     <input value="1" type="checkbox" name="is_active" id="is_active"> Trạng thái
                                 </label>
                             </div>
-
-                            <div class="form-group">
-                                <label id="is_description">Mô tả</label>
-                                <textarea id="description" name="description" class="form-control" rows="3" placeholder="Enter ..."></textarea>
-                            </div>
-
                         </div>
                         <!-- /.box-body -->
-
                         <div class="box-footer">
                             <button type="submit" class="btn btn-primary btnCreate">Thêm</button>
                         </div>

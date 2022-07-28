@@ -23,62 +23,61 @@
                     </div>
                     <!-- /.box-header -->
                     <!-- form start -->
-                    <form role="form" method="post" action="{{route('admin.user.update',  $banner->id)}}" enctype="multipart/form-data">
+                    <form role="form" method="post" action="{{route('admin.user.update',  $user->id)}}" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
                         <div class="box-body">
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Tiêu đề</label>
-                                <input value="{{$banner->title}}" id="title" name="title" type="text" class="form-control" placeholder="">
+                                <label for="exampleInputEmail1">Name</label>
+                                <input value="{{$user->name}}" id="name" name="name" type="text" class="form-control" placeholder="">
                             </div>
-
+                            @error('name')
+                            <p  style = "color : red;">{{ $message }}</p>
+                            @enderror
                             <div class="form-group">
-                                <label for="exampleInputFile">Chọn ảnh</label>
-                                <input type="file" name="image" id="image">
+                                <label for="exampleInputFile">avatar</label>
+                                <input type="file" name="avatar" id="avatar">
                             </div>
-                            @if ($banner->image && file_exists(public_path($banner->image)) )
-                                <img src="{{asset($banner->image)}}" width="100px" height="75px" alt="">
+                            @error('avatar')
+                            <p  style = "color : red;">{{ $message }}</p>
+                            @enderror
+                            @if ($user->avatar && file_exists(public_path($user->avatar)) )
+                                <img src="{{asset($user->avatar)}}" width="100px" height="75px" alt="">
                             @else
                                 <img src="{{asset('upload/banner/erro404.jpg')}}"width="100px" height="75px" alt="">
                             @endif
                             <div class="form-group">
-                                <label for="exampleInputPassword1">Liên kết</label>
-                                <input value="{{$banner->url}}" type="text" class="form-control" id="url" name="url" placeholder="">
+                                <label for="exampleInputPassword1">Password</label>
+                                <input value="" type="text" class="form-control" id="password" name="password" placeholder="">
                             </div>
-
+                            @error('password')
+                            <p  style = "color : red;">{{ $message }}</p>
+                            @enderror
                             <div class="form-group">
-                                <label>Chọn Target</label>
-                                <select class="form-control" name="target" id="target">
-                                    @foreach ( config('banner.target') as $key => $target )
-                                    <option {{($banner->target == $key) ? 'selected' : ''}} value="{{$key}}">{{$target}}</option>
-                                    @endforeach
-                                </select>
+                                <label for="exampleInputPassword1">Email</label>
+                                <input value="{{$user->email}}" type="email" class="form-control" id="email" name="email" placeholder="">
                             </div>
-
-                            <div class="form-group">
-                                <label>Loại</label>
-                                <select class="form-control" name="type" id="type">
-                                    @foreach (config('banner.type') as $key => $type )
-                                        <option {{($banner->title == $key) ? 'selected' : ''}} value="{{$key}}">{{$type}}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="exampleInputPassword1">Vị trí</label>
-                                <input value="{{$banner->position}}" min="0" type="number" class="form-control" id="position" name="position" placeholder="">
-                            </div>
-
+                            @error('email')
+                            <p  style = "color : red;">{{ $message }}</p>
+                            @enderror
                             <div class="checkbox">
                                 <label>
-                                    <input {{($banner->is_active == 1) ? 'checked' : ''}}  value="1" type="checkbox" name="is_active" id="is_active"> Trạng thái
+                                    <input {{($user->is_active == 1) ? 'checked' : ''}}  value="1" type="checkbox" name="is_active" id="is_active"> Trạng thái
                                 </label>
                             </div>
-
                             <div class="form-group">
-                                <label>Mô tả</label>
-                                <textarea id="description" name="description" class="form-control" rows="3" placeholder="Enter ...">{{$banner->description}}</textarea>
+                                <label for="exampleInputPassword1">role_id</label>
+                                <select class="form-control" name = "role_id">
+                                @foreach (config('user.role_id') as $key => $item )
+                                    <option
+                                        value="{{$key}}"  {{($user->role_id == $key) ? 'selected' : ''}} type="text" class="form-control" id="role_id" name="role_id" placeholder=""> {{$item}}
+                                    </option>
+                                @endforeach
+                                </select>
                             </div>
+                            @error('role_id')
+                            <p  style = "color : red;">{{ $message }}</p>
+                            @enderror
                         </div>
                         <div class="box-footer">
                             <button type="submit" class="btn btn-primary">Chỉnh sửa </button>

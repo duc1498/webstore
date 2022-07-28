@@ -79,11 +79,11 @@
 		<div class="bg_white">
 			<div class="container margin_60_35">
 				<h4 class="pb-3">Drop Us a Line</h4>
-                {{-- @if (session('success'))
+                @if (session('success'))
                     <div class="alert alert-success">
                         {{ session('success') }}
                     </div>
-                @endif --}}
+                @endif
 				<div class="row">
 					<div class="col-lg-4 col-md-6 add_bottom_25">
 						<div class="form-group">
