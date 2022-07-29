@@ -26,7 +26,8 @@ Route::get('/', [HomeController::class, 'index'])->name('home.index');
 Route::get('contact', [ContactController::class, 'contact'])->name('contact.index');
 Route::post('contact', [HomeController::class, 'contactPost'])->name('contactPost');
 
-Route::prefix('admin')->name('admin.')->group(function () {
+
+Route::prefix('admin')->name('admin.')->middleware('auth.banner')->group(function () {
     Route::get('/dashboard',[AdminController::class, 'dashboard'])->name('dashboard');
     Route::get('/test', [BannerController::class, 'test']);
     Route::resource('product', ProductController::class);
@@ -37,12 +38,5 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::resource('contact', ContactController::class);
     Route::resource('user', UserController::class);
 });
-
-
-
-
-
-
-
-
-
+Auth::routes();
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

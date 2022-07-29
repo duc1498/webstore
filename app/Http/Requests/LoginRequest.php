@@ -25,20 +25,16 @@ class UpdateUserRequest extends FormRequest
     {
         return [
             //
-            'name' => 'required|max:255',
             'email' => 'required',
-            'password' =>'nullable',
-            'role_id' => 'required',
-            'avatar' =>'nullable',
-            'is_active' =>'nullable',
+            'password' =>'required',
         ];
     }
     public function messages()
     {
         return [
-            'name.required' => 'nhap Ten',
-            'email.required' => 'nhap Email',
-            'role_id.required' =>'nhap hotline',
+            'email.required' => 'nhap email',
+            'password.required' => 'nhap password',
+
         ];
     }
 }

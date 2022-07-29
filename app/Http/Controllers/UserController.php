@@ -102,8 +102,12 @@ class UserController extends Controller
     {
         //
         $data = $request->all();
-        $user = user::findOrFail($id);
-        $data['password']=bcrypt($data['password']);
+        $user = user::findOrFail($id); //
+
+        if(!empty($request['password'])) {
+            $data['password']=bcrypt($data['password']);
+        }else unset($data['password']);
+
         if($request->hasFile('avatar')) { // kiem tra xem co image duoc chon khong
             @unlink(public_path($user->image));
             //get File
@@ -121,7 +125,6 @@ class UserController extends Controller
         if($request->has('is_active')) {
             $data['is_active'] = $request->input('is_active');
         };
-
         $user->update($data);
 
         return redirect()->route('admin.user.index');

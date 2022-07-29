@@ -48,7 +48,7 @@
                             @endif
                             <div class="form-group">
                                 <label for="exampleInputPassword1">Password</label>
-                                <input value="" type="text" class="form-control" id="password" name="password" placeholder="">
+                                <input value="" type="password" class="form-control" id="password" name="password" placeholder="">
                             </div>
                             @error('password')
                             <p  style = "color : red;">{{ $message }}</p>
