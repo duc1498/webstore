@@ -41,11 +41,22 @@
       <div class="form-group has-feedback">
         <input type="email" name = "email" class="form-control" placeholder="Email">
         <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+        @error('email')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+        @enderror
       </div>
       <div class="form-group has-feedback">
         <input name= "password" type="password" class="form-control" placeholder="Password">
         <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+        @error('password')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+        @enderror
       </div>
+
       <div class="row">
         <div class="col-xs-8">
           <div class="checkbox icheck">

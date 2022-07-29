@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use App\Http\Requests\LoginRequest;
+
 
 class LoginController extends Controller
 {
@@ -37,4 +39,15 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+
+    public function login(LoginRequest $request)
+{
+    if (Auth::attempt(['email' => $email, 'password' => $password])) {
+        // Success
+        return redirect()->route('admin.banner.index');
+    } else {
+        // Go back on error (or do what you want)
+        return redirect()->back();
+    }
+}
 }
