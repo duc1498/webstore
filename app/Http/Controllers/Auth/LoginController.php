@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use App\Http\Requests\LoginRequest;
-
+use Auth;
 
 class LoginController extends Controller
 {
@@ -42,12 +42,13 @@ class LoginController extends Controller
 
     public function login(LoginRequest $request)
 {
-    if (Auth::attempt(['email' => $email, 'password' => $password])) {
+    if (Auth::attempt(['email' => $request -> email, 'password' => $request -> password])) {
         // Success
         return redirect()->route('admin.banner.index');
     } else {
         // Go back on error (or do what you want)
         return redirect()->back();
     }
+
 }
 }
