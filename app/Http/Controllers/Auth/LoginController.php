@@ -42,8 +42,19 @@ class LoginController extends Controller
 
     public function login(LoginRequest $request)
 {
-    if (Auth::attempt(['email' => $request -> email, 'password' => $request -> password])) {
+    // $remember = $request->input('remember');
+    if (Auth::attempt(['email' => $request -> email, 'password' => $request -> password  ])) {
         // Success
+        $user = Auth::user();
+        if(!$user -> is_active) {
+            Auth::logout();
+            return back() ->withErrors([
+                'title' => 'Tài khoản của bạn chưa được active'
+            ]);
+        }
+        $remember = $request->input('remember');
+        Auth::login($user,$remember);
+
         return redirect()->route('admin.dashboard');
     } else {
         // Go back on error (or do what you want)

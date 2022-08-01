@@ -35,7 +35,15 @@
   <!-- /.login-logo -->
   <div class="login-box-body">
     <p class="login-box-msg">Sign in to start your session</p>
-
+     @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul class="list-unstyled">
+                @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
     <form action="{{route('login')}}" method="post">
         @csrf
       <div class="form-group has-feedback">
@@ -61,7 +69,7 @@
         <div class="col-xs-8">
           <div class="checkbox icheck">
             <label>
-              <input name= "remember" type="checkbox"> Remember Me
+              <input name="remember" type="checkbox" value="1"> Remember Me
             </label>
           </div>
         </div>

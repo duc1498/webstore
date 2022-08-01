@@ -46,7 +46,7 @@ class ArticleController extends Controller
     public function store(StoreArticleRequest $request)
     {
         $data = $request->all();
-        $data['slug'] = Str::slug($request->input('title')); //slug
+        $data['slug'] = $request->input('slug'); //slug
         if($request->hasFile('image')) { // kiem tra xem co image duoc chon khong
               //get File
               $file = $request->file('image');

@@ -44,7 +44,7 @@
                             @if ($user->avatar && file_exists(public_path($user->avatar)) )
                                 <img src="{{asset($user->avatar)}}" width="100px" height="75px" alt="">
                             @else
-                                <img src="{{asset('upload/banner/erro404.jpg')}}"width="100px" height="75px" alt="">
+                                <img src="{{asset('upload/user/erro404.jpg')}}"width="100px" height="75px" alt="">
                             @endif
                             <div class="form-group">
                                 <label for="exampleInputPassword1">Password</label>

@@ -2,12 +2,19 @@
     <!-- sidebar: style can be found in sidebar.less -->
     <section class="sidebar">
         <!-- Sidebar user panel -->
+        @php
+        $user = Auth::user()
+        @endphp
         <div class="user-panel">
             <div class="pull-left image">
-                <img src="{{ asset('backend') }}/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+            @if ($user->avatar && file_exists(public_path($user->avatar)) )
+                <img src="{{asset($user->avatar)}}" class="user-image" alt="">
+            @else
+                <img src="{{asset('upload/user/erro404.jpg')}}" class="user-image" alt="">
+            @endif
             </div>
             <div class="pull-left info">
-                <p>Alexander Pierce</p>
+                <p>{{$user->name}}</p>
                 <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
             </div>
         </div>
@@ -72,6 +79,13 @@
             <li>
                 <a href="{{route('admin.user.index') }}">
                     <i class="fa fa-th"></i> <span>Danh sách người dùng </span>
+                    <span class="pull-right-container">
+                    </span>
+                </a>
+            </li>
+            <li>
+                <a href="{{route('admin.contact.index') }}">
+                    <i class="fa fa-th"></i> <span>Quản lý sản phẩm </span>
                     <span class="pull-right-container">
                     </span>
                 </a>

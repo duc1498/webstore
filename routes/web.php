@@ -25,7 +25,7 @@ use App\Http\Controllers\HomesController;
 |
 */
 
-Route::get('home', [HomesController::class, 'index'])->name('home.index');
+Route::get('homes', [HomesController::class, 'index'])->name('homes.index');
 Route::get('contact', [ContactController::class, 'contact'])->name('contact.index');
 Route::post('contacts', [HomesController::class, 'contactPost'])->name('contactPost');
 
@@ -41,4 +41,4 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     Route::resource('user', UserController::class);
 });
 Auth::routes();
-Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/', [HomeController::class, 'index'])->name('home');
