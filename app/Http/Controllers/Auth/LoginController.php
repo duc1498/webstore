@@ -44,7 +44,7 @@ class LoginController extends Controller
 {
     if (Auth::attempt(['email' => $request -> email, 'password' => $request -> password])) {
         // Success
-        return redirect()->route('admin.banner.index');
+        return redirect()->route('admin.dashboard');
     } else {
         // Go back on error (or do what you want)
         return redirect()->back();

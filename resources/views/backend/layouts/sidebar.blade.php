@@ -28,7 +28,7 @@
             <li class="header">MAIN NAVIGATION</li>
             <li class="active treeview">
             <li>
-                <a href="">
+                <a href="{{route('admin.dashboard')}}">
                     <i class="fa fa-th"></i> <span>Dashboard</span>
                     <span class="pull-right-container">
                     </span>

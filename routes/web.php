@@ -10,6 +10,9 @@ use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\HomesController;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -22,12 +25,11 @@ use App\Http\Controllers\UserController;
 |
 */
 
-Route::get('/', [HomeController::class, 'index'])->name('home.index');
+Route::get('home', [HomesController::class, 'index'])->name('home.index');
 Route::get('contact', [ContactController::class, 'contact'])->name('contact.index');
-Route::post('contact', [HomeController::class, 'contactPost'])->name('contactPost');
+Route::post('contacts', [HomesController::class, 'contactPost'])->name('contactPost');
 
-
-Route::prefix('admin')->name('admin.')->middleware('auth.banner')->group(function () {
+Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     Route::get('/dashboard',[AdminController::class, 'dashboard'])->name('dashboard');
     Route::get('/test', [BannerController::class, 'test']);
     Route::resource('product', ProductController::class);
@@ -39,4 +41,4 @@ Route::prefix('admin')->name('admin.')->middleware('auth.banner')->group(functio
     Route::resource('user', UserController::class);
 });
 Auth::routes();
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
