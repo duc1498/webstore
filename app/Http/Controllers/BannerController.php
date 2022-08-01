@@ -65,14 +65,11 @@ class BannerController extends Controller
         if($request->has('is_active')) {
             $data['is_active'] = $request->input('is_active');
         }
-        // $banner->is_active = $is_active;
-        // //vi tri
-        // $data['position'] = 0;
-        // if($request->has('position')) {
-        //     $data['position'] = $request->input('position');
-        // }
-        // $banner->position = $position;
-        //luu
+
+        $data['position'] = 0;
+        if($request->has('position')) {
+            $data['position'] = $request->input('position');
+        }
         Banner::create($data);
 
         return redirect()->route('admin.banner.index');
@@ -131,25 +128,16 @@ class BannerController extends Controller
             // luu lai ten
             $data['image'] = $path_upload.$filename;
         }
-        // $banner->url = $request->input('url');
-        // $banner->target = $request->input('target');
-        // //loai
-        // $banner->type = $request->input('type');
-        // //trang thai
+
         $data['is_active'] = 0;
         if($request->has('is_active')) { // kiem tra xem is_active co ton tai hay khong
             $data['is_active'] = $request->input('is_active');
         }
-        // //trang thai
-        // $banner->is_active = $is_active;
-        // //vi tri
-        // $position = 0;
-        // if($request->has('position')) {
-        //     $position = $request->input('position');
-        // }
-        // $banner->position = $position;
-        // //luu
-        // $banner->save();
+
+        $data['position'] = 0;
+        if($request->has('position')) {
+            $data['position'] = $request->input('position');
+        }
         $banner-> update($data);
 
         return redirect()->route('admin.banner.index');
