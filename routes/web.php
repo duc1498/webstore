@@ -11,6 +11,8 @@ use App\Http\Controllers\SettingController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\HomesController;
+use App\Http\Controllers\VendorController;
+use App\Http\Controllers\BrandController;
 
 
 
@@ -39,6 +41,8 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     Route::resource('setting', SettingController::class);
     Route::resource('contact', ContactController::class);
     Route::resource('user', UserController::class);
+    Route::resource('vendor', VendorController::class);
+    Route::resource('brand', BrandController::class);
 });
 Auth::routes();
 Route::get('/', [HomeController::class, 'index'])->name('home');

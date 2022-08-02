@@ -84,8 +84,22 @@
                 </a>
             </li>
             <li>
-                <a href="{{route('admin.contact.index') }}">
+                <a href="{{route('admin.product.index') }}">
                     <i class="fa fa-th"></i> <span>Quản lý sản phẩm </span>
+                    <span class="pull-right-container">
+                    </span>
+                </a>
+            </li>
+            <li>
+                <a href="{{route('admin.vendor.index') }}">
+                    <i class="fa fa-th"></i> <span>Nhà cung cấp </span>
+                    <span class="pull-right-container">
+                    </span>
+                </a>
+            </li>
+            <li>
+                <a href="{{route('admin.brand.index') }}">
+                    <i class="fa fa-th"></i> <span>Thương hiệu </span>
                     <span class="pull-right-container">
                     </span>
                 </a>

@@ -3,6 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Product;
+use Illuminate\Support\Str;
+use App\Models\User;
+use App\Models\category;
+use App\Models\brand;
+use App\Models\vendor;
+
 
 class ProductController extends Controller
 {
@@ -13,7 +20,9 @@ class ProductController extends Controller
      */
     public function index()
     {
-        echo 'index';
+        $product = Product::all();
+
+        return view('backend.product.index', compact('product'));
     }
 
     /**
@@ -23,7 +32,12 @@ class ProductController extends Controller
      */
     public function create()
     {
-        echo 'create';
+        $product = Product::all();
+        $user = User::all();
+        $category = Category::all();
+        $brand = Brand::all();
+        $vendor = Vendor::all();
+        return view('backend.product.create' ,compact('product','category','user','brand','vendor'));
     }
 
     /**
@@ -35,7 +49,37 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         //
+        $data = $request ->all();
+        $data['slug'] = Str::slug($request->input('title')); //slug
+
+        if($request->hasFile('image')) { // kiem tra xem co image duoc chon khong
+            //get File
+            $file = $request->file('image');
+            // dat ten cho file image
+            $filename = time(). '_'.$file->getClientOriginalName();
+            // dinh nghia duong dan upload file len
+            $path_upload = 'upload/banner/';
+            // thuc hien upload file
+            $file->move($path_upload,$filename);
+            // luu lai ten
+            $data['image'] = $path_upload.$filename;
+        }
+        //trang thai
+        $data['is_active'] = 0;
+        //Trang thai
+        if($request->has('is_active')) {
+            $data['is_active'] = $request->input('is_active');
+        }
+
+        $data['position'] = 0;
+        if($request->has('position')) {
+            $data['position'] = $request->input('position');
+        }
+        $product=Product::create($data);
+
+        return redirect()->route('admin.product.index');
     }
+
 
     /**
      * Display the specified resource.
@@ -57,6 +101,12 @@ class ProductController extends Controller
     public function edit($id)
     {
         //
+        $product = Product::findOrFail($id);
+        $user = User::all();
+        $category = Category::all();
+        $brand = Brand::all();
+        $vendor = Vendor::all();
+        return view('backend.product.edit' ,compact('product','category','user','brand','vendor'));
     }
 
     /**
@@ -69,6 +119,38 @@ class ProductController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $data= $request->all();
+        $product = Product::findOrFail($id);
+
+        // $article->title = $request->input('title');
+
+        $data['slug'] = Str::slug($request->input('title')); //slug
+
+        if($request->hasFile('image')) { // kiem tra xem co image duoc chon khong
+            @unlink(public_path($product->image));
+            //get File
+            $file = $request->file('image');
+            // dat ten cho file image
+            $filename = time(). '_'.$file->getClientOriginalName();
+            // dinh nghia duong dan upload file len
+            $path_upload = 'upload/article/';
+            // thuc hien upload file
+            $file->move($path_upload,$filename);
+            // luu lai ten
+            $data['image'] = $path_upload.$filename;
+        }
+
+        $data['is_active'] = 0;
+        if($request->has('is_active')) {
+            $data['is_active'] = $request->input('is_active');
+        };
+        $data['position'] = 0;
+        if($request->has('position')) {
+            $data['position'] = $request->input('position');
+        }
+        $product->update($data);
+
+        return redirect()->route('admin.product.index');
     }
 
     /**
