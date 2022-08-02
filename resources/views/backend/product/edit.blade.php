@@ -163,7 +163,6 @@
                 price = new Intl.NumberFormat('ja-JP').format(price);
             }
             $(this).val(price);
-
         });
         $('.btnCreate').click(function() {
             if ($('#title').val() === '') {

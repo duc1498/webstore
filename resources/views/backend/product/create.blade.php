@@ -205,14 +205,6 @@
                 $(this).val(price);
 
             });
-            $('.btnCreate').click(function() {
-                if ($('#title').val() === '') {
-                    $('#title').notify('ban chua nhap tieu de','error');
-                    document.getElementById('title').scrollIntoView();
-                    return false;
-                }
-            });
-
         });
     </script>
 @endsection
