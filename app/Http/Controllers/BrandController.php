@@ -102,13 +102,8 @@ class BrandController extends Controller
      */
     public function update(Request $request,$id)
     {
-        //
-
         $data= $request->all();
         $brand = Brand::findOrFail($id);
-
-        // $article->title = $request->input('title');
-
         $data['slug'] = Str::slug($request->input('name')); //slug
 
         if($request->hasFile('image')) { // kiem tra xem co image duoc chon khong

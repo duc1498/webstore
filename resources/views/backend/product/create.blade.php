@@ -50,7 +50,7 @@
                                 <input id="stock" name="stock" type="text" class="form-control" placeholder="">
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputEmail1">price</label>
+                                <label for="exampleInputEmail1">giá bán</label>
                                 <input id="price" name="price" type="text" class="form-control" placeholder="">
                             </div>
                             <div class="form-group">
@@ -79,7 +79,7 @@
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputEmail1">url</label>
+                                <label for="exampleInputEmail1">liên kết</label>
                                 <input id="url" name="url" type="text" class="form-control" placeholder="">
                             </div>
                             <div class="form-group">
@@ -139,7 +139,7 @@
                             </div>
                             <div class="checkbox">
                                 <label>
-                                    <input value="1" type="checkbox" name="is_active" id="is_active"> hiển thị </label>
+                                    <input value="1" type="checkbox" name="is_active" id="is_active"> Sản phẩm hot / flash sale </label>
                             </div>
                         </div>
                         <!-- /.box-body -->
@@ -188,6 +188,23 @@
         $(document).ready(function() {
             CKEDITOR.replace( 'description' );
 
+            $('#price').on('keyup',function (e) {
+                var price = $(this).val().replace(/[^0-9]/g,''); // lấy giá trị của ô sau khi nhập
+                if (price > 0) {
+                    price = parseInt(price.replaceAll(',','')); // thay thế dấu
+                    price = new Intl.NumberFormat('ja-JP').format(price); // fomat định dạng rồi gán giá trị
+                }
+                $(this).val(price);
+            });
+            $('#sale').on('keyup',function (e) {
+                var price = $(this).val().replace(/[^0-9]/g,'');
+                if (price > 0) {
+                    price = parseInt(price.replaceAll(',',''));
+                    price = new Intl.NumberFormat('ja-JP').format(price);
+                }
+                $(this).val(price);
+
+            });
             $('.btnCreate').click(function() {
                 if ($('#title').val() === '') {
                     $('#title').notify('ban chua nhap tieu de','error');

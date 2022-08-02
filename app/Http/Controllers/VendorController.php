@@ -92,7 +92,6 @@ class VendorController extends Controller
     {
         //
         $vendor = Vendor::findOrFail($id);
-
         return view('backend.vendor.edit' , compact('vendor'));
     }
 
@@ -103,10 +102,11 @@ class VendorController extends Controller
      * @param  \App\Models\Vendor  $vendor
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateVendorRequest $request, Vendor $vendor)
+    public function update(UpdateVendorRequest $request, $id)
     {
         //
         $data= $request->all();
+
         $vendor = Vendor::findOrFail($id);
 
         // $article->title = $request->input('title');

@@ -149,7 +149,6 @@ class ProductController extends Controller
             $data['position'] = $request->input('position');
         }
         $product->update($data);
-
         return redirect()->route('admin.product.index');
     }
 
