@@ -142,3 +142,37 @@
         </div>
     </section>
 @endsection
+
+@section('js')
+<script>
+    $(document).ready(function() {
+        CKEDITOR.replace( 'description' );
+
+        $('#price').on('keyup',function (e) {
+            var price = $(this).val().replace(/[^0-9]/g,''); // lấy giá trị của ô sau khi nhập
+            if (price > 0) {
+                price = parseInt(price.replaceAll(',','')); // thay thế dấu
+                price = new Intl.NumberFormat('ja-JP').format(price); // fomat định dạng rồi gán giá trị
+            }
+            $(this).val(price);
+        });
+        $('#sale').on('keyup',function (e) {
+            var price = $(this).val().replace(/[^0-9]/g,'');
+            if (price > 0) {
+                price = parseInt(price.replaceAll(',',''));
+                price = new Intl.NumberFormat('ja-JP').format(price);
+            }
+            $(this).val(price);
+
+        });
+        $('.btnCreate').click(function() {
+            if ($('#title').val() === '') {
+                $('#title').notify('ban chua nhap tieu de','error');
+                document.getElementById('title').scrollIntoView();
+                return false;
+            }
+        });
+
+    });
+</script>
+@endsection
