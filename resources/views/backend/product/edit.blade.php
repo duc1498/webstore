@@ -171,7 +171,6 @@
                 return false;
             }
         });
-
     });
 </script>
 @endsection
