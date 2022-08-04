@@ -20,7 +20,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $product = Product::all();
+        // $product = Product::all();
+        $product = Product::Paginate(10);
 
         return view('backend.product.index', compact('product'));
     }
@@ -79,8 +80,6 @@ class ProductController extends Controller
 
         return redirect()->route('admin.product.index');
     }
-
-
     /**
      * Display the specified resource.
      *
@@ -161,5 +160,13 @@ class ProductController extends Controller
     public function destroy($id)
     {
         //
+        $product = Product::find($id);
+        // xóa ảnh cũ
+        if($product) {
+        @unlink(public_path($product->image));
+
+        Product::destroy($id);
+        return true;
+        } else return false;
     }
 }

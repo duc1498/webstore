@@ -56,7 +56,7 @@
                 </td>
                 <td>
                     <a href="{{ route('admin.vendor.edit', ['vendor' => $item->id]) }}"><span title="Chỉnh sửa" type="button" class="btn btn-flat btn-primary"><i class="fa fa-edit"></i></span></a>
-                    <span data-id="{{ $item->id }}" data-url="{{route('admin.article.destroy', $item->id)}}" title="Xóa" class="btn btn-flat btn-danger deleteItem"><i class="fa fa-trash"></i></span>
+                    <span data-id="{{ $item->id }}" data-url="{{route('admin.vendor.destroy', $item->id)}}" title="Xóa" class="btn btn-flat btn-danger deleteItem"><i class="fa fa-trash"></i></span>
                 </td>
                 <td>
                     {{$item->category ? $item->category->name : ''}}
@@ -68,13 +68,14 @@
           </div>
           <!-- /.box-body -->
           <div class="box-footer clearfix">
-            <ul class="pagination pagination-sm no-margin pull-right">
+            {{ $vendor->links('backend.layouts.pagination'); }}
+            {{-- <ul class="pagination pagination-sm no-margin pull-right">
               <li><a href="#">«</a></li>
               <li><a href="#">1</a></li>
               <li><a href="#">2</a></li>
               <li><a href="#">3</a></li>
               <li><a href="#">»</a></li>
-            </ul>
+            </ul> --}}
           </div>
 
       </div>

@@ -18,7 +18,8 @@ class UserController extends Controller
     public function index()
     {
         //
-        $user = User::all();
+        // $user = User::all();
+        $user = User::latest()->paginate(10);
         return view('backend.user.index', compact('user'));
     }
 
@@ -141,5 +142,13 @@ class UserController extends Controller
     public function destroy($id)
     {
         //
+        $user = User::find($id);
+        // xóa ảnh cũ
+        if($brand) {
+        @unlink(public_path($user->image));
+
+        User::destroy($id);
+        return true;
+        } else return false;
     }
 }

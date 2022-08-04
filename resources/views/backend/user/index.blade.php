@@ -35,8 +35,8 @@
                     {{ config('user.role_id')[$item->role_id] }}
                 </td>
                 <td>
-                    {{$item->is_active}}
-                </td>
+                    {!! $item->is_active == 1 ? '<span class="badge bg-green">ON</span>' : '<span class="badge bg-red">OFF</span>' !!}
+                   </td>
                 <td>
                     <a href="{{ route('admin.user.edit', ['user' => $item->id]) }}"><span title="Chỉnh sửa" type="button" class="btn btn-flat btn-primary"><i class="fa fa-edit"></i></span></a>
                     <span data-id="{{ $item->id }}" data-url="{{route('admin.user.destroy', $item->id)}}" title="Xóa" class="btn btn-flat btn-danger deleteItem"><i class="fa fa-trash"></i></span>
@@ -47,13 +47,14 @@
           </div>
           <!-- /.box-body -->
           <div class="box-footer clearfix">
-            <ul class="pagination pagination-sm no-margin pull-right">
+            {{ $user->links('backend.layouts.pagination'); }}
+            {{-- <ul class="pagination pagination-sm no-margin pull-right">
               <li><a href="#">«</a></li>
               <li><a href="#">1</a></li>
               <li><a href="#">2</a></li>
               <li><a href="#">3</a></li>
               <li><a href="#">»</a></li>
-            </ul>
+            </ul> --}}
           </div>
 
       </div>

@@ -19,7 +19,8 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        $article = Article::all();
+        $article = Article::Paginate(10);
+        // $article = Article::all();
         $category = Category::all();
         return view('backend.article.index', compact('article', 'category'));
     }

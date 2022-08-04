@@ -16,7 +16,8 @@ class BrandController extends Controller
     public function index()
     {
         //
-        $brand = Brand::all();
+        // $brand = Brand::all();
+        $brand = Brand::latest()->paginate(10);
 
         return view('backend.brand.index', compact('brand'));
     }
@@ -139,8 +140,16 @@ class BrandController extends Controller
      * @param  \App\Models\Brand  $brand
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Brand $brand)
+    public function destroy($id)
     {
         //
+        $brand = Brand::find($id);
+        // xóa ảnh cũ
+        if($brand) {
+        @unlink(public_path($brand->image));
+
+        Brand::destroy($id);
+        return true;
+        } else return false;
     }
 }

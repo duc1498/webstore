@@ -19,9 +19,9 @@ class BannerController extends Controller
     {
 
         //Lấy toàn bộ dữ liệu
-        $banner = Banner::all();
+        // $banner = Banner::all();
         //cách 2 : lấy đữ liệu mới nhất và phần trang
-        // $data = Banner::latest()->paginate(10);
+        $banner = Banner::latest()->paginate(10);
         return view('backend.banner.index',compact('banner'));
     }
 

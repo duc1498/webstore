@@ -17,7 +17,8 @@ class VendorController extends Controller
     public function index()
     {
         //
-        $vendor = Vendor::all();
+        // $vendor = Vendor::all();
+        $vendor = Vendor::Paginate(10);
 
         return view('backend.vendor.index', compact('vendor'));
     }
@@ -146,8 +147,16 @@ class VendorController extends Controller
      * @param  \App\Models\Vendor  $vendor
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Vendor $vendor)
+    public function destroy($id)
     {
         //
+        $vendor = Vendor::find($id);
+        // xóa ảnh cũ
+        if($vendor) {
+        @unlink(public_path($vendor->image));
+
+        Vendor::destroy($id);
+        return true;
+        } else return false;
     }
 }
