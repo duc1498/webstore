@@ -38,7 +38,7 @@
                         <div class="box-body">
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Tên</label>
-                                <input id="name" name="name" type="text" class="form-control" placeholder="">
+                                <input value="{{old ('name')}}" id="name" name="name" type="text" class="form-control" placeholder="">
                             </div>
 
                             <div class="form-group">
@@ -46,8 +46,8 @@
                                 <input type="file" name="image" id="image">
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Stock</label>
-                                <input id="stock" name="stock" type="text" class="form-control" placeholder="">
+                                <label for="exampleInputEmail1">số lượng</label>
+                                <input value="{{old('stock')}}" id="stock" name="stock" type="text" class="form-control" placeholder="">
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputEmail1">giá bán</label>
@@ -61,9 +61,9 @@
                                 <label for="exampleInputPassword1">Vị trí</label>
                                 <input min="0" type="number" class="form-control" id="position" name="position" placeholder="">
                             </div>
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">is_hot</label>
-                                <input id="is_hot" name="is_hot" type="text" class="form-control" placeholder="">
+                            <div class="checkbox">
+                                <label>
+                                    <input value="1" type="checkbox" name="is_hot" id="is_hot"> Sản phẩm hot / flash sale </label>
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputEmail1">views</label>
@@ -139,7 +139,7 @@
                             </div>
                             <div class="checkbox">
                                 <label>
-                                    <input value="1" type="checkbox" name="is_active" id="is_active"> Sản phẩm hot / flash sale </label>
+                                    <input value="1" type="checkbox" name="is_active" id="is_active"> hiển thị </label>
                             </div>
                         </div>
                         <!-- /.box-body -->

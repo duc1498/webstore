@@ -53,12 +53,13 @@
                             </div>
                             <div class="checkbox">
                                 <label>
-                                    <input {{($product->is_active == 1) ? 'checked' : ''}}  value="1" type="checkbox" name="is_active" id="is_active"> Trạng thái
+                                    <input {{($product->is_active == 1) ? 'checked' : ''}}  value="1" type="checkbox" name="is_active" id="is_active"> hiển thị
                                 </label>
                             </div>
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">is_hot</label>
-                                <input value="{{$product->is_hot}}" id="is_hot" name="is_hot" type="text" class="form-control" placeholder="">
+                            <div class="checkbox">
+                                <label>
+                                    <input {{($product->is_hot == 1) ? 'checked' : ''}}  value="1" type="checkbox" name="is_hot" id="is_hot"> Trạng thái
+                                </label>
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputEmail1">views</label>
@@ -125,7 +126,7 @@
                             </div>
                             <div class="form-group">
                                 <label>user_id</label>
-                                <select class="form-control" name="brand_id" id="brand_id">
+                                <select class="form-control" name="user_id" id="user_id">
                                     <option></option>
                                     @foreach ($user as $key)
                                         <option {{($key->id == $product->user_id) ? 'selected' : ''}}   value="{{$key->id}}">{{$key->name}}</option>

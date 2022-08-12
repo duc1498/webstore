@@ -51,7 +51,7 @@ class ProductController extends Controller
     {
         //
         $data = $request ->all();
-        $data['slug'] = Str::slug($request->input('title')); //slug
+        $data['slug'] = Str::slug($request->input('name')); //slug
 
         if($request->hasFile('image')) { // kiem tra xem co image duoc chon khong
             //get File
@@ -76,8 +76,10 @@ class ProductController extends Controller
         if($request->has('position')) {
             $data['position'] = $request->input('position');
         }
+        $data['is_hot'] = $request->input('position') ?? 0 ;
+        $data['price'] = Str::remove(',', $request->input('price'));
+        $data['sale'] = Str::remove(',', $request->input('sale'));
         $product=Product::create($data);
-
         return redirect()->route('admin.product.index');
     }
     /**
@@ -123,7 +125,7 @@ class ProductController extends Controller
 
         // $article->title = $request->input('title');
 
-        $data['slug'] = Str::slug($request->input('title')); //slug
+        $data['slug'] = Str::slug($request->input('name')); //slug
 
         if($request->hasFile('image')) { // kiem tra xem co image duoc chon khong
             @unlink(public_path($product->image));
@@ -147,7 +149,11 @@ class ProductController extends Controller
         if($request->has('position')) {
             $data['position'] = $request->input('position');
         }
+        $data['is_hot'] = $request->input('position') ?? 0 ;
+        $data['price'] = Str::remove(',', $request->input('price'));
+        $data['sale'] = Str::remove(',', $request->input('sale'));
         $product->update($data);
+
         return redirect()->route('admin.product.index');
     }
 

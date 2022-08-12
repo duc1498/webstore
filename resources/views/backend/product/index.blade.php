@@ -22,6 +22,7 @@
                 <th>price</th>
                 <th>sale</th>
                 <th>user_id</th>
+                <th>trạng thái</th>
             </tr>
         @foreach ($product as $key=> $item )
             <tr class="item-{{$item->id}}">
@@ -43,7 +44,10 @@
                     {{$item->sale}}
                  </td>
                  <td>
-                    {{$item->user_id}}
+                    {{$item->user ? $item->user->name : ''}}
+                 </td>
+                 <td>
+                    {!! $item->is_active == 1 ? '<span class="badge bg-green">ON</span>' : '<span class="badge bg-red">OFF</span>' !!}
                  </td>
                 <td>
                     <a href="{{ route('admin.product.edit', ['product' => $item->id]) }}"><span title="Chỉnh sửa" type="button" class="btn btn-flat btn-primary"><i class="fa fa-edit"></i></span></a>
@@ -74,6 +78,23 @@
 @section('js')
     <script type="text/javascript">
         $( document ).ready(function() {
+
+        $('#price').on('keyup',function (e) {
+            var price = $(this).val().replace(/[^0-9]/g,''); // lấy giá trị của ô sau khi nhập
+            if (price > 0) {
+                price = parseInt(price.replaceAll(',','')); // thay thế dấu
+                price = new Intl.NumberFormat('ja-JP').format(price); // fomat định dạng rồi gán giá trị
+            }
+            $(this).val(price);
+        });
+        $('#sale').on('keyup',function (e) {
+            var price = $(this).val().replace(/[^0-9]/g,'');
+            if (price > 0) {
+                price = parseInt(price.replaceAll(',',''));
+                price = new Intl.NumberFormat('ja-JP').format(price);
+            }
+            $(this).val(price);
+        });
 
             $('.deleteItem').click(function () {
                 var id = $(this).attr('data-id');

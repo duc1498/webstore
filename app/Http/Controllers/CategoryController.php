@@ -7,6 +7,7 @@ use App\Http\Requests\StorecategoryRequest;
 use App\Http\Requests\UpdatecategoryRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use App\Models\Product;
 
 class CategoryController extends Controller
 {
@@ -153,11 +154,27 @@ class CategoryController extends Controller
     {
         //
         $category = Category::find($id);
+        $checkExitproduct = Product::where('category_id',$id)->first();
+        if($checkExitproduct != null ) {
+            return response()->json([
+                'success' => false,
+                'msg' => 'xoá không thành công , tồn tại nhiều sản phẩm đang được thêm cho danh mục'
+            ], 500);
+
+        }
         // xóa ảnh cũ
         if($category) {
             @unlink(public_path($category->image));
             Category::destroy($id);
-            return 1;
-        } else return 0;
+            return response()->json([
+                'success' => true,
+                'msg' => 'xoá thành công '
+            ]);
+        } else {
+            return response()->json([
+                'success' => false,
+                'msg' => 'xoá không thành công '
+            ], 500);
+        }
     }
 }
