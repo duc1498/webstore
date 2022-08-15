@@ -6,6 +6,7 @@ use App\Models\Vendor;
 use App\Http\Requests\StoreVendorRequest;
 use App\Http\Requests\UpdateVendorRequest;
 use Illuminate\Support\Str;
+use App\Models\Product;
 
 class VendorController extends Controller
 {
@@ -151,12 +152,26 @@ class VendorController extends Controller
     {
         //
         $vendor = Vendor::find($id);
-        // xóa ảnh cũ
-        if($vendor) {
-        @unlink(public_path($vendor->image));
-
-        Vendor::destroy($id);
-        return true;
-        } else return false;
+        $checkEditProduct = Product::where('vendor_id',$id)->first();
+        if($checkEditProduct != null) {
+            return response()->json ([
+                'success'=> false,
+                'msg'=>'xoá không thành công , tồn tại nhiều sản phẩm đang được thêm cho danh mục',
+            ],500);
+        }
+         // xóa ảnh cũ
+         if($vendor) {
+            @unlink(public_path($vendor->image));
+            Vendor::destroy($id);
+            return response()->json([
+                'success' => true,
+                'msg' => 'xoá thành công '
+            ]);
+        } else {
+            return response()->json([
+                'success' => false,
+                'msg' => 'xoá không thành công '
+            ], 500);
+        }
     }
 }

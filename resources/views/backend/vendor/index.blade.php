@@ -107,14 +107,22 @@
                     url : url,
                     type: 'DELETE',
                     data: {},
-                    success: function (res) {
-                        if(res == true ) {
-                            $('.item-'+id).remove();
-                            alert('Bạn đã xoá thành công')
-                        } else {
-                            alert('Không tìm thấy id')
-                        }
-                    },
+                    success: function(res) {
+                                console.log(24, res);
+                                if (res.success) {
+                                    $('.item-' + id).remove();
+                                    alert('Bạn đã xoá thành công')
+                                }
+                            },
+                            error: function(res) {
+                                if (!res.responseJSON.success) {
+                                    Swal.fire(
+                                        'Deleted!',
+                                        res.responseJSON.msg,
+                                        'error '
+                                    )
+                                }
+                            }
                 });
   }
 })

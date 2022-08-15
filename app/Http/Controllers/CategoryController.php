@@ -8,6 +8,7 @@ use App\Http\Requests\UpdatecategoryRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use App\Models\Product;
+use App\Models\SoftDeletes;
 
 class CategoryController extends Controller
 {
@@ -160,7 +161,6 @@ class CategoryController extends Controller
                 'success' => false,
                 'msg' => 'xoá không thành công , tồn tại nhiều sản phẩm đang được thêm cho danh mục'
             ], 500);
-
         }
         // xóa ảnh cũ
         if($category) {

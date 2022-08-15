@@ -168,9 +168,9 @@ class ProductController extends Controller
         //
         $product = Product::find($id);
         // xóa ảnh cũ
+
         if($product) {
         @unlink(public_path($product->image));
-
         Product::destroy($id);
         return true;
         } else return false;

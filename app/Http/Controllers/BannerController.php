@@ -7,6 +7,7 @@ use App\Http\Requests\StoreBannerRequest;
 use App\Http\Requests\UpdateBannerRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use App\Models\SoftDeletes;
 
 class BannerController extends Controller
 {
@@ -156,7 +157,15 @@ class BannerController extends Controller
         if($banner) {
             @unlink(public_path($banner->image));
             Banner::destroy($id);
-            return 1;
-        } else return 0;
+            return response()->json([
+                'success' => true,
+                'msg' => 'xoá thành công '
+            ]);
+        } else {
+            return response()->json([
+                'success' => false,
+                'msg' => 'xoá không thành công '
+            ], 500);
+        }
     }
 }

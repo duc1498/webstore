@@ -95,6 +95,19 @@ class ContactController extends Controller
     {
         $contact = Contact::find($id);
         Contact::destroy($id);
+        if($contact) {
+            @unlink(public_path($contact->image));
+            Contact::destroy($id);
+            return response()->json([
+                'success' => true,
+                'msg' => 'xoá thành công '
+            ]);
+        } else {
+            return response()->json([
+                'success' => false,
+                'msg' => 'xoá không thành công '
+            ], 500);
+        }
 
       return true;
 

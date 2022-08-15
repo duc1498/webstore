@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
 use Illuminate\Support\Str;
+use App\Models\SoftDeletes;
 
 class UserController extends Controller
 {
@@ -104,7 +105,7 @@ class UserController extends Controller
     {
         //
         $data = $request->all();
-        $user = user::findOrFail($id); //
+        $user = User::findOrFail($id); //
 
         if(!empty($request['password'])) {
             $data['password']=bcrypt($data['password']);
@@ -144,11 +145,18 @@ class UserController extends Controller
         //
         $user = User::find($id);
         // xóa ảnh cũ
-        if($brand) {
-        @unlink(public_path($user->image));
-
-        User::destroy($id);
-        return true;
-        } else return false;
+        if($user) {
+            @unlink(public_path($user->image));
+            User::destroy($id);
+            return response()->json([
+                'success' => true,
+                'msg' => 'xoá thành công '
+            ]);
+        } else {
+            return response()->json([
+                'success' => false,
+                'msg' => 'xoá không thành công '
+            ], 500);
+        }
     }
 }

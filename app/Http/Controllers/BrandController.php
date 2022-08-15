@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Brand;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use App\Models\Product;
 
 class BrandController extends Controller
 {
@@ -145,11 +146,25 @@ class BrandController extends Controller
         //
         $brand = Brand::find($id);
         // xóa ảnh cũ
+        $checkExitProduct = Product::where('brand_id',$id)->first();
+        if($checkExitProduct != null) {
+            return response()->json([
+                'success'=> false,
+                'msg'=> 'xoá không thành công , tồn tại nhiều sản phẩm đang được thêm cho danh mục'
+            ], 500);
+        }
         if($brand) {
         @unlink(public_path($brand->image));
-
         Brand::destroy($id);
-        return true;
-        } else return false;
+        return response()->json([
+            'success' => true,
+            'msg' => 'xoá thành công '
+        ]);
+    } else {
+        return response()->json([
+            'success' => false,
+            'msg' => 'xoá không thành công '
+        ], 500);
     }
+}
 }

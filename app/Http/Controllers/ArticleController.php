@@ -8,6 +8,7 @@ use App\Models\Article;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use App\Models\Category;
+use App\Models\SoftDeletes;
 
 
 class ArticleController extends Controller

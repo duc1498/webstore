@@ -88,8 +88,9 @@
                     type: 'DELETE',
                     data: {},
                     success: function (res) {
-                        if(res ==1 ) {
+                        if(res.success ) {
                             $('.item-'+id).remove();
+                            alert('Bạn đã xoá thành công')
                         }
                     },
                 });
