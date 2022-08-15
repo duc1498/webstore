@@ -22,6 +22,7 @@
                 <th>price</th>
                 <th>sale</th>
                 <th>user_id</th>
+                <th>brand_id</th>
                 <th>trạng thái</th>
             </tr>
         @foreach ($product as $key=> $item )
@@ -45,6 +46,9 @@
                  </td>
                  <td>
                     {{$item->user ? $item->user->name : ''}}
+                 </td>
+                 <td>
+                    {{$item->brand ? $item->brand->name : ''}}
                  </td>
                  <td>
                     {!! $item->is_active == 1 ? '<span class="badge bg-green">ON</span>' : '<span class="badge bg-red">OFF</span>' !!}

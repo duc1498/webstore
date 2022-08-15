@@ -8,6 +8,7 @@ use App\Http\Requests\UpdateBannerRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use App\Models\SoftDeletes;
+use Illuminate\Support\Facades\Auth;
 
 class BannerController extends Controller
 {
@@ -16,14 +17,22 @@ class BannerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-
-        //Lấy toàn bộ dữ liệu
-        // $banner = Banner::all();
-        //cách 2 : lấy đữ liệu mới nhất và phần trang
-        $banner = Banner::latest()->paginate(10);
-        return view('backend.banner.index',compact('banner'));
+        $data = $request->all();
+        $filter_type = $data['filter_type'] ?? 2;
+            if(Auth::user()->role_id ==1) {
+                if($filter_type == 1){
+                    $banner = Banner::withTrashed()->latest()->paginate(10);
+                }elseif($filter_type == 2) {
+                    $banner = Banner::latest()->paginate(10);
+                }else {
+                    $banner = Banner::onlyTrashed()->latest()->paginate(10);
+                }
+            }else {
+                $banner = Banner::latest()->paginate(10);
+            }
+        return view('backend.banner.index',compact('banner', 'filter_type'));
     }
 
     /**
@@ -171,8 +180,8 @@ class BannerController extends Controller
 
     public function restore($id)
     {
-        $category = Category::onlyTrashed()->findOrFail($id);
-        $category->restore();
+        $banner = Banner::onlyTrashed()->findOrFail($id);
+        $banner->restore();
             return response()->json([
                 'status' => true,
                 'msg' => 'Khôi phục thành công '

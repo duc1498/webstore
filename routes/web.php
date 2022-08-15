@@ -36,15 +36,17 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     Route::get('/test', [BannerController::class, 'test']);
     Route::resource('product', ProductController::class);
     Route::resource('banner', BannerController::class);
+        Route::post('banner/restore/{id}',[BannerController::class,'restore'])->name('banner.restore');
     Route::resource('category', CategoryController::class);
         Route::post('category/restore/{id}',[CategoryController::class,'restore'])->name('category.restore');
     Route::resource('article', ArticleController::class);
-    Route::post('article/restore/{id}',[CategoryController::class,'restore'])->name('article.restore');
+        Route::post('article/restore/{id}',[ArticleController::class,'restore'])->name('article.restore');
     Route::resource('setting', SettingController::class);
     Route::resource('contact', ContactController::class);
     Route::resource('user', UserController::class);
     Route::resource('vendor', VendorController::class);
     Route::resource('brand', BrandController::class);
+        Route::post('Brand/restore/{id}',[BrandController::class,'restore'])->name('brand.restore');
 });
 Auth::routes();
 Route::get('/', [HomeController::class, 'index'])->name('home');

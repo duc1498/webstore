@@ -6,6 +6,7 @@ use App\Models\Brand;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use App\Models\Product;
+use Illuminate\Support\Facades\Auth;
 
 class BrandController extends Controller
 {
@@ -14,13 +15,22 @@ class BrandController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
-        // $brand = Brand::all();
-        $brand = Brand::latest()->paginate(10);
-
-        return view('backend.brand.index', compact('brand'));
+        $data = $request->all();
+        $filter_type = $data['filter_type'] ?? 2;
+            if(Auth::user()->role_id ==1) {
+                if($filter_type == 1){
+                    $brand = Brand::withTrashed()->latest()->paginate(10);
+                }elseif($filter_type == 2) {
+                    $brand = Brand::latest()->paginate(10);
+                }else {
+                    $brand = Brand::onlyTrashed()->latest()->paginate(10);
+                }
+            }else {
+                $brand = Brand::latest()->paginate(10);
+            }
+        return view('backend.brand.index', compact('brand','filter_type'));
     }
 
     /**
@@ -170,8 +180,8 @@ class BrandController extends Controller
 
 public function restore($id)
 {
-    $category = Category::onlyTrashed()->findOrFail($id);
-    $category->restore();
+    $brand = Brand::onlyTrashed()->findOrFail($id);
+    $brand->restore();
         return response()->json([
             'status' => true,
             'msg' => 'Khôi phục thành công '

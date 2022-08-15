@@ -43,9 +43,8 @@ class ArticleController extends Controller
     public function create()
     {
         $article = Article::all(); //Select *form categories
-        $article = article::all(); // lấy các phần tử cửa bảng article
 
-        return view('backend.article.create', compact('article','article'));
+        return view('backend.article.create', compact('article'));
     }
 
     /**
@@ -171,6 +170,7 @@ class ArticleController extends Controller
     public function restore($id)
     {
         $article = Article::onlyTrashed()->findOrFail($id);
+
         $article->restore();
             return response()->json([
                 'status' => true,

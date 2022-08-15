@@ -61,19 +61,18 @@
                                         <a href="{{ route('admin.article.edit', ['article' => $item->id]) }}"><span
                                                 title="Chỉnh sửa" type="button" class="btn btn-flat btn-primary"><i
                                                     class="fa fa-edit"></i></span></a>
-                                                    @if ($item->deleted_at == null)
-                                                    <span data-id="{{ $item->id }}"
-                                                        data-url="{{ route('admin.article.destroy', $item->id) }}" title="Xóa"
-                                                        class="btn btn-flat btn-danger deleteItem"><i
-                                                            class="fa fa-trash"></i></span>
-                                                @else
-                                                    <span data-id="{{ $item->id }}"
-                                                        data-url="{{ route('admin.article.restore', $item->id) }}"
-                                                        title="Khôi phục" class="btn btn-flat btn-warning restoreItem"><i
-                                                            class="fa fa-refresh"></i></span>
-                                                @endif
+                                        @if ($item->deleted_at == null)
+                                            <span data-id="{{ $item->id }}"
+                                                data-url="{{ route('admin.article.destroy', $item->id) }}" title="Xóa"
+                                                class="btn btn-flat btn-danger deleteItem"><i
+                                                    class="fa fa-trash"></i></span>
+                                        @else
+                                            <span data-id="{{ $item->id }}"
+                                                data-url="{{ route('admin.article.restore', $item->id) }}"
+                                                title="Khôi phục" class="btn btn-flat btn-warning restoreItem"><i
+                                                    class="fa fa-refresh"></i></span>
+                                        @endif
                                     </td>
-
                                 </tr>
                             @endforeach
                         </table>
@@ -136,7 +135,7 @@
             $('.restoreItem').click(function() {
                 var id = $(this).attr('data-id');
                 var url = $(this).attr('data-url');
-
+                console.log(url);
 
                 Swal.fire({
                     title: 'Are you sure?',
@@ -148,7 +147,6 @@
                     confirmButtonText: 'Yes, delete it!'
                 }).then((result) => {
                     if (result.isConfirmed) {
-
                         $.ajax({
                             url: url,
                             type: 'POST',
@@ -159,7 +157,7 @@
                                         'Thông báo !',
                                         'Khôi phục thành công ',
                                         'success '
-                                    );
+                                    )
                                 } else {
                                     Swal.fire(
                                         'Thông báo !',
