@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use App\Models\Product;
 use App\Models\SoftDeletes;
+use Illuminate\Support\Facades\Auth;
 
 class CategoryController extends Controller
 {
@@ -17,13 +18,22 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request )
     {
-            //Lấy toàn bộ dữ liệu
-            // $data = Category::all();
-            //cách 2 : lấy đữ liệu mới nhất và phần trang
-            $category = Category::latest()->paginate(10);
-            return view('backend.category.index',compact('category'));
+        $data = $request->all();
+        $filter_type = $data['filter_type'] ?? 2;
+            if(Auth::user()->role_id ==1) {
+                if($filter_type == 1){
+                    $category = Category::withTrashed()->latest()->paginate(10);
+                }elseif($filter_type == 2) {
+                    $category = Category::latest()->paginate(10);
+                }else {
+                    $category = Category::onlyTrashed()->latest()->paginate(10);
+                }
+            }else {
+                $category = Category::latest()->paginate(10);
+            }
+            return view('backend.category.index',compact('category','filter_type'));
     }
 
     /**
@@ -177,4 +187,15 @@ class CategoryController extends Controller
             ], 500);
         }
     }
+
+    public function restore($id)
+    {
+        $category = Category::onlyTrashed()->findOrFail($id);
+        $category->restore();
+            return response()->json([
+                'status' => true,
+                'msg' => 'Khôi phục thành công '
+            ]);
+    }
+
 }

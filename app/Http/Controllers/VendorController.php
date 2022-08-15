@@ -174,4 +174,14 @@ class VendorController extends Controller
             ], 500);
         }
     }
+
+    public function restore($id)
+    {
+        $category = Category::onlyTrashed()->findOrFail($id);
+        $category->restore();
+            return response()->json([
+                'status' => true,
+                'msg' => 'Khôi phục thành công '
+            ]);
+    }
 }

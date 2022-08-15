@@ -175,4 +175,14 @@ class ProductController extends Controller
         return true;
         } else return false;
     }
+
+    public function restore($id)
+    {
+        $category = Category::onlyTrashed()->findOrFail($id);
+        $category->restore();
+            return response()->json([
+                'status' => true,
+                'msg' => 'Khôi phục thành công '
+            ]);
+    }
 }

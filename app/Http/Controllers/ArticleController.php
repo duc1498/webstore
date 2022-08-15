@@ -7,9 +7,8 @@ use App\Http\Requests\UpdateArticleRequest;
 use App\Models\Article;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
-use App\Models\Category;
 use App\Models\SoftDeletes;
-
+use Illuminate\Support\Facades\Auth;
 
 class ArticleController extends Controller
 {
@@ -18,12 +17,22 @@ class ArticleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $article = Article::Paginate(10);
-        // $article = Article::all();
-        $category = Category::all();
-        return view('backend.article.index', compact('article', 'category'));
+        $data = $request->all();
+        $filter_type = $data['filter_type'] ?? 2;
+            if(Auth::user()->role_id ==1) {
+                if($filter_type == 1){
+                    $article = article::withTrashed()->latest()->paginate(10);
+                }elseif($filter_type == 2) {
+                    $article = article::latest()->paginate(10);
+                }else {
+                    $article = article::onlyTrashed()->latest()->paginate(10);
+                }
+            }else {
+                $article = article::latest()->paginate(10);
+            }
+        return view('backend.article.index', compact('filter_type', 'article'));
     }
 
     /**
@@ -34,9 +43,9 @@ class ArticleController extends Controller
     public function create()
     {
         $article = Article::all(); //Select *form categories
-        $category = Category::all(); // lấy các phần tử cửa bảng category
+        $article = article::all(); // lấy các phần tử cửa bảng article
 
-        return view('backend.article.create', compact('article','category'));
+        return view('backend.article.create', compact('article','article'));
     }
 
     /**
@@ -93,8 +102,8 @@ class ArticleController extends Controller
     public function edit($id)
     {
         $article = Article::findOrFail($id);
-        $category = Category::all();
-        return view('backend.article.edit' ,compact('article','category'));
+        $article = Article::all();
+        return view('backend.article.edit' ,compact('article','article'));
     }
 
     /**
@@ -157,5 +166,15 @@ class ArticleController extends Controller
         Article::destroy($id);
         return true;
         } else return false;
+    }
+
+    public function restore($id)
+    {
+        $article = Article::onlyTrashed()->findOrFail($id);
+        $article->restore();
+            return response()->json([
+                'status' => true,
+                'msg' => 'Khôi phục thành công '
+            ]);
     }
 }
