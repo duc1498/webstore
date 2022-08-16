@@ -7,6 +7,9 @@ use App\Http\Requests\StoreVendorRequest;
 use App\Http\Requests\UpdateVendorRequest;
 use Illuminate\Support\Str;
 use App\Models\Product;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\Models\SoftDeletes;
 
 class VendorController extends Controller
 {
@@ -15,13 +18,23 @@ class VendorController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
         // $vendor = Vendor::all();
-        $vendor = Vendor::Paginate(10);
-
-        return view('backend.vendor.index', compact('vendor'));
+        $data = $request->all();
+        $filter_type = $data['filter_type'] ?? 1;
+            if(Auth::user()->role_id ==1) {
+                if($filter_type == 1){
+                    $vendor = Vendor::withTrashed()->latest()->paginate(10);
+                }elseif($filter_type == 2) {
+                    $vendor = Vendor::latest()->paginate(10);
+                }else {
+                    $vendor = Vendor::onlyTrashed()->latest()->paginate(10);
+                }
+            }else {
+                $vendor = Vendor::latest()->paginate(10);
+            }
+        return view('backend.vendor.index', compact('vendor','filter_type'));
     }
 
     /**
@@ -54,7 +67,7 @@ class VendorController extends Controller
               // dat ten cho file image
               $filename = time(). '_'.$file->getClientOriginalName();
               // dinh nghia duong dan upload file len
-              $path_upload = 'upload/article/';
+              $path_upload = 'upload/vendor/';
               // thuc hien upload file
               $file->move($path_upload,$filename);
               // luu lai ten
@@ -111,7 +124,7 @@ class VendorController extends Controller
 
         $vendor = Vendor::findOrFail($id);
 
-        // $article->title = $request->input('title');
+        // $vendor->title = $request->input('title');
 
         $data['slug'] = Str::slug($request->input('title')); //slug
 
@@ -122,7 +135,7 @@ class VendorController extends Controller
             // dat ten cho file image
             $filename = time(). '_'.$file->getClientOriginalName();
             // dinh nghia duong dan upload file len
-            $path_upload = 'upload/article/';
+            $path_upload = 'upload/vendor/';
             // thuc hien upload file
             $file->move($path_upload,$filename);
             // luu lai ten
@@ -177,8 +190,8 @@ class VendorController extends Controller
 
     public function restore($id)
     {
-        $category = Category::onlyTrashed()->findOrFail($id);
-        $category->restore();
+        $vendor = Vendor::onlyTrashed()->findOrFail($id);
+        $vendor->restore();
             return response()->json([
                 'status' => true,
                 'msg' => 'Khôi phục thành công '

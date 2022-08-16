@@ -6,14 +6,7 @@
         <h1>
             Thêm Banner
         </h1>
-        <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li><a href="#">Forms</a></li>
-            <li class="active">General Elements</li>
-        </ol>
-    </section>
-    <section class="content-header">
-        {{-- @if ($errors->any())
+                @if ($errors->any())
         <div class="alert alert-danger">
             <ul class="list-unstyled">
                 @foreach ($errors->all() as $error)
@@ -21,7 +14,14 @@
                 @endforeach
             </ul>
         </div>
-        @endif --}}
+        @endif
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a href="#">Forms</a></li>
+            <li class="active">General Elements</li>
+        </ol>
+    </section>
+    <section class="content-header">
     <section class="content">
         <div class="row">
             <!-- left column -->
@@ -127,19 +127,4 @@
             if(empty(error_mess)) {$('#form').submit();}
         });
     </script> --}}
-
-    <script>
-        $(document).ready(function() {
-            CKEDITOR.replace( 'description' );
-
-            $('.btnCreate').click(function() {
-                if ($('#title').val() === '') {
-                    $('#title').notify('ban chua nhap tieu de','error');
-                    document.getElementById('title').scrollIntoView();
-                    return false;
-                }
-            });
-
-        });
-    </script>
 @endsection

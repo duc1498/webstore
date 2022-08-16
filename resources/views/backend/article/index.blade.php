@@ -1,9 +1,19 @@
 @extends('backend.layouts.main')
 
 @section('content')
+
     <section class="content">
         <div class="row">
             <div class="col-md-12">
+                        @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul class="list-unstyled">
+                @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+        @endif
                 <div class="box">
                     <div class="box-header with-border">
                         <h3 class="box-title">Quản lý bài viết</h3>

@@ -106,6 +106,7 @@ class BannerController extends Controller
     {
         //
         $banner = Banner::findOrFail($id);
+
         return view('backend.banner.edit' ,compact('banner'));
     }
 

@@ -6,23 +6,25 @@
         <h1>
             Thêm Aticle
         </h1>
+        @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
         <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
             <li><a href="#">Forms</a></li>
             <li class="active">General Elements</li>
         </ol>
     </section>
+
     <section class="content-header">
-        {{-- @if ($errors->any())
-        <div class="alert alert-danger">
-            <ul class="list-unstyled">
-                @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-        @endif --}}
     <section class="content">
+
         <div class="row">
             <!-- left column -->
             <div class="col-md-12">
@@ -49,6 +51,13 @@
                             <div class="form-group">
                                 <label for="exampleInputEmail1">slug</label>
                                 <input id="slug" name="slug" type="text" class="form-control" placeholder="">
+                            </div>
+                            @error('slug')
+                            <p  style = "color : red;">{{ $message }}</p>
+                            @enderror
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">status</label>
+                                <input id="status" name="status" type="text" class="form-control" placeholder="">
                             </div>
                             @error('slug')
                             <p  style = "color : red;">{{ $message }}</p>
@@ -87,7 +96,6 @@
                                 <label>
                                     <input value="1" type="checkbox" name="is_active" id="is_active"> hiển thị </label>
                             </div>
-
                             <div class="form-group">
                                 <label id="is_description">Mô tả</label>
                                 <textarea id="meta_description" name="meta_description" class="form-control" rows="3" placeholder="Enter ..."></textarea>

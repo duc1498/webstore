@@ -43,7 +43,6 @@ class StorearticleRequest extends FormRequest
         return [
             'title.required' => 'nhap title ',
             'slug.required' => 'nhap slug',
-            'image.required' => 'nhap image',
             'category_id.required' => 'nhap category_id ',
             'summary.required' => 'nhap summary',
             'description.required' => 'nhap description',

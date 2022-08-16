@@ -30,6 +30,7 @@ use App\Http\Controllers\BrandController;
 Route::get('homes', [HomesController::class, 'index'])->name('homes.index');
 Route::get('contact', [ContactController::class, 'contact'])->name('contact.index');
 Route::post('contacts', [HomesController::class, 'contactPost'])->name('contactPost');
+Route::get('introduce',[HomesController::class, 'introduce'])->name('introduce');
 
 Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     Route::get('/dashboard',[AdminController::class, 'dashboard'])->name('dashboard');
@@ -39,12 +40,16 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
         Route::post('banner/restore/{id}',[BannerController::class,'restore'])->name('banner.restore');
     Route::resource('category', CategoryController::class);
         Route::post('category/restore/{id}',[CategoryController::class,'restore'])->name('category.restore');
+
     Route::resource('article', ArticleController::class);
         Route::post('article/restore/{id}',[ArticleController::class,'restore'])->name('article.restore');
+
     Route::resource('setting', SettingController::class);
     Route::resource('contact', ContactController::class);
+        Route::post('contact/restore/{id}',[ContactController::class,'restore'])->name('contact.restore');
     Route::resource('user', UserController::class);
     Route::resource('vendor', VendorController::class);
+        Route::post('Vendor/restore/{id}',[VendorController::class,'restore'])->name('vendor.restore');
     Route::resource('brand', BrandController::class);
         Route::post('Brand/restore/{id}',[BrandController::class,'restore'])->name('brand.restore');
 });

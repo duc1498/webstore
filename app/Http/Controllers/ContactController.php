@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\contact;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\Models\SoftDeletes;
+use App\Models\Setting;
 
 class ContactController extends Controller
 {
@@ -12,12 +15,24 @@ class ContactController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         // $contact = Contact::all();
-        $contact = Contact::latest()->paginate(10);
+        $data = $request->all();
+        $filter_type = $data['filter_type'] ?? 1;
+            if(Auth::user()->role_id ==1) {
+                if($filter_type == 1){
+                    $contact = Contact::withTrashed()->latest()->paginate(10);
+                }elseif($filter_type == 2) {
+                    $contact = Contact::latest()->paginate(10);
+                }else {
+                    $contact = Contact::onlyTrashed()->latest()->paginate(10);
+                }
+            }else {
+                $contact = Contact::latest()->paginate(10);
+            }
 
-        return view('backend.contact.index', compact('contact'));
+        return view('backend.contact.index', compact('contact','filter_type'));
     }
 
     /**
@@ -115,13 +130,14 @@ class ContactController extends Controller
     public function contact()
     {
         //
-        return view('frontend.layouts.contant');
+        $setting = Setting::first();
+        return view('frontend.layouts.contant', compact('setting'));
     }
 
     public function restore($id)
     {
-        $category = Category::onlyTrashed()->findOrFail($id);
-        $category->restore();
+        $contact = Contact::onlyTrashed()->findOrFail($id);
+        $contact->restore();
             return response()->json([
                 'status' => true,
                 'msg' => 'Khôi phục thành công '

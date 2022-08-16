@@ -26,13 +26,12 @@ class UpdatearticleRequest extends FormRequest
         return [
             //
             'title' => 'required|max:255',
-            'slug' => 'required',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:10000',
             'category_id' => 'required',
             'summary' => 'required',
-            'description' => 'required',
+            'description' => 'nullable',
             'meta_title' => 'required',
-            'meta_description' => 'required',
+            'meta_description' => 'nullable',
             'type'=>'required',
             'position'=>'required',
             'status'=>'required',
@@ -42,13 +41,9 @@ class UpdatearticleRequest extends FormRequest
     {
         return [
             'title.required' => 'nhap title ',
-            'slug.required' => 'nhap slug',
-            'image.required' => 'nhap image',
             'category_id.required' => 'nhap category_id ',
             'summary.required' => 'nhap summary',
-            'description.required' => 'nhap description',
             'meta_title.required' => 'nhap meta_title',
-            'meta_description.required' => 'nhap meta_description ',
             'type.required'=>'nhap type',
             'position.required'=>'nhap position',
             'status.required'=>'nhap status',

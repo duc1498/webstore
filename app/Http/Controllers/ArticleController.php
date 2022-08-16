@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use App\Models\SoftDeletes;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Category;
 
 class ArticleController extends Controller
 {
@@ -20,7 +21,7 @@ class ArticleController extends Controller
     public function index(Request $request)
     {
         $data = $request->all();
-        $filter_type = $data['filter_type'] ?? 2;
+        $filter_type = $data['filter_type'] ?? 1;
             if(Auth::user()->role_id ==1) {
                 if($filter_type == 1){
                     $article = article::withTrashed()->latest()->paginate(10);
@@ -42,9 +43,10 @@ class ArticleController extends Controller
      */
     public function create()
     {
+        $category = Category::all();
         $article = Article::all(); //Select *form categories
 
-        return view('backend.article.create', compact('article'));
+        return view('backend.article.create', compact('article','category'));
     }
 
     /**
@@ -101,8 +103,9 @@ class ArticleController extends Controller
     public function edit($id)
     {
         $article = Article::findOrFail($id);
-        $article = Article::all();
-        return view('backend.article.edit' ,compact('article','article'));
+        $category = Category::all();
+
+        return view('backend.article.edit' ,compact('article','category'));
     }
 
     /**

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\contact;
+use App\Models\Setting;
 
 class HomesController extends Controller
 {
@@ -12,12 +13,18 @@ class HomesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         //
-        return view('frontend.homes.home');
+        $setting = Setting::first();
+        return view('frontend.homes.home',compact('setting'));
     }
 
+    public function introduce ()
+    {
+        $setting = Setting::first();
+        return view('frontend.layouts.about',compact('setting'));
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -86,6 +93,7 @@ class HomesController extends Controller
     public function contactPost(Request $request )
     {
         $data = $request-> all();
+
 
         $contactPost = new Contact();
         Contact::create($data);

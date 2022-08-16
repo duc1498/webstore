@@ -5,7 +5,7 @@
             <div class="row small-gutters">
                 <div class="col-xl-3 col-lg-3 d-lg-flex align-items-center">
                     <div id="logo">
-                        <a href="{{route('homes.index')}}"><img src="{{asset('frontend')}}/img/logo.svg" alt="" width="100" height="35"></a>
+                        <a href="{{route('homes.index')}}"><img src="{{asset($setting->image)}}" alt="" width="100" height="35"></a>
                     </div>
                 </div>
                 <nav class="col-xl-6 col-lg-7">
@@ -112,7 +112,7 @@
                     <!--/main-menu -->
                 </nav>
                 <div class="col-xl-3 col-lg-2 d-lg-flex align-items-center justify-content-end text-right">
-                    <a class="phone_top" href="tel://9438843343"><strong><span>Need Help?</span>+94 423-23-221</strong></a>
+                    <a class="phone_top" href="tel://9438843343"><strong><span>Hotline</span>{{$setting->hotline}}</strong></a>
                 </div>
             </div>
             <!-- /row -->

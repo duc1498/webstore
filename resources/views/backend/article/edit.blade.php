@@ -6,14 +6,7 @@
         <h1>
             Thêm Aticle
         </h1>
-        <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li><a href="#">Forms</a></li>
-            <li class="active">General Elements</li>
-        </ol>
-    </section>
-    <section class="content-header">
-        {{-- @if ($errors->any())
+                @if ($errors->any())
         <div class="alert alert-danger">
             <ul class="list-unstyled">
                 @foreach ($errors->all() as $error)
@@ -21,7 +14,14 @@
                 @endforeach
             </ul>
         </div>
-        @endif --}}
+        @endif
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a href="#">Forms</a></li>
+            <li class="active">General Elements</li>
+        </ol>
+    </section>
+    <section class="content-header">
     <section class="content">
         <div class="row">
             <!-- left column -->
@@ -42,6 +42,13 @@
                                 <input value="{{$article->title}}" id="title" name="title" type="text" class="form-control" placeholder="">
                             </div>
                             @error('title')
+                            <p  style = "color : red;">{{ $message }}</p>
+                            @enderror
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Status</label>
+                                <input value="{{$article->status}}" id="title" name="status" type="text" class="form-control" placeholder="">
+                            </div>
+                            @error('status')
                             <p  style = "color : red;">{{ $message }}</p>
                             @enderror
                             <div class="form-group">

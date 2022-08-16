@@ -5,7 +5,7 @@
                 <h3 data-target="#collapse_1">Quick Links</h3>
                 <div class="collapse dont-collapse-sm links" id="collapse_1">
                     <ul>
-                        <li><a href="about.html">About us</a></li>
+                        <li><a href="about.html"> Giới thiệu</a></li>
                         <li><a href="help.html">Faq</a></li>
                         <li><a href="help.html">Help</a></li>
                         <li><a href="account.html">My account</a></li>
@@ -31,9 +31,9 @@
                     <h3 data-target="#collapse_3">Contacts</h3>
                 <div class="collapse dont-collapse-sm contacts" id="collapse_3">
                     <ul>
-                        <li><i class="ti-home"></i>97845 Baker st. 567<br>Los Angeles - US</li>
-                        <li><i class="ti-headphone-alt"></i>+94 423-23-221</li>
-                        <li><i class="ti-email"></i><a href="#0">info@allaia.com</a></li>
+                        <li><i class="ti-home"></i>{{$setting->address}}</li>
+                        <li><i class="ti-headphone-alt"></i>{{$setting->phone}}</li>
+                        <li><i class="ti-email"></i><a href="#0">{{$setting->email}}</a></li>
                     </ul>
                 </div>
             </div>
@@ -49,10 +49,10 @@
                     <div class="follow_us">
                         <h5>Follow Us</h5>
                         <ul>
-                            <li><a href="#0"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" data-src="img/twitter_icon.svg" alt="" class="lazy"></a></li>
-                            <li><a href="#0"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" data-src="img/facebook_icon.svg" alt="" class="lazy"></a></li>
-                            <li><a href="#0"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" data-src="img/instagram_icon.svg" alt="" class="lazy"></a></li>
-                            <li><a href="#0"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" data-src="img/youtube_icon.svg" alt="" class="lazy"></a></li>
+                            <li><a href="#0"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" data-src="{{asset('frontend')}}/img/twitter_icon.svg" alt="" class="lazy"></a></li>
+                            <li><a href="{{$setting->facebook}}"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" data-src="{{asset('frontend')}}/img/facebook_icon.svg" alt="" class="lazy"></a></li>
+                            <li><a href="#0"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" data-src="{{asset('frontend')}}/img/instagram_icon.svg" alt="" class="lazy"></a></li>
+                            <li><a href="#0"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" data-src="{{asset('frontend')}}/img/youtube_icon.svg" alt="" class="lazy"></a></li>
                         </ul>
                     </div>
                 </div>
@@ -81,7 +81,7 @@
                             </select>
                         </div>
                     </li>
-                    <li><img src="{{asset('frontend')}}/data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" data-src="img/cards_all.svg" alt="" width="198" height="30" class="lazy"></li>
+                    <li><img src="{{asset('frontend')}}/data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" data-src="{{asset('frontend')}}/img/cards_all.svg" alt="" width="198" height="30" class="lazy"></li>
                 </ul>
             </div>
             <div class="col-lg-6">

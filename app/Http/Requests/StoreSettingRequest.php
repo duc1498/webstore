@@ -25,25 +25,31 @@ class StoreSettingRequest extends FormRequest
     {
         return [
             //
-            // 'company'=>'required',
-            // 'address'=>'required',
-            // 'address2'=>'required',
-            // 'image'=>'required',
-            // 'phone'=>'required',
-            // 'hotline'=>'required',
-            // 'tax'=>'required',
-            // 'facebook'=>'required',
-            // 'email'=>'required',
-            // 'content'=>'required',
+            'company'=>'required',
+            'address'=>'required',
+            'address2'=>'required',
+            'image'=>'nullable',
+            'phone'=>'required',
+            'hotline'=>'required',
+            'tax'=>'required',
+            'facebook'=>'required',
+            'email'=>'required',
+            'content'=>'required',
         ];
     }
     public function messages()
     {
         return [
-            'name.required' => 'Nhap ten',
-            'phone.required' => 'Nhap sdt',
+            'company.required' => 'Nhap ten',
+            'address.required' => 'Nhap address',
+            'address2.required' => 'nhap address2',
+            'phone.required' => 'nhap phone',
+            'hotline.required' => 'nhap hotline',
+            'tax.required' => 'nhap tax',
+            'facebook.required' => 'nhap facebook',
             'email.required' => 'nhap email',
             'content.required' => 'nhap content',
+
         ];
     }
 }
