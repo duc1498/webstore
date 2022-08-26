@@ -76,7 +76,7 @@ class ProductController extends Controller
         if($request->has('position')) {
             $data['position'] = $request->input('position');
         }
-        $data['is_hot'] = $request->input('position') ?? 0 ;
+        $data['is_hot'] = $request->input('is_hot') ?? 0 ;
         $data['price'] = Str::remove(',', $request->input('price'));
         $data['sale'] = Str::remove(',', $request->input('sale'));
         $product=Product::create($data);
@@ -149,7 +149,7 @@ class ProductController extends Controller
         if($request->has('position')) {
             $data['position'] = $request->input('position');
         }
-        $data['is_hot'] = $request->input('position') ?? 0 ;
+        $data['is_hot'] = $request->input('is_hot') ?? 0 ;
         $data['price'] = Str::remove(',', $request->input('price'));
         $data['sale'] = Str::remove(',', $request->input('sale'));
         $product->update($data);

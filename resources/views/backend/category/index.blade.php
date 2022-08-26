@@ -30,6 +30,7 @@
                                 <th>Hinh anh</th>
                                 <th>Tên</th>
                                 <th>Danh mục cha</th>
+                                <th>Loại danh mục</th>
                                 <th>Trạng thái</th>
                                 <th>Sắp xếp</th>
                                 <th>Hàng động</th>
@@ -52,6 +53,9 @@
                                     <td>
                                         {{ $item->parent_id > 0 ? @$item->parent->name : '' }}
                                         {{-- {{$item->parent_id > 0 ? data_get($item->parent, 'name') : ''}} --}}
+                                    </td>
+                                    <td>
+                                        {{ config('banner.types')[$item->types] ?? '' }}
                                     </td>
                                     <td>
                                         {!! $item->is_active == 1 ? '<span class="badge bg-green">ON</span>' : '<span class="badge bg-red">OFF</span>' !!}

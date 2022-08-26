@@ -16,6 +16,7 @@ class Category extends Model
         'parent_id',
         'position',
         'is_active',
+        'types',
         ];
     public function parent()
     {

@@ -58,6 +58,15 @@
                                     @endforeach
                                 </select>
                             </div>
+                            <div class="form-group">
+                                <label>Loại danh mục</label>
+                                <select class="form-control" name="types" id="types">\
+                                    <option></option>
+                                    @foreach ( config('banner.types') as $key => $item )
+                                    <option {{($category->types == $key) ? 'selected' : ''}} value="{{$key}}">{{$item}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
 
                             <div class="form-group">
                                 <label for="exampleInputPassword1">Vị trí</label>

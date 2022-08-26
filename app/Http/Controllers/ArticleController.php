@@ -21,7 +21,7 @@ class ArticleController extends Controller
     public function index(Request $request)
     {
         $data = $request->all();
-        $filter_type = $data['filter_type'] ?? 1;
+        $filter_type = $data['filter_type'] ?? 2;
             if(Auth::user()->role_id ==1) {
                 if($filter_type == 1){
                     $article = article::withTrashed()->latest()->paginate(10);
@@ -43,7 +43,7 @@ class ArticleController extends Controller
      */
     public function create()
     {
-        $category = Category::all();
+        $category = Category::where('types',2)->get();
         $article = Article::all(); //Select *form categories
 
         return view('backend.article.create', compact('article','category'));

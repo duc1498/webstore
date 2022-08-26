@@ -10,5 +10,9 @@ return [
     'target' => [
         0 => '_blank',
         1 => '_self',
+    ],
+    'types'=> [
+        1 =>'Danh mục sản phẩm',
+        2 => 'danh mục tin tức',
     ]
 ];

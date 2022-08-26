@@ -38,6 +38,7 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     Route::resource('product', ProductController::class);
     Route::resource('banner', BannerController::class);
         Route::post('banner/restore/{id}',[BannerController::class,'restore'])->name('banner.restore');
+
     Route::resource('category', CategoryController::class);
         Route::post('category/restore/{id}',[CategoryController::class,'restore'])->name('category.restore');
 
@@ -46,10 +47,13 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
 
     Route::resource('setting', SettingController::class);
     Route::resource('contact', ContactController::class);
+
         Route::post('contact/restore/{id}',[ContactController::class,'restore'])->name('contact.restore');
     Route::resource('user', UserController::class);
+
     Route::resource('vendor', VendorController::class);
         Route::post('Vendor/restore/{id}',[VendorController::class,'restore'])->name('vendor.restore');
+
     Route::resource('brand', BrandController::class);
         Route::post('Brand/restore/{id}',[BrandController::class,'restore'])->name('brand.restore');
 });
