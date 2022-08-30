@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\contact;
 use App\Models\Setting;
 use Illuminate\Support\Facades\View;
+use App\Models\Article;
 
 class HomesController extends Controller
 {
@@ -103,5 +104,22 @@ class HomesController extends Controller
         Contact::create($data);
 
         return view('frontend.homes.home', compact('contactPost'));
+    }
+
+    public function articles(Request $request)
+    {
+        $articles = Article::latest()->paginate(20);
+
+        return view('frontend.layouts.articles', compact('articles'));
+    }
+
+    public function detailArticle($slug, Request $request)
+    {
+        $article = Article::where('slug', $slug)->where('id',$request->id)->where('is_active' , 1)->first();
+
+        if ($article == null) {
+            dd('not found');
+        }
+        return view('frontend.layouts.detail-article', compact('article'));
     }
 }

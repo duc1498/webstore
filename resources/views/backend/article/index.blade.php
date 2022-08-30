@@ -51,7 +51,7 @@
                                             <img src="{{ asset($item->image) }}" width="100px" height="75px"
                                                 alt="">
                                         @else
-                                            <img src="{{ asset('upload/banner/erro404.jpg') }}"width="100px" height="75px"
+                                            <img src="{{ asset('upload/azaka.jpg') }}"width="100px" height="75px"
                                                 alt="">
                                         @endif
                                     </td>

@@ -102,10 +102,10 @@
                                 </ul>
                             </li>
                             <li>
-                                <a href="blog.html">Blog</a>
+                                <a href="{{route('articles')}}">Tin Tức</a>
                             </li>
                             <li>
-                                <a href="#0">Buy Template</a>
+                                <a href="{{route('introduce')}}">Giới thiệu</a>
                             </li>
                         </ul>
                     </div>

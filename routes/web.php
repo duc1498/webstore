@@ -31,6 +31,9 @@ Route::get('homes', [HomesController::class, 'index'])->name('homes.index');
 Route::get('contact', [ContactController::class, 'contact'])->name('contact.index');
 Route::post('contacts', [HomesController::class, 'contactPost'])->name('contactPost');
 Route::get('introduce',[HomesController::class, 'introduce'])->name('introduce');
+Route::get('articles',[HomesController::class, 'articles'])->name('articles');
+Route::get('articles/{slug}', [HomesController::class, 'detailArticle'])->name('detail-article');
+
 
 Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     Route::get('/dashboard',[AdminController::class, 'dashboard'])->name('dashboard');

@@ -568,5 +568,3 @@
 
 </main>
 @endsection
-
-

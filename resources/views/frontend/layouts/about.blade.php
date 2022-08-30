@@ -40,7 +40,7 @@
 
     <div id="page">
 
-        @include('frontend.layouts.header') 
+        @include('frontend.layouts.header')
         <!-- /header -->
 
         <main class="bg_gray">
@@ -59,17 +59,17 @@
                                 vel ei choro volumus. An tota nulla soluta has, ei nec essent audiam, te nisl dignissim
                                 vel. Ex velit audire perfecto pro, ei mei doming vivendo legendos. Cu sit magna zril, an
                                 odio delectus constituto vis. Vis ludus omnesque ne, est veri quaeque ad.</p>
-                            <img src="img/arrow_about.png" alt="" class="arrow_1">
+                            <img src="{{ asset('frontend') }}/img/arrow_about.png" alt="" class="arrow_1">
                         </div>
                     </div>
                     <div class="col-lg-5 pl-lg-5 text-center d-none d-lg-block">
-                        <img src="img/about_1.svg" alt="" class="img-fluid" width="350" height="268">
+                        <img src="{{ asset('frontend') }}/img/about_1.svg" alt="" class="img-fluid" width="350" height="268">
                     </div>
                 </div>
                 <!-- /row -->
                 <div class="row justify-content-center align-items-center">
                     <div class="col-lg-5 pr-lg-5 text-center d-none d-lg-block">
-                        <img src="img/about_2.svg" alt="" class="img-fluid" width="350" height="268">
+                        <img src="{{ asset('frontend') }}/img/about_2.svg" alt="" class="img-fluid" width="350" height="268">
                     </div>
                     <div class="col-lg-5">
                         <div class="box_about">
@@ -79,7 +79,7 @@
                                 vel ei choro volumus. An tota nulla soluta has, ei nec essent audiam, te nisl dignissim
                                 vel. Ex velit audire perfecto pro, ei mei doming vivendo legendos. Cu sit magna zril, an
                                 odio delectus constituto vis. Vis ludus omnesque ne, est veri quaeque ad.</p>
-                            <img src="img/arrow_about.png" alt="" class="arrow_2">
+                            <img src="{{ asset('frontend') }}/img/arrow_about.png" alt="" class="arrow_2">
                         </div>
                     </div>
                 </div>
@@ -97,7 +97,7 @@
 
                     </div>
                     <div class="col-lg-5 pl-lg-5 text-center d-none d-lg-block">
-                        <img src="img/about_3.svg" alt="" class="img-fluid" width="350" height="316">
+                        <img src="{{ asset('frontend') }}/img/about_3.svg" alt="" class="img-fluid" width="350" height="316">
                     </div>
                 </div>
                 <!-- /row -->

@@ -63,15 +63,15 @@
                             <p  style = "color : red;">{{ $message }}</p>
                             @enderror
                             <div class="form-group">
-                                <label for="exampleInputEmail1">summary</label>
-                                <input value="{{$article->summary}}" id="summary" name="summary" type="text" class="form-control" placeholder="">
+                                <label for="summary">summary</label>
+                                <textarea value="{{$article->summary}}" id="summary" name="summary"  class="form-control" >{{$article->summary}}</textarea>
                             </div>
                             @error('summary')
                             <p  style = "color : red;">{{ $message }}</p>
                             @enderror
                             <div class="form-group">
                                 <label id="is_description">Mô tả</label>
-                                <textarea value="{{$article->description}}" id="description" name="description" class="form-control" rows="3" placeholder="Enter ..."></textarea>
+                                <textarea value="{{$article->description}}" id="description" name="description" class="form-control" >{{$article->description}}</textarea>
                             </div>
                             @error('description')
                             <p  style = "color : red;">{{ $message }}</p>
@@ -86,7 +86,7 @@
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputPassword1">Vị trí</label>
+                                <label for="">Vị trí</label>
                                 <input value="{{$article->position}}" min="0" type="number" class="form-control" id="position" name="position" placeholder="">
                             </div>
                             @error('position')
@@ -99,7 +99,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Meta_title</label>
+                                <label for="">Meta_title</label>
                                 <input value="{{$article->meta_title}}" id="meta_title" name="meta_title" type="text" class="form-control" placeholder="">
                             </div>
                             @error('meta_title')
