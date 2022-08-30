@@ -39,7 +39,7 @@
                         <div class="box-body">
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Name</label>
-                                <input value="{{$vendor->name}}" id="title" name="title" type="text" class="form-control" placeholder="">
+                                <input value="{{$vendor->name}}" id="name" name="name" type="text" class="form-control" placeholder="">
                             </div>
                             @error('title')
                             <p  style = "color : red;">{{ $message }}</p>

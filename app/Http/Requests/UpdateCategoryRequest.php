@@ -27,7 +27,7 @@ class UpdateCategoryRequest extends FormRequest
             //
             'name' => 'required|max:255',
             'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:10000',
-            'parent_id' => 'required',
+            'parent_id' => 'nullable',
             'position' =>'required',
             'is_active' =>'required'
         ];
@@ -37,7 +37,7 @@ class UpdateCategoryRequest extends FormRequest
         return [
             'name.required' => 'Nhap ten',
             'parent_id.required' => 'nhap parent',
-            'position.required' => 'nhap position',
+            // 'position.required' => 'nhap position',
             'is_active.required' =>'nhap is_active ',
         ];
     }

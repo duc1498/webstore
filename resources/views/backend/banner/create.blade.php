@@ -6,7 +6,7 @@
         <h1>
             Thêm Banner
         </h1>
-                @if ($errors->any())
+                {{-- @if ($errors->any())
         <div class="alert alert-danger">
             <ul class="list-unstyled">
                 @foreach ($errors->all() as $error)
@@ -14,7 +14,7 @@
                 @endforeach
             </ul>
         </div>
-        @endif
+        @endif --}}
         <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
             <li><a href="#">Forms</a></li>
@@ -40,7 +40,9 @@
                                 <label for="exampleInputEmail1">Tiêu đề</label>
                                 <input id="title" name="title" type="text" class="form-control" placeholder="">
                             </div>
-
+                        @error('title')
+                            <p class="error-message error-style">{{ $errors->first('title') }}</p>
+                        @enderror
                             <div class="form-group">
                                 <label for="exampleInputFile">Chọn ảnh</label>
                                 <input type="file" name="image" id="image">

@@ -120,11 +120,7 @@ class ArticleController extends Controller
 
         $data= $request->all();
         $article = Article::findOrFail($id);
-
-        // $article->title = $request->input('title');
-
         $data['slug'] = Str::slug($request->input('title')); //slug
-
         if($request->hasFile('image')) { // kiem tra xem co image duoc chon khong
             @unlink(public_path($article->image));
             //get File
@@ -138,7 +134,7 @@ class ArticleController extends Controller
             // luu lai ten
             $data['image'] = $path_upload.$filename;
         }
-
+        $data['summary'] =  $request->input('summary');
         $data['is_active'] = 0;
         if($request->has('is_active')) {
             $data['is_active'] = $request->input('is_active');

@@ -37,12 +37,12 @@ class UpdateBannerRequest extends FormRequest
     public function messages()
     {
         return [
-            'title.required' => 'Nhap ten',
-            'url.required' => 'nhap email',
-            'target.required' => 'nhap content',
-            'description.required'=> 'nhap description',
-            'type.required'=>'nhap type ',
-            'position.required'=>'nhap position ',
+            'title.required' => 'Nhập ten',
+            'url.required' => 'Nhập email',
+            'target.required' => 'Nhập content',
+            'description.required'=> 'Nhập description',
+            'type.required'=>'Nhập type ',
+            'position.required'=>'Nhập position ',
         ];
     }
 }

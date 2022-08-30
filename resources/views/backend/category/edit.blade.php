@@ -53,6 +53,7 @@
                             <div class="form-group">
                                 <label>Chọn danh mục Cha</label>
                                 <select class="form-control" name="parent_id" id="parent_id">
+                                    <option></option>
                                     @foreach ($categories as $item)
                                         <option {{($item->id == $category->parent_id) ? 'selected' : ''}} value="{{$item->id}}">{{$item->name}}</option>
                                     @endforeach

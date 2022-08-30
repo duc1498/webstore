@@ -57,8 +57,8 @@ class LoginController extends Controller
 
         return redirect()->route('admin.dashboard');
     } else {
-        // Go back on error (or do what you want)
-        return redirect()->back();
+
+        return redirect()->back()->withInput()->withErrors(['error' => 'Tài khoản hoặc mật khẩu không đúng']);
     }
 
 }

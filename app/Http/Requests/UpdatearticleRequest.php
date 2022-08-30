@@ -27,10 +27,10 @@ class UpdatearticleRequest extends FormRequest
             //
             'title' => 'required|max:255',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:10000',
-            'category_id' => 'required',
+            'category_id' => 'nullable',
             'summary' => 'required',
             'description' => 'nullable',
-            'meta_title' => 'required',
+            'meta_title' => 'nullable',
             'meta_description' => 'nullable',
             'type'=>'required',
             'position'=>'required',

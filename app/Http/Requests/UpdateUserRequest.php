@@ -36,9 +36,9 @@ class UpdateUserRequest extends FormRequest
     public function messages()
     {
         return [
-            'name.required' => 'nhap Ten',
-            'email.required' => 'nhap Email',
-            'role_id.required' =>'nhap hotline',
+            'name.required' => 'Nhập Tên',
+            'email.required' => 'Nhập Email',
+            'role_id.required' =>'Nhập hotline',
         ];
     }
 }

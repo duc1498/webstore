@@ -35,10 +35,10 @@ class ContacPostRequest extends FormRequest
     public function messages()
     {
         return [
-            'name.required' => 'Nhap ten',
-            'phone.required' => 'Nhap sdt',
-            'email.required' => 'nhap email',
-            'content.required' => 'nhap content',
+            'name.required' => 'Nhập ten',
+            'phone.required' => 'Nhập sdt',
+            'email.required' => 'Nhập email',
+            'content.required' => 'Nhập content',
         ];
     }
 }

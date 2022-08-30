@@ -40,15 +40,15 @@ class StoreSettingRequest extends FormRequest
     public function messages()
     {
         return [
-            'company.required' => 'Nhap ten',
-            'address.required' => 'Nhap address',
-            'address2.required' => 'nhap address2',
-            'phone.required' => 'nhap phone',
-            'hotline.required' => 'nhap hotline',
-            'tax.required' => 'nhap tax',
-            'facebook.required' => 'nhap facebook',
-            'email.required' => 'nhap email',
-            'content.required' => 'nhap content',
+            'company.required' => 'Nhập ten',
+            'address.required' => 'Nhập address',
+            'address2.required' => 'Nhập address2',
+            'phone.required' => 'Nhập phone',
+            'hotline.required' => 'Nhập hotline',
+            'tax.required' => 'Nhập tax',
+            'facebook.required' => 'Nhập facebook',
+            'email.required' => 'Nhập email',
+            'content.required' => 'Nhập content',
 
         ];
     }

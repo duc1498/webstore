@@ -50,8 +50,8 @@
                                 <label>Chọn danh mục Cha</label>
                                 <select class="form-control" name="parent_id" id="parent_id">
                                     <option></option>
-                                    @foreach ($category as $item)
-                                        <option value="{{$item->id}}">{{$item->name}}</option>
+                                    @foreach ($category as $key)
+                                        <option value="{{$key->id}}">{{$key->name}} </option>
                                     @endforeach
                                 </select>
                             </div>

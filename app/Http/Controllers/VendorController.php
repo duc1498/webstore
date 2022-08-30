@@ -10,6 +10,7 @@ use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\SoftDeletes;
+use Illuminate\Support\Facades\Log;
 
 class VendorController extends Controller
 {
@@ -22,7 +23,7 @@ class VendorController extends Controller
     {
         // $vendor = Vendor::all();
         $data = $request->all();
-        $filter_type = $data['filter_type'] ?? 1;
+        $filter_type = $data['filter_type'] ?? 2;
             if(Auth::user()->role_id ==1) {
                 if($filter_type == 1){
                     $vendor = Vendor::withTrashed()->latest()->paginate(10);
@@ -56,34 +57,45 @@ class VendorController extends Controller
      * @param  \App\Http\Requests\StoreVendorRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreVendorRequest $request)
+    public function store(Request $request)
     {
         //
-        $data = $request->all();
-        $data['slug'] = $request->input('name'); //slug
-        if($request->hasFile('image')) { // kiem tra xem co image duoc chon khong
-              //get File
-              $file = $request->file('image');
-              // dat ten cho file image
-              $filename = time(). '_'.$file->getClientOriginalName();
-              // dinh nghia duong dan upload file len
-              $path_upload = 'upload/vendor/';
-              // thuc hien upload file
-              $file->move($path_upload,$filename);
-              // luu lai ten
-              $data['image'] = $path_upload.$filename;
-        }
-        $data['is_active'] = 0;
-        if($request->has('is_active')) {
-            $data['is_active'] = $request->input('is_active');
-        };
-        $data['position'] = 0;
-        if($request->has('position')) {
-            $data['position'] = $request->input('position');
-        }
-        $vendor= Vendor::create($data);
+        try {
+            //code...
+            $data = $request->all();
 
-        return redirect()->route('admin.vendor.index');
+            $data['slug'] = $request->input('name'); //slug
+            if($request->hasFile('image')) { // kiem tra xem co image duoc chon khong
+                  //get File
+                  $file = $request->file('image');
+                  // dat ten cho file image
+                  $filename = time(). '_'.$file->getClientOriginalName();
+                  // dinh nghia duong dan upload file len
+                  $path_upload = 'upload/vendor/';
+                  // thuc hien upload file
+                  $file->move($path_upload,$filename);
+                  // luu lai ten
+                  $data['image'] = $path_upload.$filename;
+            }
+            $data['is_active'] = 0;
+            if($request->has('is_active')) {
+                $data['is_active'] = $request->input('is_active');
+            };
+            $data['position'] = 0;
+            if($request->has('position')) {
+                $data['position'] = $request->input('position');
+            }
+
+
+            Vendor::create($data);
+            // dd($data);
+
+
+            return redirect()->route('admin.vendor.index');
+        } catch (\Exception $e) {
+            Log::error($e);
+        }
+
     }
 
     /**
@@ -107,6 +119,7 @@ class VendorController extends Controller
     {
         //
         $vendor = Vendor::findOrFail($id);
+        // dd($vendor);
         return view('backend.vendor.edit' , compact('vendor'));
     }
 
@@ -126,7 +139,7 @@ class VendorController extends Controller
 
         // $vendor->title = $request->input('title');
 
-        $data['slug'] = Str::slug($request->input('title')); //slug
+        $data['slug'] = Str::slug($request->input('name')); //slug
 
         if($request->hasFile('image')) { // kiem tra xem co image duoc chon khong
             @unlink(public_path($vendor->image));

@@ -26,12 +26,11 @@ class StorearticleRequest extends FormRequest
         return [
             //
             'title' => 'required|max:255',
-            'slug' => 'required',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:10000',
-            'category_id' => 'required',
+            'category_id' => 'nullable',
             'summary' => 'required',
             'description' => 'required',
-            'meta_title' => 'required',
+            'meta_title' => 'nullable',
             'meta_description' => 'required',
             'type'=>'required',
             'position'=>'required',
@@ -42,7 +41,6 @@ class StorearticleRequest extends FormRequest
     {
         return [
             'title.required' => 'nhap title ',
-            'slug.required' => 'nhap slug',
             'category_id.required' => 'nhap category_id ',
             'summary.required' => 'nhap summary',
             'description.required' => 'nhap description',

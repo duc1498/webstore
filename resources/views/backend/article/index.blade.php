@@ -51,7 +51,7 @@
                                             <img src="{{ asset($item->image) }}" width="100px" height="75px"
                                                 alt="">
                                         @else
-                                            <img src="{{ asset('upload/banner/erro404.jpg') }}"width="100px" height="75px"
+                                            <img src="{{ asset('upload/azaka.jpg') }}"width="100px" height="75px"
                                                 alt="">
                                         @endif
                                     </td>
@@ -113,7 +113,6 @@
             $('.deleteItem').click(function() {
                 var id = $(this).attr('data-id');
                 var url = $(this).attr('data-url');
-                console.log(url);
                 Swal.fire({
                     title: 'Are you sure?',
                     text: "You won't be able to revert this!",
@@ -145,7 +144,6 @@
             $('.restoreItem').click(function() {
                 var id = $(this).attr('data-id');
                 var url = $(this).attr('data-url');
-                console.log(url);
 
                 Swal.fire({
                     title: 'Are you sure?',

@@ -63,7 +63,7 @@
           </div>
           <!-- /.box-body -->
           <div class="box-footer clearfix">
-            {{ $product->links('backend.layouts.pagination'); }}
+            {{ $product->links('backend.layouts.pagination') }}
             {{-- <ul class="pagination pagination-sm no-margin pull-right">
               <li><a href="#">«</a></li>
               <li><a href="#">1</a></li>
