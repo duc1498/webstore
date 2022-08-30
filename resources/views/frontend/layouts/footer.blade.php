@@ -1,96 +1,67 @@
-<footer class="revealed">
+<!-- Footer Section Begin -->
+<footer class="footer spad">
     <div class="container">
         <div class="row">
-            <div class="col-lg-3 col-md-6">
-                <h3 data-target="#collapse_1">Quick Links</h3>
-                <div class="collapse dont-collapse-sm links" id="collapse_1">
-                    <ul>
-                        <li><a href="about.html"> Giới thiệu</a></li>
-                        <li><a href="help.html">Faq</a></li>
-                        <li><a href="help.html">Help</a></li>
-                        <li><a href="account.html">My account</a></li>
-                        <li><a href="blog.html">Blog</a></li>
-                        <li><a href="{{route('contact.index')}}">Contacts</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6">
-                <h3 data-target="#collapse_2">Categories</h3>
-                <div class="collapse dont-collapse-sm links" id="collapse_2">
-                    <ul>
-                        <li><a href="listing-grid-1-full.html">Clothes</a></li>
-                        <li><a href="listing-grid-2-full.html">Electronics</a></li>
-                        <li><a href="listing-grid-1-full.html">Furniture</a></li>
-                        <li><a href="listing-grid-3.html">Glasses</a></li>
-                        <li><a href="listing-grid-1-full.html">Shoes</a></li>
-                        <li><a href="listing-grid-1-full.html">Watches</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6">
-                    <h3 data-target="#collapse_3">Contacts</h3>
-                <div class="collapse dont-collapse-sm contacts" id="collapse_3">
-                    <ul>
-                        <li><i class="ti-home"></i>{{$setting->address}}</li>
-                        <li><i class="ti-headphone-alt"></i>{{$setting->phone}}</li>
-                        <li><i class="ti-email"></i><a href="#0">{{$setting->email}}</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6">
-                    <h3 data-target="#collapse_4">Keep in touch</h3>
-                <div class="collapse dont-collapse-sm" id="collapse_4">
-                    <div id="newsletter">
-                        <div class="form-group">
-                            <input type="email" name="email_newsletter" id="email_newsletter" class="form-control" placeholder="Your email">
-                            <button type="submit" id="submit-newsletter"><i class="ti-angle-double-right"></i></button>
-                        </div>
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="footer__about">
+                    <div class="footer__about__logo">
+                        <a href="{{ route('homes.index') }}"><img src="{{ asset($setting->image) }}" alt="Trang chủ" style="mix-blend-mode: darken;"></a>
                     </div>
-                    <div class="follow_us">
-                        <h5>Follow Us</h5>
-                        <ul>
-                            <li><a href="#0"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" data-src="{{asset('frontend')}}/img/twitter_icon.svg" alt="" class="lazy"></a></li>
-                            <li><a href="{{$setting->facebook}}"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" data-src="{{asset('frontend')}}/img/facebook_icon.svg" alt="" class="lazy"></a></li>
-                            <li><a href="#0"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" data-src="{{asset('frontend')}}/img/instagram_icon.svg" alt="" class="lazy"></a></li>
-                            <li><a href="#0"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" data-src="{{asset('frontend')}}/img/youtube_icon.svg" alt="" class="lazy"></a></li>
-                        </ul>
+                    <ul>
+                        <li>Địa chỉ: {{ $setting->address }}</li>
+                        <li>Phone: {{ $setting->phone }}</li>
+                        <li>Email: {{ $setting->email }}</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 col-sm-6 offset-lg-1">
+                <div class="footer__widget">
+                    <h6>Useful Links</h6>
+                    <ul>
+                        <li><a href="{{ route('introduce') }}">Giới thiệu</a></li>
+                        <li><a href="#">About Our Shop</a></li>
+                        <li><a href="#">Secure Shopping</a></li>
+                        <li><a href="#">Delivery infomation</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Our Sitemap</a></li>
+                    </ul>
+                    <ul>
+                        <li><a href="#">Who We Are</a></li>
+                        <li><a href="#">Our Services</a></li>
+                        <li><a href="#">Projects</a></li>
+                        <li><a href="{{ route('contact') }}">Liên hệ</a></li>
+                        <li><a href="#">Innovation</a></li>
+                        <li><a href="#">Testimonials</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-12">
+                <div class="footer__widget">
+                    <h6>Join Our Newsletter Now</h6>
+                    {{-- <p>Get E-mail updates about our latest shop and special offers.</p> --}}
+                    <form action="#">
+                        <input type="text" placeholder="Enter your mail">
+                        <button type="submit" class="site-btn">Subscribe</button>
+                    </form>
+                    <div class="footer__widget__social">
+                        <a href="#"><i class="fa fa-facebook"></i></a>
+                        <a href="#"><i class="fa fa-instagram"></i></a>
+                        <a href="#"><i class="fa fa-twitter"></i></a>
+                        <a href="#"><i class="fa fa-pinterest"></i></a>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- /row-->
-        <hr>
-        <div class="row add_bottom_25">
-            <div class="col-lg-6">
-                <ul class="footer-selector clearfix">
-                    <li>
-                        <div class="styled-select lang-selector">
-                            <select>
-                                <option value="English" selected>English</option>
-                                <option value="French">French</option>
-                                <option value="Spanish">Spanish</option>
-                                <option value="Russian">Russian</option>
-                            </select>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="styled-select currency-selector">
-                            <select>
-                                <option value="US Dollars" selected>US Dollars</option>
-                                <option value="Euro">Euro</option>
-                            </select>
-                        </div>
-                    </li>
-                    <li><img src="{{asset('frontend')}}/data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" data-src="{{asset('frontend')}}/img/cards_all.svg" alt="" width="198" height="30" class="lazy"></li>
-                </ul>
+        {{-- <div class="row">
+            <div class="col-lg-12">
+                <div class="footer__copyright">
+                    <div class="footer__copyright__text"><p>
+                            Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                            </p></div>
+                    <div class="footer__copyright__payment"><img src="{{ asset('frontend') }}/img/payment-item.png" alt=""></div>
+                </div>
             </div>
-            <div class="col-lg-6">
-                <ul class="additional_links">
-                    <li><a href="#0">Terms and conditions</a></li>
-                    <li><a href="#0">Privacy</a></li>
-                    <li><span>© 2020 Allaia</span></li>
-                </ul>
-            </div>
-        </div>
+        </div> --}}
     </div>
 </footer>
+<!-- Footer Section End -->

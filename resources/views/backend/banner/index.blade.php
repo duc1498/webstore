@@ -20,6 +20,17 @@
                         <td>
                             <a href="{{ route('admin.banner.create') }}" class="btn btn-primary pull-right">Thêm mới</a>
                         </td>
+                        <div style="position: relative; left: 41vw;">
+                            {{-- <form action="{{ route('admin.banner.import') }}" method="POST" enctype="multipart/form-data">
+                                @csrf --}}
+                                <button type="button" class="btn btn-primary" data-toggle="modal"
+                                    data-target="#exampleModal" name ="">import csv</button>
+                            {{-- </form> --}}
+                            <a href="{{ route('admin.banner.export') }}">
+                                <button type="button" class="btn">export csv</button>
+                            </a>
+
+                        </div>
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body">
@@ -60,8 +71,8 @@
                                                     class="fa fa-trash"></i></span>
                                         @else
                                             <span data-id="{{ $item->id }}"
-                                                data-url="{{ route('admin.banner.restore', $item->id) }}"
-                                                title="Khôi phục" class="btn btn-flat btn-warning restoreItem"><i
+                                                data-url="{{ route('admin.banner.restore', $item->id) }}" title="Khôi phục"
+                                                class="btn btn-flat btn-warning restoreItem"><i
                                                     class="fa fa-refresh"></i></span>
                                         @endif
                                     </td>
@@ -85,6 +96,29 @@
             </div>
             <!-- /.row -->
     </section>
+    <!-- Modal -->
+    <form action="{{ route('admin.banner.import') }}" method="POST" enctype="multipart/form-data">
+        @csrf
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <input type="file" name="file" class="form-control">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">submit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
 @endsection
 
 @section('js')
@@ -164,6 +198,7 @@
                 var filter_type = $('#filter_type').val() //lấy giá trị của class
                 window.location.href = "{{ route('admin.banner.index') }}?filter_type= " + filter_type;
             });
+            $('.importCSV')
         });
     </script>
 @endsection

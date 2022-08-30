@@ -13,7 +13,9 @@
         </ol>
     </section>
     <section class="content-header">
-        {{-- @if ($errors->any())
+
+    <section class="content">
+        @if ($errors->any())
         <div class="alert alert-danger">
             <ul class="list-unstyled">
                 @foreach ($errors->all() as $error)
@@ -21,8 +23,7 @@
                 @endforeach
             </ul>
         </div>
-        @endif --}}
-    <section class="content">
+        @endif
         <div class="row">
             <!-- left column -->
             <div class="col-md-12">
@@ -36,8 +37,8 @@
                         @csrf
                         <div class="box-body">
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Title</label>
-                                <input id="title" name="title" type="text" class="form-control" placeholder="">
+                                <label for="exampleInputEmail1">Name</label>
+                                <input id="name" name="name" type="text" class="form-control" placeholder="">
                             </div>
                             @error('title')
                             <p  style = "color : red;">{{ $message }}</p>

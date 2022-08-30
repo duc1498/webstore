@@ -26,7 +26,7 @@
                 @else
                     <img src="{{asset('upload/user/erro404.jpg')}}" class="user-image" alt="">
                 @endif
-              <span class="hidden-xs">{{$user->name}}</span>
+              <span class="hidden-xs">{{$user->email}}</span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->

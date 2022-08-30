@@ -49,13 +49,6 @@
                                 <input type="file" name="image" id="image">
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputEmail1">slug</label>
-                                <input id="slug" name="slug" type="text" class="form-control" placeholder="">
-                            </div>
-                            @error('slug')
-                            <p  style = "color : red;">{{ $message }}</p>
-                            @enderror
-                            <div class="form-group">
                                 <label for="exampleInputEmail1">status</label>
                                 <input id="status" name="status" type="text" class="form-control" placeholder="">
                             </div>

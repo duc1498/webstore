@@ -36,10 +36,10 @@ class StoreUserRequest extends FormRequest
     public function messages()
     {
         return [
-            'name.required' => 'nhap Ten',
-            'email.required' => 'nhap Email',
-            'password.required' =>'nhap password',
-            'role_id.required' =>'nhap hotline',
+            'name.required' => 'Nhập Ten',
+            'email.required' => 'Nhập Email',
+            'password.required' =>'Nhập password',
+            'role_id.required' =>'Nhập hotline',
         ];
     }
 }

@@ -19,7 +19,7 @@ class ContactController extends Controller
     {
         // $contact = Contact::all();
         $data = $request->all();
-        $filter_type = $data['filter_type'] ?? 1;
+        $filter_type = $data['filter_type'] ?? 2;
             if(Auth::user()->role_id ==1) {
                 if($filter_type == 1){
                     $contact = Contact::withTrashed()->latest()->paginate(10);

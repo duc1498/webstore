@@ -18,7 +18,7 @@ class Product extends Model
         'price',
         'sale',
         'position',
-        'is_acctive',
+        'is_active',
         'is_hot',
         'views',
         'category_id',

@@ -9,6 +9,11 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use App\Models\SoftDeletes;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\BannerExport;
+use App\Imports\BannerImport;
+use Illuminate\Support\Facades\Session;
 
 class BannerController extends Controller
 {
@@ -187,5 +192,24 @@ class BannerController extends Controller
                 'status' => true,
                 'msg' => 'Khôi phục thành công '
             ]);
+    }
+    public function export(Request $request)
+    {
+        try {
+            $banner = Banner::all();
+            return Excel::download(new BannerExport($banner), 'Banner_' . strtotime(date('Y-m-d H:i:s')) . '.xlsx');
+        } catch (\Exception $e) {
+            Log::error($e);
+        }
+    }
+    public function import(Request $request)
+    {
+        try {
+            Excel::import(new BannerImport, $request->file);
+            return back();
+        } catch (\Exception $e) {
+            dd($e);
+            Log::error($e);
+        }
     }
 }

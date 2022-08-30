@@ -53,12 +53,7 @@
                             </div>
                             <div class="checkbox">
                                 <label>
-                                    <input {{($product->is_active == 1) ? 'checked' : ''}}  value="1" type="checkbox" name="is_active" id="is_active"> hiển thị
-                                </label>
-                            </div>
-                            <div class="checkbox">
-                                <label>
-                                    <input {{($product->is_hot == 1) ? 'checked' : ''}}  value="1" type="checkbox" name="is_hot" id="is_hot"> Trạng thái
+                                    <input {{($product->is_hot == 1) ? 'checked' : ''}}  value="1" type="checkbox" name="is_hot" id="is_hot"> Sản phẩm hot / flash sale
                                 </label>
                             </div>
                             <div class="form-group">
@@ -132,6 +127,11 @@
                                         <option {{($key->id == $product->user_id) ? 'selected' : ''}}   value="{{$key->id}}">{{$key->name}}</option>
                                     @endforeach
                                 </select>
+                            </div>
+                            <div class="checkbox">
+                                <label>
+                                    <input {{($product->is_active == 1) ? 'checked' : ''}}  value="1" type="checkbox" name="is_active" id="is_active"> hiển thị
+                                </label>
                             </div>
                         </div>
                         <div class="box-footer">

@@ -32,8 +32,8 @@ class LoginRequest extends FormRequest
     public function messages()
     {
         return [
-            'email.required' => 'nhap email',
-            'password.required' => 'nhap password',
+            'email.required' => 'Nhập email',
+            'password.required' => 'Nhập password',
 
         ];
     }

@@ -14,5 +14,9 @@ return [
     'types'=> [
         1 =>'Danh mục sản phẩm',
         2 => 'danh mục tin tức',
-    ]
+    ],
+    'is_active'=> [
+        1 => 1,
+        0 => 0,
+    ],
 ];
