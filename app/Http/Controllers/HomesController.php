@@ -17,7 +17,7 @@ class HomesController extends Controller
      */
     public function __construct()
     {
-        $setting = Setting::first();
+        // $setting = Setting::first();
 
         view()->share('setting', $setting);
     }
