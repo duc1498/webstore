@@ -22,17 +22,17 @@ class ArticleController extends Controller
     {
         $data = $request->all();
         $filter_type = $data['filter_type'] ?? 2;
-            if(Auth::user()->role_id ==1) {
-                if($filter_type == 1){
-                    $article = article::withTrashed()->latest()->paginate(10);
-                }elseif($filter_type == 2) {
-                    $article = article::latest()->paginate(10);
-                }else {
-                    $article = article::onlyTrashed()->latest()->paginate(10);
-                }
-            }else {
+        if (Auth::user()->role_id == 1) {
+            if ($filter_type == 1) {
+                $article = article::withTrashed()->latest()->paginate(10);
+            } elseif ($filter_type == 2) {
                 $article = article::latest()->paginate(10);
+            } else {
+                $article = article::onlyTrashed()->latest()->paginate(10);
             }
+        } else {
+            $article = article::latest()->paginate(10);
+        }
         return view('backend.article.index', compact('filter_type', 'article'));
     }
 
@@ -43,10 +43,10 @@ class ArticleController extends Controller
      */
     public function create()
     {
-        $category = Category::where('types',2)->get();
+        $category = Category::where('types', 2)->get();
         $article = Article::all(); //Select *form categories
 
-        return view('backend.article.create', compact('article','category'));
+        return view('backend.article.create', compact('article', 'category'));
     }
 
     /**
@@ -59,24 +59,24 @@ class ArticleController extends Controller
     {
         $data = $request->all();
         $data['slug'] = $request->input('title'); //slug
-        if($request->hasFile('image')) { // kiem tra xem co image duoc chon khong
-              //get File
-              $file = $request->file('image');
-              // dat ten cho file image
-              $filename = time(). '_'.$file->getClientOriginalName();
-              // dinh nghia duong dan upload file len
-              $path_upload = 'upload/article/';
-              // thuc hien upload file
-              $file->move($path_upload,$filename);
-              // luu lai ten
-              $data['image'] = $path_upload.$filename;
+        if ($request->hasFile('image')) { // kiem tra xem co image duoc chon khong
+            //get File
+            $file = $request->file('image');
+            // dat ten cho file image
+            $filename = time() . '_' . $file->getClientOriginalName();
+            // dinh nghia duong dan upload file len
+            $path_upload = 'upload/article/';
+            // thuc hien upload file
+            $file->move($path_upload, $filename);
+            // luu lai ten
+            $data['image'] = $path_upload . $filename;
         }
         $data['is_active'] = 0;
-        if($request->has('is_active')) {
+        if ($request->has('is_active')) {
             $data['is_active'] = $request->input('is_active');
         };
         $data['position'] = 0;
-        if($request->has('position')) {
+        if ($request->has('position')) {
             $data['position'] = $request->input('position');
         }
         Article::create($data);
@@ -105,7 +105,7 @@ class ArticleController extends Controller
         $article = Article::findOrFail($id);
         $category = Category::all();
 
-        return view('backend.article.edit' ,compact('article','category'));
+        return view('backend.article.edit', compact('article', 'category'));
     }
 
     /**
@@ -118,29 +118,29 @@ class ArticleController extends Controller
     public function update(UpdateArticleRequest $request, $id)
     {
 
-        $data= $request->all();
+        $data = $request->all();
         $article = Article::findOrFail($id);
         $data['slug'] = Str::slug($request->input('title')); //slug
-        if($request->hasFile('image')) { // kiem tra xem co image duoc chon khong
+        if ($request->hasFile('image')) { // kiem tra xem co image duoc chon khong
             @unlink(public_path($article->image));
             //get File
             $file = $request->file('image');
             // dat ten cho file image
-            $filename = time(). '_'.$file->getClientOriginalName();
+            $filename = time() . '_' . $file->getClientOriginalName();
             // dinh nghia duong dan upload file len
             $path_upload = 'upload/article/';
             // thuc hien upload file
-            $file->move($path_upload,$filename);
+            $file->move($path_upload, $filename);
             // luu lai ten
-            $data['image'] = $path_upload.$filename;
+            $data['image'] = $path_upload . $filename;
         }
         $data['summary'] =  $request->input('summary');
         $data['is_active'] = 0;
-        if($request->has('is_active')) {
+        if ($request->has('is_active')) {
             $data['is_active'] = $request->input('is_active');
         };
         $data['position'] = 0;
-        if($request->has('position')) {
+        if ($request->has('position')) {
             $data['position'] = $request->input('position');
         }
         $article->update($data);
@@ -158,11 +158,11 @@ class ArticleController extends Controller
     {
         $article = Article::find($id);
         // xóa ảnh cũ
-        if($article) {
-        @unlink(public_path($article->image));
+        if ($article) {
+            @unlink(public_path($article->image));
 
-        Article::destroy($id);
-        return true;
+            Article::destroy($id);
+            return true;
         } else return false;
     }
 
@@ -171,9 +171,9 @@ class ArticleController extends Controller
         $article = Article::onlyTrashed()->findOrFail($id);
 
         $article->restore();
-            return response()->json([
-                'status' => true,
-                'msg' => 'Khôi phục thành công '
-            ]);
+        return response()->json([
+            'status' => true,
+            'msg' => 'Khôi phục thành công '
+        ]);
     }
 }
