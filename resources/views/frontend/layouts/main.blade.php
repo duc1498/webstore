@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="{{ asset('frontend') }}/css/owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="{{ asset('frontend') }}/css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="{{ asset('frontend') }}/css/style.css" type="text/css">
+      <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <style>
         #contact input {
             margin-bottom: 5px;
@@ -130,7 +131,10 @@
 <script src="{{ asset('frontend') }}/js/owl.carousel.min.js"></script>
 <script src="{{ asset('frontend') }}/js/main.js"></script>
 <script src="{{ asset('backend/js/notify.min.js') }}"></script>
-
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    AOS.init();
+  </script>
 @yield('js')
 
 </body>
