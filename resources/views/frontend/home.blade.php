@@ -5,7 +5,8 @@
     <section class="categories" style="padding-bottom: 5vw;">
         <div class="container">
             <div class="row">
-                <div class="categories__slider owl-carousel">
+                <div class="categories__slider owl-carousel" data-aos="fade-up"
+                data-aos-duration="3000">
                     @foreach ($banners as $banner)
                         <a href="{{ $banner->url }}">
                             <div class="col-lg-3">
@@ -34,8 +35,10 @@
                 </div>
                 <div class="row featured__filter">
                     @foreach ($item['products'] as $product)
-                        <div class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat">
-                            <div class="featured__item">
+                        <div class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat" >
+                            <div class="featured__item" data-aos="fade-right"
+                            data-aos-offset="300"
+                            data-aos-easing="ease-in-sine">
                                 <div class="featured__item__pic set-bg"
                                     data-setbg="
                             @if ($product->image && file_exists(public_path($product->image))) {{ asset($product->image) }}
